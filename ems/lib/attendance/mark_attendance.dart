@@ -1,0 +1,87 @@
+import 'dart:convert';
+import 'package:ems/business/actions/actions.dart';
+import 'package:ems/model/app_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:redux_dev_tools/redux_dev_tools.dart';
+
+class MarkAttendancePage extends StatelessWidget {
+  final Store<AppState> store;
+
+  MarkAttendancePage(this.store);
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider<AppState>(
+        store: store,
+        child: MaterialApp(
+            title: "Mark Attendance",
+            theme: ThemeData(primarySwatch: Colors.blue),
+            home: StoreBuilder<AppState>(
+                builder: (context, store) => MarkAttendance(store))));
+  }
+}
+
+class MarkAttendance extends StatefulWidget {
+  final DevToolsStore<AppState> store;
+
+  MarkAttendance(this.store);
+  _MarkAttendanceState createState() => _MarkAttendanceState();
+}
+
+class _MarkAttendanceState extends State<MarkAttendance> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Mark Attendance"),
+        ),
+        body: StoreConnector<AppState, MarkAttendanceViewModel>(
+            converter: (store) => MarkAttendanceViewModel.build(store),
+            builder: (context, viewModel) {
+              return Column(
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => viewModel.onRefresh(_onViewStateChanged),
+                    child: Text('Refresh'),
+                  ),
+                  Expanded(
+                      child: _isLoading
+                          ? Center(child: CircularProgressIndicator())
+                          : Text(getPrettyJSONString(
+                              viewModel.studentAttendaceCache))),
+                ],
+              );
+            }));
+  }
+
+  void _onViewStateChanged(bool isLoading) {
+    setState(() {
+      _isLoading = isLoading;
+    });
+  }
+}
+
+class MarkAttendanceViewModel {
+  final Map<String, dynamic> studentAttendaceCache;
+  final Function(OnStateChanged) onRefresh;
+  MarkAttendanceViewModel({this.studentAttendaceCache, this.onRefresh});
+
+  static MarkAttendanceViewModel build(Store<AppState> store) {
+    return MarkAttendanceViewModel(
+      studentAttendaceCache: store.state.studentAttendaceCache,
+      onRefresh: (callback) {
+        store.dispatch(FetchStudentAttendanceCacheAction(callback));
+      },
+    );
+  }
+}
+
+String getPrettyJSONString(Object jsonObject) {
+  return const JsonEncoder.withIndent('  ').convert(jsonObject);
+}
+
+typedef OnStateChanged = Function(bool isLoading);
