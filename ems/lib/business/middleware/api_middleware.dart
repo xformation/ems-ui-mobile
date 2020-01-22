@@ -1,3 +1,4 @@
+import 'package:graphql/client.dart';
 import 'package:redux/redux.dart';
 
 import 'package:ems/business/actions/actions.dart';
@@ -20,8 +21,10 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
   Future _fetchStudentAttendanceCache(
       Store<AppState> store, FetchStudentAttendanceCacheAction action) async {
     action.callback(true);
-    var studentAttendaceCache = await apiClient.fetchStudentAttendanceCache();
-    store.dispatch(StudentAttendanceCacheLoadedAction(studentAttendaceCache));
+    QueryResult queryResult = await apiClient.fetchStudentAttendanceCache();
+    if (!queryResult.hasErrors) {
+      store.dispatch(StudentAttendanceCacheLoadedAction(queryResult.data));
+    }
     action.callback(false);
   }
 }
