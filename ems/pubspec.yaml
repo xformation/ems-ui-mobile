@@ -27,6 +27,7 @@ dependencies:
   flutter_redux_dev_tools: ^0.3.0
   equatable: ^0.6.1
   graphql: ^2.1.0
+  datetime_picker_formfield: ^1.0.0
 
 dev_dependencies:
   flutter_test:
