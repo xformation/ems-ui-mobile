@@ -104,8 +104,4 @@ class MarkAttendanceViewModel {
   }
 }
 
-String getPrettyJSONString(Object jsonObject) {
-  return const JsonEncoder.withIndent('  ').convert(jsonObject);
-}
-
 typedef OnStateChanged = Function(bool isLoading);
