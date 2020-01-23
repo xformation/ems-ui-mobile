@@ -23,7 +23,8 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
     action.callback(true);
     QueryResult queryResult = await apiClient.fetchStudentAttendanceCache();
     if (!queryResult.hasErrors) {
-      store.dispatch(StudentAttendanceCacheLoadedAction(queryResult.data));
+      store.dispatch(StudentAttendanceCacheLoadedAction(
+          queryResult.data["createStudentAttendanceCacheForAdmin"] as Map<String, dynamic>));
     }
     action.callback(false);
   }
