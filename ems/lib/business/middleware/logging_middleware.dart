@@ -9,7 +9,7 @@ class LoggingMiddleware extends MiddlewareClass<AppState> {
 
     if (action is! DevToolsAction) {
       print('Action: $action');
-      print('State: ${store.state.toJson()}');
+      print('State: ${store.state}');
     }
   }
 }

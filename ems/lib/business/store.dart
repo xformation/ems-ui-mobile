@@ -12,7 +12,7 @@ Store<AppState> createReduxStore() {
 
   return DevToolsStore<AppState>(
     appStateReducers,
-    initialState: AppState.empty(),
+    initialState: AppState(),
     middleware: [
       ApiMiddleware(apiClient),
       LoggingMiddleware()

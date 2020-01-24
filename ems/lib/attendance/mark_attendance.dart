@@ -35,13 +35,15 @@ class MarkAttendance extends StatefulWidget {
 class _MarkAttendanceState extends State<MarkAttendance> {
   final format = DateFormat("dd-M-yyyy");
   Store<AppState> _store;
-  MarkAttendanceViewModel _viewModel;
   bool _isLoading = false;
   _MarkAttendanceState(this._store);
 
   @override
   void initState() {
-    _viewModel = MarkAttendanceViewModel.build(_store, _onViewStateChanged);
+    super.initState();
+    // _store.dispatch(FetchStudentAttendanceCacheAction(_onViewStateChanged));
+    _store.dispatch(GlobalAction(
+        ActionType.FetchStudentAttendanceCache, null, _onViewStateChanged));
   }
 
   @override
@@ -51,7 +53,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
           title: Text("Mark Attendance"),
         ),
         body: StoreConnector<AppState, MarkAttendanceViewModel>(
-            converter: (store) => _viewModel,
+            converter: (store) => MarkAttendanceViewModel.build(store),
             builder: (context, viewModel) {
               return Center(
                 child: Form(
@@ -69,23 +71,22 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                   // titleText: 'My workout',
                                   children: <Widget>[
                                     createDropdownbox(
-                                        data:
-                                            _store.state.studentAttendaceCache[
-                                                "departments"],
+                                        data: viewModel.studentAttendaceCache[
+                                            "departments"],
                                         keyValue: "id",
                                         keyName: "name"),
                                     createDropdownbox(
-                                        data: _store.state
+                                        data: viewModel
                                             .studentAttendaceCache["batches"],
                                         keyValue: "id",
                                         keyName: "batch"),
                                     createDropdownbox(
-                                        data: _store.state
+                                        data: viewModel
                                             .studentAttendaceCache["subjects"],
                                         keyValue: "id",
                                         keyName: "subjectType"),
                                     createDropdownbox(
-                                        data: _store.state
+                                        data: viewModel
                                             .studentAttendaceCache["sections"],
                                         keyValue: "id",
                                         keyName: "section"),
@@ -96,6 +97,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                     //     keyName: "strLecDate"),
                                     DateTimeField(
                                       format: format,
+                                      initialValue: DateTime.now(),
                                       onShowPicker: (context, currentValue) {
                                         return showDatePicker(
                                             context: context,
@@ -103,6 +105,15 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                             initialDate: DateTime.now(),
                                             lastDate: DateTime(2100));
                                       },
+                                    ),
+                                    new RaisedButton(
+                                      onPressed: _getattendanceData(),
+                                      textColor: Colors.white,
+                                      color: Colors.blueAccent,
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: new Text(
+                                        "Take Attendance",
+                                      ),
                                     ),
                                   ],
                                 ))),
@@ -116,6 +127,11 @@ class _MarkAttendanceState extends State<MarkAttendance> {
     setState(() {
       _isLoading = isLoading;
     });
+  }
+
+  _getattendanceData() {
+    // _store.dispatch(GlobalAction(
+    //     ActionType.FetchStudentAttendanceData, null,null));
   }
 
   Widget createDropdownbox(
@@ -142,25 +158,19 @@ class _MarkAttendanceState extends State<MarkAttendance> {
         onChanged: (String newValue) {},
       );
     }
-    return Text("Loading");
+    return Text("No record found");
   }
 }
 
 class MarkAttendanceViewModel {
   final Map<String, dynamic> studentAttendaceCache;
-  final OnStateChanged callBack;
-  final Store<AppState> store;
-  MarkAttendanceViewModel(
-      {this.studentAttendaceCache, this.callBack, this.store}) {
-    store.dispatch(FetchStudentAttendanceCacheAction(callBack));
+  MarkAttendanceViewModel({this.studentAttendaceCache}) {
+    // store.dispatch(FetchStudentAttendanceCacheAction(callBack));
   }
 
-  static MarkAttendanceViewModel build(
-      Store<AppState> store, OnStateChanged callBack) {
+  static MarkAttendanceViewModel build(Store<AppState> store) {
     return MarkAttendanceViewModel(
-        studentAttendaceCache: store.state.studentAttendaceCache,
-        callBack: callBack,
-        store: store);
+        studentAttendaceCache: store.state.studentAttendaceCache);
   }
 }
 
