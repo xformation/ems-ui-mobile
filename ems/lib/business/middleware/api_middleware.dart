@@ -37,13 +37,13 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
 
   Future _getStudentAttendanceCache(
       Store<AppState> store, GlobalAction action) async {
-    // action.callback(true);
+    action.callback(true);
     QueryResult queryResult = await apiClient.getStudentAttendanceCache();
     if (!queryResult.hasErrors) {
       store.dispatch(GlobalAction(
           ActionType.LoadStudentAttendanceData,
           queryResult.data["getStudentAttendanceDataForAdmin"]
-              as Map<String, dynamic>,
+              as List<dynamic>,
           null));
     }
     action.callback(false);

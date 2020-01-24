@@ -5,7 +5,7 @@ AppState appStateReducers(AppState state, dynamic action) {
   if (action.actionType == ActionType.LoadStudentAttendanceCache) {
     state.studentAttendaceCache = action.data;
     return AppState.update(state);
-  } else if(action.actionType == ActionType.FetchStudentAttendanceData){
+  } else if(action.actionType == ActionType.LoadStudentAttendanceData){
     state.studentAttendanceData = action.data;
     return AppState.update(state);
   }

@@ -19,23 +19,23 @@ class ApiClient {
 
 //takeStudentAttendance call
   Future<QueryResult> getStudentAttendanceCache() async {
-    final QueryOptions options = QueryOptions(
-      document: takestudentAttendanceCache,
+    final MutationOptions options = MutationOptions(
+      document: getstudentAttendanceData,
       variables: <String, dynamic>{
-        "branchId": "1851",
-        "departmentId": "1901",
-        "batchId": "1951",
-        "sectionId": "2001",
-        "subjectId": "2101",
-        "attendanceDate": "07-01-2019",
-        "lectureId": "3499",
-        "academicYearId": "1701",
-        "termId": "1751"
+        "filter": {
+          "branchId": "1851",
+          "departmentId": "1901",
+          "batchId": "1951",
+          "sectionId": "2001",
+          "subjectId": "2101",
+          "attendanceDate": "07-01-2019",
+          "lectureId": "3499",
+          "academicYearId": "1701",
+          "termId": "1751"
+        }
       },
     );
-    final QueryResult result = await GraphQLClientAPI.client().query(options);
+    final QueryResult result = await GraphQLClientAPI.client().mutate(options);
     return result;
   }
 }
-
-

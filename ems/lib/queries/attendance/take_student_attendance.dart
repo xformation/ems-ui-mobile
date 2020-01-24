@@ -1,4 +1,4 @@
-const String takestudentAttendanceCache = r'''
+const String getstudentAttendanceData = r'''
 mutation getStudentAttendanceDataForAdmin($filter:StudentAttendanceFilterInput!) {
   getStudentAttendanceDataForAdmin(filter: $filter) {
     studentId

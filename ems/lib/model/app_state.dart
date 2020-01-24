@@ -1,6 +1,6 @@
 class AppState {
   Map<String, dynamic> studentAttendaceCache = new Map();
-  Map<String, dynamic> studentAttendanceData = new Map();
+  List<dynamic> studentAttendanceData = new List();
   // AppState({this.studentAttendaceCache, this.studentAttendanceData});
   AppState();
 
