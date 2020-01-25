@@ -50,6 +50,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text("Mark Attendance"),
         ),
@@ -57,15 +58,18 @@ class _MarkAttendanceState extends State<MarkAttendance> {
             converter: (store) => MarkAttendanceViewModel.build(store),
             builder: (context, viewModel) {
               return Center(
-                child: Form(
-                    // key: formKey,
-                    child: Column(
+                // child: Form(
+                // key: formKey,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
+                        child: SingleChildScrollView(
                       child: _isLoading
                           ? Center(child: CircularProgressIndicator())
                           : Container(
+                              // height: 100,
+                              // height: MediaQuery.of(context).size.height,
                               padding: new EdgeInsets.all(10.0),
                               child: Column(
                                 children: <Widget>[
@@ -89,6 +93,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                           .studentAttendaceCache["sections"],
                                       keyValue: "id",
                                       keyName: "section"),
+
                                   // createDropdownbox(
                                   //     data: viewModel
                                   //         .studentAttendaceCache["lectures"],
@@ -116,21 +121,25 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                   ),
                                 ],
                               )),
-                    ),
+                    )),
                     Expanded(
-                        child: _isgetstudentattendanceData
-                            ? Center()
-                            : Container(
-                                padding: new EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    studentAttendancelist(
-                                      value: viewModel.studentAttendanceData,
-                                    ),
-                                  ],
-                                ))),
+                        child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: _isgetstudentattendanceData
+                                ? Center()
+                                : Container(
+                                    padding: new EdgeInsets.all(10.0),
+                                    child: FittedBox(
+                                        child: Column(
+                                      children: <Widget>[
+                                        studentAttendancelist(
+                                          value:
+                                              viewModel.studentAttendanceData,
+                                        ),
+                                      ],
+                                    ))))),
                   ],
-                )),
+                ),
               );
             }));
   }
@@ -149,13 +158,14 @@ class _MarkAttendanceState extends State<MarkAttendance> {
       return DropdownButton<String>(
         isExpanded: true,
         value: data[0][keyValue].toString(),
-        elevation: 10,
+        elevation: 15,
         style: TextStyle(color: Colors.deepPurple),
         underline: Container(
           height: 2,
           color: Colors.deepPurpleAccent[50],
         ),
         items: data.map<DropdownMenuItem<String>>((dynamic item) {
+          SizedBox(height: 20);
           return DropdownMenuItem<String>(
             value: item[keyValue].toString(),
             child: Text(item[keyName]),
@@ -180,23 +190,31 @@ class _MarkAttendanceState extends State<MarkAttendance> {
   }
 
   Widget studentAttendancelist({@required dynamic value}) {
-    print(_isgetstudentattendanceData);
-    print(value);
     if (!_isgetstudentattendanceData) {
       return DataTable(
+        columnSpacing: 30,
+        // headingRowHeight: 100,
+        horizontalMargin: 10,
         columns: <DataColumn>[
           DataColumn(
-              label: Text("StudentId"),
+              label: Text("StudentId",
+                  style: TextStyle(fontSize: 30, color: Colors.blueAccent)),
               numeric: true,
               tooltip: "To display StudentId"),
           DataColumn(
-              label: Text("Student Name"),
+              label: Text("Student Name",
+                  style: TextStyle(fontSize: 30, color: Colors.blueAccent)),
               numeric: false,
               tooltip: "To display Student Name"),
           DataColumn(
-              label: Text("Attendance"),
+              label: Text("Attendance",
+                  style: TextStyle(fontSize: 30, color: Colors.blueAccent)),
               numeric: false,
               tooltip: "To display Attendance"),
+          // DataColumn(
+          //     label: Text("Comments"),
+          //     numeric: false,
+          //     tooltip: "To display Comments"),
         ],
         rows: _createRows(value),
       );
@@ -204,18 +222,30 @@ class _MarkAttendanceState extends State<MarkAttendance> {
     return Text("no data found");
   }
 
-  List<DataRow> _createRows(listOfRows){
+  List<DataRow> _createRows(listOfRows) {
     final length = listOfRows.length;
     List<DataRow> retData = [];
-    for(var i=0;i<length;i++){
+    for (var i = 0; i < length; i++) {
       var row = listOfRows[i];
-      retData.add(DataRow(
-        cells:[
-          DataCell(Text(row["studentId"])),
-          DataCell(Text(row["studentName"])),
-          DataCell(Text(row["currentDateStatus"])),
-        ]
-      ));
+      retData.add(DataRow(cells: [
+        DataCell(Text(row["studentId"],
+            style: TextStyle(fontSize: 25), textAlign: TextAlign.center)),
+        DataCell(Text(row["studentName"],
+            style: TextStyle(fontSize: 25), textAlign: TextAlign.center)),
+        DataCell(
+          Checkbox(
+            value: (row["currentDateStatus"]== 'PRESENT')?true:false,
+            onChanged: (bool value) {
+              // setState(() {
+              //   monVal = value;
+              // });
+            },
+          ),
+        )
+        // DataCell(Text(row["currentDateStatus"],
+        //     style: TextStyle(fontSize: 25), textAlign: TextAlign.center)),
+        // DataCell(Text("hello")),
+      ]));
     }
     return retData;
   }
