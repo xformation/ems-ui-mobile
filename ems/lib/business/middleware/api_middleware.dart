@@ -17,6 +17,8 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
       this._fetchStudentAttendanceCache(store, action);
     } else if (action.actionType == ActionType.FetchStudentAttendanceData) {
       this._getStudentAttendanceCache(store, action);
+    } else if (action.actionType == ActionType.UpdateStudentAttendanceData) {
+      this._setStudentAttendanceData(store, action);
     }
     next(action);
   }
@@ -43,6 +45,20 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(GlobalAction(
           ActionType.LoadStudentAttendanceData,
           queryResult.data["getStudentAttendanceDataForAdmin"]
+              as List<dynamic>,
+          null));
+    }
+    action.callback(false);
+  }
+
+  Future _setStudentAttendanceData(
+      Store<AppState> store, GlobalAction action) async {
+    // action.callback(true);
+    QueryResult queryResult = await apiClient.setStudentAttendanceData();
+    if (!queryResult.hasErrors) {
+      store.dispatch(GlobalAction(
+          ActionType.LoadStudentAttendanceData,
+          queryResult.data["updateStudentAttendanceData"]
               as List<dynamic>,
           null));
     }

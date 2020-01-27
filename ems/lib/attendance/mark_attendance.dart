@@ -36,6 +36,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
   final format = DateFormat("dd-M-yyyy");
   Store<AppState> _store;
   bool _isLoading = true;
+  bool isSwitched = true;
   bool _isgetstudentattendanceData = true;
   _MarkAttendanceState(this._store);
 
@@ -64,64 +65,59 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
+                        flex: 1,
                         child: SingleChildScrollView(
-                      child: _isLoading
-                          ? Center(child: CircularProgressIndicator())
-                          : Container(
-                              // height: 100,
-                              // height: MediaQuery.of(context).size.height,
-                              padding: new EdgeInsets.all(10.0),
-                              child: Column(
-                                children: <Widget>[
-                                  createDropdownbox(
-                                      data: viewModel
-                                          .studentAttendaceCache["departments"],
-                                      keyValue: "id",
-                                      keyName: "name"),
-                                  createDropdownbox(
-                                      data: viewModel
-                                          .studentAttendaceCache["batches"],
-                                      keyValue: "id",
-                                      keyName: "batch"),
-                                  createDropdownbox(
-                                      data: viewModel
-                                          .studentAttendaceCache["subjects"],
-                                      keyValue: "id",
-                                      keyName: "subjectType"),
-                                  createDropdownbox(
-                                      data: viewModel
-                                          .studentAttendaceCache["sections"],
-                                      keyValue: "id",
-                                      keyName: "section"),
-
-                                  // createDropdownbox(
-                                  //     data: viewModel
-                                  //         .studentAttendaceCache["lectures"],
-                                  //     keyValue: "id",
-                                  //     keyName: "strLecDate"),
-                                  DateTimeField(
-                                    format: format,
-                                    initialValue: DateTime.now(),
-                                    onShowPicker: (context, currentValue) {
-                                      return showDatePicker(
-                                          context: context,
-                                          firstDate: DateTime(1900),
-                                          initialDate: DateTime.now(),
-                                          lastDate: DateTime(2100));
-                                    },
-                                  ),
-                                  new RaisedButton(
-                                    onPressed: _getattendanceData,
-                                    textColor: Colors.white,
-                                    color: Colors.blueAccent,
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: new Text(
-                                      "Take Attendance",
-                                    ),
-                                  ),
-                                ],
-                              )),
-                    )),
+                          child: _isLoading
+                              ? Center(child: CircularProgressIndicator())
+                              : Container(
+                                  // height: 100,
+                                  // height: MediaQuery.of(context).size.height,
+                                  padding: new EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      createDropdownbox(
+                                          data: viewModel.studentAttendaceCache[
+                                              "departments"],
+                                          keyValue: "id",
+                                          keyName: "name"),
+                                      createDropdownbox(
+                                          data: viewModel
+                                              .studentAttendaceCache["batches"],
+                                          keyValue: "id",
+                                          keyName: "batch"),
+                                      createDropdownbox(
+                                          data: viewModel.studentAttendaceCache[
+                                              "subjects"],
+                                          keyValue: "id",
+                                          keyName: "subjectType"),
+                                      createDropdownbox(
+                                          data: viewModel.studentAttendaceCache[
+                                              "sections"],
+                                          keyValue: "id",
+                                          keyName: "section"),
+                                      DateTimeField(
+                                        format: format,
+                                        initialValue: DateTime.now(),
+                                        onShowPicker: (context, currentValue) {
+                                          return showDatePicker(
+                                              context: context,
+                                              firstDate: DateTime(1900),
+                                              initialDate: DateTime.now(),
+                                              lastDate: DateTime(2100));
+                                        },
+                                      ),
+                                      new RaisedButton(
+                                        onPressed: _getattendanceData,
+                                        textColor: Colors.white,
+                                        color: Colors.blueAccent,
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: new Text(
+                                          "Take Attendance",
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                        )),
                     Expanded(
                         child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
@@ -138,6 +134,15 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                         ),
                                       ],
                                     ))))),
+                    new RaisedButton(
+                      onPressed: _updateattendanceData,
+                      textColor: Colors.white,
+                      color: Colors.blueAccent,
+                      padding: const EdgeInsets.all(8.0),
+                      child: new Text(
+                        "Save",
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -154,7 +159,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
       {@required dynamic data,
       @required String keyValue,
       @required String keyName}) {
-    if (!_isLoading) {
+    if (!_isLoading && data != null) {
       return DropdownButton<String>(
         isExpanded: true,
         value: data[0][keyValue].toString(),
@@ -189,6 +194,11 @@ class _MarkAttendanceState extends State<MarkAttendance> {
     });
   }
 
+  _updateattendanceData() {
+    _store.dispatch(
+        GlobalAction(ActionType.UpdateStudentAttendanceData, null, null));
+  }
+
   Widget studentAttendancelist({@required dynamic value}) {
     if (!_isgetstudentattendanceData) {
       return DataTable(
@@ -211,10 +221,6 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                   style: TextStyle(fontSize: 30, color: Colors.blueAccent)),
               numeric: false,
               tooltip: "To display Attendance"),
-          // DataColumn(
-          //     label: Text("Comments"),
-          //     numeric: false,
-          //     tooltip: "To display Comments"),
         ],
         rows: _createRows(value),
       );
@@ -233,18 +239,25 @@ class _MarkAttendanceState extends State<MarkAttendance> {
         DataCell(Text(row["studentName"],
             style: TextStyle(fontSize: 25), textAlign: TextAlign.center)),
         DataCell(
-          Checkbox(
-            value: (row["currentDateStatus"]== 'PRESENT')?true:false,
-            onChanged: (bool value) {
-              // setState(() {
-              //   monVal = value;
-              // });
+          // Checkbox(
+          //   value: (row["currentDateStatus"] == 'PRESENT') ? true : false,
+          //   onChanged: (bool value) {
+          //     // setState(() {
+          //     //   monVal = value;
+          //     // });
+          //   },
+          // ),
+          Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+              });
             },
+            activeTrackColor: Colors.lightBlue,
+            activeColor: Colors.blueAccent[300],
           ),
         )
-        // DataCell(Text(row["currentDateStatus"],
-        //     style: TextStyle(fontSize: 25), textAlign: TextAlign.center)),
-        // DataCell(Text("hello")),
       ]));
     }
     return retData;

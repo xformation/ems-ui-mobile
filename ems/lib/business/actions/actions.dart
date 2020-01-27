@@ -1,4 +1,6 @@
-enum ActionType { FetchStudentAttendanceCache, LoadStudentAttendanceCache, FetchStudentAttendanceData, LoadStudentAttendanceData }
+enum ActionType { FetchStudentAttendanceCache, LoadStudentAttendanceCache, 
+FetchStudentAttendanceData, LoadStudentAttendanceData,
+UpdateStudentAttendanceData, SetStudentAttendanceData }
 
 class GlobalAction {
   final dynamic _callback;

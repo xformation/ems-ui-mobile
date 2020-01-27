@@ -8,6 +8,9 @@ AppState appStateReducers(AppState state, dynamic action) {
   } else if(action.actionType == ActionType.LoadStudentAttendanceData){
     state.studentAttendanceData = action.data;
     return AppState.update(state);
+  } else if(action.actionType == ActionType.SetStudentAttendanceData){
+    state.updatedstudentAttendaceData = action.data;
+    return AppState.update(state);
   }
   return state;
 }
