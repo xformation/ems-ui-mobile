@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_dev_tools/redux_dev_tools.dart';
-
+import 'dart:io';
 import 'package:ems/business/actions/actions.dart';
 import 'package:ems/model/app_state.dart';
 
@@ -37,13 +37,13 @@ class _MarkAttendanceState extends State<MarkAttendance> {
   Store<AppState> _store;
   bool _isLoading = true;
   bool isSwitched = true;
+  bool _changeattendance = false;
   bool _isgetstudentattendanceData = true;
   _MarkAttendanceState(this._store);
 
   @override
   void initState() {
     super.initState();
-    // _store.dispatch(FetchStudentAttendanceCacheAction(_onViewStateChanged));
     _store.dispatch(GlobalAction(
         ActionType.FetchStudentAttendanceCache, null, _onViewStateChanged));
   }
@@ -63,6 +63,7 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                 // key: formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  // mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     Expanded(
                         flex: 1,
@@ -119,6 +120,8 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                   )),
                         )),
                     Expanded(
+                        // AspectRatio(
+                        //   aspectRatio: 1/2,
                         child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: _isgetstudentattendanceData
@@ -126,18 +129,21 @@ class _MarkAttendanceState extends State<MarkAttendance> {
                                 : Container(
                                     padding: new EdgeInsets.all(10.0),
                                     child: FittedBox(
+                                        fit: BoxFit.contain,
                                         child: Column(
-                                      children: <Widget>[
-                                        studentAttendancelist(
-                                          value:
-                                              viewModel.studentAttendanceData,
-                                        ),
-                                      ],
-                                    ))))),
+                                          children: <Widget>[
+                                            studentAttendancelist(
+                                              value: viewModel
+                                                  .studentAttendanceData,
+                                            ),
+                                          ],
+                                        ))))),
                     new RaisedButton(
-                      onPressed: _updateattendanceData,
+                      onPressed:
+                          (_changeattendance) ? _updateattendanceData : null,
                       textColor: Colors.white,
                       color: Colors.blueAccent,
+                      disabledColor: Colors.blueGrey[300],
                       padding: const EdgeInsets.all(8.0),
                       child: new Text(
                         "Save",
