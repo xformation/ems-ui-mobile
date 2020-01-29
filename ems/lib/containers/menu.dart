@@ -25,20 +25,20 @@ class Menu extends StatelessWidget {
           Provider.of<MenuController>(context, listen: true).toggle();
         }
       },
-        child:Container(
-         color: Colors.white,
+      child: Container(
+          color: Colors.white,
           padding: EdgeInsets.only(
               top: 10,
-              left: 32,
+              // left: 32,
               // bottom: 8,
               right: MediaQuery.of(context).size.width / 2.9),
           child: Column(
             children: <Widget>[
               new UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.white10
-                  // color: const Color(0xFF00897b),
-                ),
+                margin: EdgeInsets.only(left: 15, bottom: 0.0),
+                decoration: BoxDecoration(color: Colors.white
+                    // color: const Color(0xFF00897b),
+                    ),
                 accountName: new Text("Rechard Grand",
                     style: TextStyle(
                         fontSize: 15,
@@ -51,7 +51,7 @@ class Menu extends StatelessWidget {
                     backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
                     backgroundColor: Colors.transparent),
               ),
-              // Divider(),
+              Divider(),
               // Spacer(),
               Column(
                 children: options.map((item) {
