@@ -1,81 +1,43 @@
+import 'package:ems/containers/menu.dart';
+import 'package:ems/containers/slide_scaffold.dart';
+import 'package:ems/controller/menu_controller.dart';
 import 'package:flutter/material.dart';
-class HomePage extends StatelessWidget {
-   @override
+import 'package:provider/provider.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => new _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  MenuController _menuController;
+
+  @override
+  void initState() {
+    super.initState();
+    _menuController = new MenuController(vsync: this);
+    _menuController.addListener(() {
+      return setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _menuController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Home',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-        ),
-        drawer: new Drawer(
-        child: new ListView(
-          children: <Widget> [
-            new DrawerHeader(
-              child: CircleAvatar(
-                radius: 30.0,
-                backgroundImage:
-                    NetworkImage('images/user_male2-512.png'),
-                backgroundColor: Colors.transparent,
-                child: 
-                  Text('Rechard Grand' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black)),
-                // Text("Hydrabad India",style: TextStyle(fontSize: 15, color: Colors.black))
-              ),
-              // child: new Text('Header'),
-            ),
-            new ListTile(
-              title: new Text('Home'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('Attendance'),
-              onTap: () {},
-            ),
-            // new Divider(),
-            new ListTile(
-              title: new Text('Time Table'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('Fee Payment'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('Examinations'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('Grades'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('Notifications'),
-              onTap: () {},
-            ),
-            new ListTile(
-              title: new Text('settings'),
-              onTap: () {},
-            ),
-             new ListTile(
-              title: new Text('Complaints'),
-              onTap: () {},
-            ),
-             new ListTile(
-              title: new Text('My Profile'),
-              onTap: () {},
-            ),
-             new ListTile(
-              title: new Text('Logout'),
-              onTap: () {},
-            ),
-            
-          ],
-        )
-      ),
-        body: Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
+    return ChangeNotifierProvider(
+        builder: (context) => _menuController,
+        child: SlideScaffold(
+            menuScreen: Menu(),
+            contentBuilder: (cc) => Container(
+                  color: Colors.grey[200],
+                  child: Container(
+                    color: Colors.grey[200],
+                  ),
+                )));
   }
 }
