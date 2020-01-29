@@ -11,7 +11,7 @@ class Ems extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title: "EMS",
+      title: "Home",
       theme: ThemeData(primarySwatch: Colors.blue),
       home: HomePage()
     );

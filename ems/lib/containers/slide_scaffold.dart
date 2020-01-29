@@ -54,14 +54,7 @@ class _SlideScaffoldState extends State<SlideScaffold>
       transform: Matrix4.translationValues(slideAmount, 0.0, 0.0),
       alignment: Alignment.centerLeft,
       child: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            offset: const Offset(0.0, 5.0),
-            blurRadius: 15.0,
-            spreadRadius: 10.0,
-          )
-        ]),
+        
         child: content,
       ),
     );

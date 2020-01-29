@@ -25,35 +25,40 @@ class Menu extends StatelessWidget {
           Provider.of<MenuController>(context, listen: true).toggle();
         }
       },
-      child: Container(
+        child:Container(
+         color: Colors.white,
           padding: EdgeInsets.only(
-              top: 62,
+              top: 10,
               left: 32,
-              bottom: 8,
+              // bottom: 8,
               right: MediaQuery.of(context).size.width / 2.9),
-          color: Color(0xff454dff),
           child: Column(
             children: <Widget>[
               new UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.white10
+                  // color: const Color(0xFF00897b),
+                ),
                 accountName: new Text("Rechard Grand",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.black)),
                 accountEmail: new Text("Hydrabad, India",
-                    style: TextStyle(fontSize: 15, color: Colors.black)),
+                    style: TextStyle(fontSize: 10, color: Colors.black)),
                 currentAccountPicture: new CircleAvatar(
                     radius: 30.0,
                     backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
                     backgroundColor: Colors.transparent),
               ),
-              Spacer(),
+              // Divider(),
+              // Spacer(),
               Column(
                 children: options.map((item) {
                   return ListTile(
                     leading: Icon(
                       item.icon,
-                      color: Colors.white,
+                      color: Colors.green[300],
                       size: 20,
                     ),
                     title: Text(
@@ -61,7 +66,7 @@ class Menu extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Colors.green[300]),
                     ),
                   );
                 }).toList(),
