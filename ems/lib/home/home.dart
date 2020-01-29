@@ -36,8 +36,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             contentBuilder: (cc) => Container(
                   color: Colors.grey[200],
                   child: Container(
-                    color: Colors.grey[200],
-                  ),
+                      height: 200.0,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                            child: Column(children: [
+                              Text("Select Student")
+                            ]),
+                          )
+                        ],
+                      )),
                 )));
   }
 }
+
+//  child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+//           Expanded(
+//             child: Column(children: [
+//               Container(height: 120.0, color: Colors.yellow),
+//               Container(height: 100.0, color: Colors.cyan),
+//             ]),
+//           ),
+//           Expanded(child: Container(color: Colors.amber)),
+//         ]),
