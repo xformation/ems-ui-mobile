@@ -10,7 +10,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<charts.Series<OrdinalSales, String>> seriesList;
+  List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
 
   @override
@@ -21,26 +21,26 @@ class _DashboardState extends State<Dashboard> {
 
   _createSampleData() {
     final data = [
-      new OrdinalSales('Jan', 5),
-      new OrdinalSales('Feb', 25),
-      new OrdinalSales('Mar', 100),
-      new OrdinalSales('Apr', 40),
-      new OrdinalSales('May', 50),
-      new OrdinalSales('Jun', 60),
-      new OrdinalSales('Jul', 25),
-      new OrdinalSales('Aug', 35),
-      new OrdinalSales('Sep', 45),
-      new OrdinalSales('Oct', 85),
-      new OrdinalSales('Now', 95),
-      new OrdinalSales('Dec', 10),
+      new MonthwiseAttendance('Jan', 5),
+      new MonthwiseAttendance('Feb', 25),
+      new MonthwiseAttendance('Mar', 100),
+      new MonthwiseAttendance('Apr', 40),
+      new MonthwiseAttendance('May', 50),
+      new MonthwiseAttendance('Jun', 60),
+      new MonthwiseAttendance('Jul', 25),
+      new MonthwiseAttendance('Aug', 35),
+      new MonthwiseAttendance('Sep', 45),
+      new MonthwiseAttendance('Oct', 85),
+      new MonthwiseAttendance('Now', 95),
+      new MonthwiseAttendance('Dec', 10),
     ];
 
     seriesList = [
-      charts.Series<OrdinalSales, String>(
-        id: 'Sales',
+      charts.Series<MonthwiseAttendance, String>(
+        id: 'Attendance',
         colorFn: (_, __) => charts.MaterialPalette.yellow.shadeDefault.darker,
-        domainFn: (OrdinalSales sales, _) => sales.month,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
+        domainFn: (MonthwiseAttendance attendance, _) => attendance.month,
+        measureFn: (MonthwiseAttendance attendance, _) => attendance.attendance,
         data: data,
       )
     ];
@@ -276,9 +276,9 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-class OrdinalSales {
+class MonthwiseAttendance {
   final String month;
-  final int sales;
+  final int attendance;
 
-  OrdinalSales(this.month, this.sales);
+  MonthwiseAttendance(this.month, this.attendance);
 }
