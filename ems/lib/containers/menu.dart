@@ -1,20 +1,22 @@
 import 'package:ems/controller/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ems/theme_data.dart';
+import 'package:ems/assets/local_icons.dart';
 
 class Menu extends StatelessWidget {
   final List<MenuItem> options = [
-    MenuItem(Icons.account_balance, 'Home', Colors.black38),
-    MenuItem(Icons.account_circle, 'Attendance', Colors.black38),
-    MenuItem(Icons.calendar_today, 'Time Table', Colors.black38),
-    MenuItem(Icons.payment, 'Fee Payment', Colors.black38),
-    MenuItem(Icons.account_balance, 'Examinations', Colors.black38),
-    MenuItem(Icons.grade, 'Grades', Colors.black38),
-    MenuItem(Icons.notifications, 'Notifications', Colors.black38),
-    MenuItem(Icons.settings, 'Settings', Colors.black38),
-    MenuItem(Icons.feedback, 'Complaints', Colors.black38),
-    MenuItem(Icons.account_circle, 'My Profile', Colors.black38),
-    MenuItem(Icons.clear_all, 'Logout', Colors.black38),
+    MenuItem(LocalIcons.home, 'Home'),
+    MenuItem(LocalIcons.attendance, 'Attendance'),
+    MenuItem(LocalIcons.timetable, 'Time Table'),
+    MenuItem(LocalIcons.fee_payment, 'Fee Payment'),
+    MenuItem(LocalIcons.examination, 'Examinations'),
+    MenuItem(LocalIcons.grades, 'Grades'),
+    MenuItem(LocalIcons.notification, 'Notifications'),
+    MenuItem(LocalIcons.settings, 'Settings'),
+    MenuItem(LocalIcons.complaints, 'Complaints'),
+    MenuItem(LocalIcons.my_profile, 'My Profile'),
+    MenuItem(LocalIcons.logout, 'Logout'),
   ];
 
   @override
@@ -28,60 +30,121 @@ class Menu extends StatelessWidget {
       child: Container(
           color: Colors.white,
           padding: EdgeInsets.only(
-              top: 10,
-              // left: 32,
-              // bottom: 8,
-              right: MediaQuery.of(context).size.width / 2.9),
+            top: 50,
+          ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new UserAccountsDrawerHeader(
-                margin: EdgeInsets.only(left: 15, bottom: 0.0),
-                decoration: BoxDecoration(color: Colors.white
-                    // color: const Color(0xFF00897b),
-                    ),
-                accountName: new Text("Rechard Grand",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black)),
-                accountEmail: new Text("Hydrabad, India",
-                    style: TextStyle(fontSize: 10, color: Colors.black)),
-                currentAccountPicture: new CircleAvatar(
-                    radius: 30.0,
-                    backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
-                    backgroundColor: Colors.transparent),
+              new UserDetails(
+                  "https://celebritypets.net/wp-content/uploads/2016/12/Adriana-Lima.jpg",
+                  "Rechard Grand",
+                  "Hydrabad, India"),
+              Padding(
+                padding: EdgeInsets.only(bottom: 33),
               ),
-              Divider(),
-              // Spacer(),
-              Column(
-                children: options.map((item) {
-                  return ListTile(
-                    leading: Icon(
-                      item.icon,
-                      color: Colors.green[300],
-                      size: 20,
-                    ),
-                    title: Text(
-                      item.title,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green[300]),
-                    ),
-                  );
-                }).toList(),
+              Divider(
+                height: 0,
               ),
-              Spacer(),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.only(left: 50, top: 10),
+                  children: options.map((item) {
+                    return MenuItemWidget(
+                      icon: item.icon,
+                      text: item.title,
+                    );
+                  }).toList(),
+                ),
+              ),
             ],
           )),
     );
   }
 }
 
+class UserDetails extends StatelessWidget {
+  final double _width, _height;
+  final String name, description, image;
+
+  UserDetails(this.image, this.name, this.description,
+      {double width = 50, double height = 50})
+      : _width = width,
+        _height = height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(
+        left: 50,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: _width,
+            height: _height,
+            child: new CircleAvatar(
+                radius: 30.0,
+                backgroundImage: NetworkImage(image),
+                backgroundColor: Colors.transparent),
+          ),
+          Text(
+            name,
+            style: TextStyle(
+                color: LocalTheme.menu["user_name"]["color"],
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontFamily: LocalTheme.menu["user_name"]["font_family"]),
+          ),
+          Text(
+            description,
+            style: TextStyle(
+                color: LocalTheme.menu["user_description"]["color"],
+                fontSize: 14,
+                fontFamily: LocalTheme.menu["user_description"]["font_family"]),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MenuItemWidget extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  MenuItemWidget({this.icon, this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 38,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Icon(icon, color: LocalTheme.menu["item"]["color"], size: 16),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                ),
+                Text(
+                  text,
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: LocalTheme.menu["item"]["color"]),
+                )
+              ],
+            )
+          ],
+        ));
+  }
+}
+
 class MenuItem {
   String title;
   IconData icon;
-  Color color;
 
-  MenuItem(this.icon, this.title, this.color);
+  MenuItem(this.icon, this.title);
 }
