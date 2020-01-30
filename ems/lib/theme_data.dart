@@ -9,7 +9,7 @@ class LocalTheme {
   };
 
   static const Map<String, dynamic> Header = {
-    "title": {"title_color": Color.fromARGB(116, 138, 38,1), 
+    "title": {"title_color": Color(0xFF6C8A26), 
     "font_family": "SFProText",
     "fontsize": 17
     },
