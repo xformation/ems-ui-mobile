@@ -47,7 +47,7 @@ class Menu extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.only(left: 50, top: 10),
+                  padding: EdgeInsets.only(left: 50, top: 23),
                   children: options.map((item) {
                     return MenuItemWidget(
                       icon: item.icon,
