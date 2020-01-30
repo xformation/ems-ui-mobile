@@ -18,17 +18,9 @@ class _SlideScaffoldState extends State<SlideScaffold>
   createContentDisplay() {
     return slideContent(Container(
         child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.grey[200],
-              elevation: 0.0,
-              leading: IconButton(
-                icon: Icon(Icons.menu, color: Colors.black),
-                onPressed: () {
-                  Provider.of<MenuController>(context, listen: true).toggle();
-                },
-              ),
-            ),
-            body: widget.contentBuilder(context))));
+           
+            body: widget.contentBuilder(context))
+            ));
   }
 
   slideContent(Widget content) {

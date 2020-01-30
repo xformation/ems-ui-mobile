@@ -8,6 +8,13 @@ class LocalTheme {
     "user_description": {"color": Color(0xFF585954), "font_family": "OpenSans"}
   };
 
+  static const Map<String, dynamic> Header = {
+    "title": {"title_color": Color.fromARGB(116, 138, 38,1), 
+    "font_family": "SFProText",
+    "fontsize": 17
+    },
+  };
+
   static const Map<String, dynamic> dashboard = {
     "heading": {
       "color": Color.fromRGBO(41, 43, 35, 1),
