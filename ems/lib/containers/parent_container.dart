@@ -38,9 +38,12 @@ class _ParentContainerState extends State<ParentContainer>
         builder: (context) => _menuController,
         child: SlideScaffold(
             menuScreen: Menu(),
-            contentBuilder: (cc) => Container(
-                  //  padding: EdgeInsets.all(16.0),
-                  child: body,
+            contentBuilder: (cc) => GestureDetector(
+                  onTap: () => _menuController.close(),
+                  child: Container(
+                    //  padding: EdgeInsets.all(16.0),
+                    child: body,
+                  ),
                 )));
   }
 }
