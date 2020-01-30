@@ -6,17 +6,17 @@ import 'package:ems/assets/local_icons.dart';
 
 class Menu extends StatelessWidget {
   final List<MenuItem> options = [
-    MenuItem(LocalIcons.home, 'Home'),
-    MenuItem(LocalIcons.attendance, 'Attendance'),
-    MenuItem(LocalIcons.timetable, 'Time Table'),
-    MenuItem(LocalIcons.fee_payment, 'Fee Payment'),
-    MenuItem(LocalIcons.examination, 'Examinations'),
-    MenuItem(LocalIcons.grades, 'Grades'),
-    MenuItem(LocalIcons.notification, 'Notifications'),
-    MenuItem(LocalIcons.settings, 'Settings'),
-    MenuItem(LocalIcons.complaints, 'Complaints'),
-    MenuItem(LocalIcons.my_profile, 'My Profile'),
-    MenuItem(LocalIcons.logout, 'Logout'),
+    MenuItem(LocalIcons.home, 'Home', "/"),
+    MenuItem(LocalIcons.attendance, 'Attendance', "/attendance"),
+    MenuItem(LocalIcons.timetable, 'Time Table', "/attendance"),
+    MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/attendance"),
+    MenuItem(LocalIcons.examination, 'Examinations', "/attendance"),
+    MenuItem(LocalIcons.grades, 'Grades', "/attendance"),
+    MenuItem(LocalIcons.notification, 'Notifications', "/attendance"),
+    MenuItem(LocalIcons.settings, 'Settings', "/attendance"),
+    MenuItem(LocalIcons.complaints, 'Complaints', "/attendance"),
+    MenuItem(LocalIcons.my_profile, 'My Profile', "/attendance"),
+    MenuItem(LocalIcons.logout, 'Logout', "/attendance"),
   ];
 
   @override
@@ -47,11 +47,10 @@ class Menu extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.only(left: 50, top: 23),
+                  padding: EdgeInsets.only(top: 23),
                   children: options.map((item) {
                     return MenuItemWidget(
-                      icon: item.icon,
-                      text: item.title,
+                      item
                     );
                   }).toList(),
                 ),
@@ -110,41 +109,49 @@ class UserDetails extends StatelessWidget {
 }
 
 class MenuItemWidget extends StatelessWidget {
-  final IconData icon;
-  final String text;
+  final MenuItem item;
 
-  MenuItemWidget({this.icon, this.text});
+  MenuItemWidget(this.item);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 38,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(icon, color: LocalTheme.menu["item"]["color"], size: 16),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                ),
-                Text(
-                  text,
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: LocalTheme.menu["item"]["color"]),
-                )
-              ],
-            )
-          ],
-        ));
+    return Material(
+        color: Colors.transparent,
+        child: InkWell(
+            onTap: () => {
+              Navigator.pushNamed(context, item.route)
+            },
+            child: Container(
+                height: 38,
+                padding: EdgeInsets.only(left: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Icon(item.icon,
+                            color: LocalTheme.menu["item"]["color"], size: 16),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                        ),
+                        Text(
+                          item.title,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: LocalTheme.menu["item"]["color"]),
+                        )
+                      ],
+                    )
+                  ],
+                ))));
   }
 }
 
 class MenuItem {
   String title;
   IconData icon;
+  String route;
 
-  MenuItem(this.icon, this.title);
+  MenuItem(this.icon, this.title, this.route);
 }
