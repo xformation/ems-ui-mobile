@@ -49,9 +49,7 @@ class Menu extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.only(top: 23),
                   children: options.map((item) {
-                    return MenuItemWidget(
-                      item
-                    );
+                    return MenuItemWidget(item);
                   }).toList(),
                 ),
               ),
@@ -118,8 +116,9 @@ class MenuItemWidget extends StatelessWidget {
     return Material(
         color: Colors.transparent,
         child: InkWell(
-            onTap: () => {
-              Navigator.pushNamed(context, item.route)
+            onTap: () {
+              Provider.of<MenuController>(context, listen: true).close();
+              Navigator.pushNamed(context, item.route);
             },
             child: Container(
                 height: 38,
