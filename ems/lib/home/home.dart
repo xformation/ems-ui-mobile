@@ -3,6 +3,7 @@ import 'package:ems/containers/slide_scaffold.dart';
 import 'package:ems/controller/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ems/dashboard/dashboard.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,35 +30,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final dashboard = Dashboard();
     return ChangeNotifierProvider(
         builder: (context) => _menuController,
         child: SlideScaffold(
             menuScreen: Menu(),
-            contentBuilder: (cc) => Container(
-                  color: Colors.grey[200],
-                  child: Container(
-                      height: 200.0,
-                      color: Colors.white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Expanded(
-                            child: Column(children: [
-                              Text("Select Student")
-                            ]),
-                          )
-                        ],
-                      )),
+            contentBuilder: (cc) => 
+            Container(
+                  //  padding: EdgeInsets.all(16.0),
+                  child: dashboard.createdashboard(context),
                 )));
   }
 }
-
-//  child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-//           Expanded(
-//             child: Column(children: [
-//               Container(height: 120.0, color: Colors.yellow),
-//               Container(height: 100.0, color: Colors.cyan),
-//             ]),
-//           ),
-//           Expanded(child: Container(color: Colors.amber)),
-//         ]),

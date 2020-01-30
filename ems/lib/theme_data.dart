@@ -16,4 +16,17 @@ class LocalTheme {
       "font_family": "OpenSans"
     }
   };
+
+   static const Map<String, dynamic> dashboard = {
+    "student_name": {
+      "color": Color.fromRGBO(41, 43, 35, 1),
+      "font_family": "Montserrat" ,
+      "font_weight": FontWeight.bold,
+    },
+    "student_description": {
+      "color": Color.fromRGBO(88, 89, 84, 1),
+      "font_family": "OpenSans",
+    }
+  };
+
 }
