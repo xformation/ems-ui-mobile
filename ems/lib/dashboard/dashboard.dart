@@ -85,7 +85,7 @@ class Dashboard {
                       maxWidth: 64,
                       maxHeight: 64,
                     ),
-                    child: Image.network('assets/images/student_image.jpg', fit: BoxFit.cover),
+                    child: Image.asset('assets/images/student_image.jpg', fit: BoxFit.cover),
                   ),
                   title: Text("Sara Adamas",
                       style: TextStyle(
