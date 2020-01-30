@@ -137,8 +137,9 @@ class MenuItemWidget extends StatelessWidget {
                           item.title,
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: LocalTheme.menu["item"]["color"]),
+                              fontWeight: LocalTheme.menu["item"]["font_weight"],
+                              color: LocalTheme.menu["item"]["color"],
+                              fontFamily: LocalTheme.menu["item"]["font_family"]),
                         )
                       ],
                     )
