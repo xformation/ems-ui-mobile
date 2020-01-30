@@ -35,8 +35,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         builder: (context) => _menuController,
         child: SlideScaffold(
             menuScreen: Menu(),
-            contentBuilder: (cc) => 
-            Container(
+            contentBuilder: (cc) => Container(
                   //  padding: EdgeInsets.all(16.0),
                   child: dashboard.createdashboard(context),
                 )));
