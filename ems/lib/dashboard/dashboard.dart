@@ -14,18 +14,23 @@ class _DashboardState extends State<Dashboard> {
   List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
 
+  List<charts.Series<LinearSales, int>> seriesLine;
+  final bool animates = true;
+
   @override
   void initState() {
     super.initState();
     _createSampleData();
+    _createProgressData();
     // GaugeChart(this.seriesList, {this.animate});
   }
 
   _createSampleData() {
     final data = [
-      new MonthwiseAttendance('Low', 75, Color.fromARGB(111,184,222,1)),
-      new MonthwiseAttendance('High', 85, Color.fromARGB(253,202,64,1)),
-      new MonthwiseAttendance('Acceptable', 100, Color.fromARGB(38,98,240,1)),
+      new MonthwiseAttendance('Low', 75, Color.fromARGB(111, 184, 222, 1)),
+      new MonthwiseAttendance('High', 85, Color.fromARGB(253, 202, 64, 1)),
+      new MonthwiseAttendance(
+          'Acceptable', 100, Color.fromARGB(38, 98, 240, 1)),
       // new MonthwiseAttendance('Highly Unusual', 5),
     ];
 
@@ -34,8 +39,45 @@ class _DashboardState extends State<Dashboard> {
         id: 'Attendance',
         domainFn: (MonthwiseAttendance attendance, _) => attendance.attendance,
         measureFn: (MonthwiseAttendance attendance, _) => attendance.size,
-         colorFn: (MonthwiseAttendance segment, _) => segment.color,
+        colorFn: (MonthwiseAttendance segment, _) => segment.color,
         data: data,
+      )
+    ];
+  }
+
+  _createProgressData() {
+    final myFakeDesktopData = [
+      new LinearSales(0, 5),
+      new LinearSales(1, 55),
+      new LinearSales(2, 20),
+      new LinearSales(3, 65),
+      new LinearSales(3, 60),
+      new LinearSales(3, 75),
+    ];
+
+    var myFakeTabletData = [
+      new LinearSales(0, 10),
+      new LinearSales(1, 60),
+      new LinearSales(2, 30),
+      new LinearSales(3, 80),
+      new LinearSales(3, 70),
+      new LinearSales(3, 100),
+    ];
+
+    seriesLine = [
+      charts.Series<LinearSales, int>(
+        id: 'Desktop',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.progress,
+        data: myFakeDesktopData,
+      ),
+      charts.Series<LinearSales, int>(
+        id: 'Tablet',
+        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.progress,
+        data: myFakeTabletData,
       )
     ];
   }
@@ -139,7 +181,7 @@ class _DashboardState extends State<Dashboard> {
             EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
         color: Colors.white,
         child: Column(
-            mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ListTile(
@@ -152,7 +194,15 @@ class _DashboardState extends State<Dashboard> {
                           fontFamily: LocalTheme.home["sub_heading"]
                               ["font_family"],
                           fontSize: 18))),
-             
+              Expanded(
+                child: charts.LineChart(
+                seriesLine,
+                defaultRenderer:
+                    charts.LineRendererConfig(includeArea: true, stacked: true),
+                animate: animates,
+                primaryMeasureAxis:
+                    charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+              )),
             ]));
   }
 
@@ -165,7 +215,35 @@ class _DashboardState extends State<Dashboard> {
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[]));
+            children: <Widget>[
+              Container(
+                  // width: 122.0,
+                  // alignment: Alignment.topLeft,
+                  child:ListTile(
+                      //dense: true,
+                      title: Text("Fee Payments",
+                          style: TextStyle(
+                              color: LocalTheme.home["sub_heading"]["color"],
+                              fontWeight: LocalTheme.home["sub_heading"]
+                                  ["font_weight"],
+                              fontFamily: LocalTheme.home["sub_heading"]
+                                  ["font_family"],
+                              fontSize: 18)),
+                      subtitle: Text("Your fee is pending for this Quarter.",
+                          style: TextStyle(
+                              color: LocalTheme.home["student_description"]
+                                  ["color"],
+                              fontSize: 12,
+                              fontFamily: LocalTheme.home["student_description"]
+                                  ["font_family"])),
+                      trailing: RaisedButton(
+                          onPressed: () {},
+                          child: Text('Pay Now',
+                              style: TextStyle(fontSize: 20)))))
+              //     width: 140.0,
+              //     alignment: Alignment.topRight,
+              //     child: Image.asset('assets/images/payment_img.jpg'))
+            ]));
   }
 
   Widget horizontallscrollchart(
@@ -198,6 +276,14 @@ class MonthwiseAttendance {
   final int size;
   final charts.Color color;
 
-  MonthwiseAttendance(this.attendance, this.size, Color color): this.color = charts.Color(
-            r: color.red, g: color.green, b: color.blue, a: color.alpha).darker;
+  MonthwiseAttendance(this.attendance, this.size, Color color)
+      : this.color = charts.Color(
+            r: color.red, g: color.green, b: color.blue, a: color.alpha);
+}
+
+class LinearSales {
+  final int year;
+  final int progress;
+
+  LinearSales(this.year, this.progress);
 }
