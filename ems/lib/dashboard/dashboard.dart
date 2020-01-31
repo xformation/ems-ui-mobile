@@ -195,7 +195,7 @@ class _DashboardState extends State<Dashboard> {
                               ["font_family"],
                           fontSize: 18))),
               Expanded(
-                child: charts.LineChart(
+                  child: charts.LineChart(
                 seriesLine,
                 defaultRenderer:
                     charts.LineRendererConfig(includeArea: true, stacked: true),
@@ -208,7 +208,7 @@ class _DashboardState extends State<Dashboard> {
 
   Widget studentFeesPaymentStatus() {
     return Container(
-        height: 192.0,
+        //height: 192.0,
         margin:
             EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
         color: Colors.white,
@@ -217,44 +217,67 @@ class _DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                 margin: const EdgeInsets.only(left: 30.0, bottom: 9.0,top:20.0),
-                  // width: 122.0,
-                  // alignment: Alignment.topLeft,
-                  child:ListTile(
-                      //dense: true,
-                      title: Text("Fee Payments",
-                          style: TextStyle(
-                              color: LocalTheme.home["sub_heading"]["color"],
-                              fontWeight: LocalTheme.home["sub_heading"]
-                                  ["font_weight"],
-                              fontFamily: LocalTheme.home["sub_heading"]
-                                  ["font_family"],
-                              fontSize: 18)),
-                      subtitle: Text("Your fee is pending for this Quarter.",
-                          style: TextStyle(
-                              color: LocalTheme.home["student_description"]
-                                  ["color"],
-                              fontSize: 14,
-                              wordSpacing: 2,
-                              fontFamily: LocalTheme.home["student_description"]
-                                  ["font_family"])),
-                      trailing: Container(
-                        height: 150,
-                        child: Column(children: <Widget>[
-                          Image.asset('assets/images/payment_img.jpg')     
-                        ],)
-                      ),
-                      ),
-                    ),
-                     Container(
-                      margin: const EdgeInsets.only(left: 30.0, bottom: 29.0,top: 20.0),
-                      child: RaisedButton(
-                          onPressed: () {},
-                          color: Color.fromRGBO(126,211,33, 1),
-                          textColor: Colors.white,
-                          padding: EdgeInsets.only(left: 45.0,right: 46.0,top: 13.0,bottom: 12.0),
-                          child: Text('Pay Now',
-                              style: TextStyle(fontSize: 20)))),
+                padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 0.0, right: 0.0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(children: [
+                        Container(
+                          width: 150.0,
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(bottom: 10.0, left: 15.0),
+                          child: Text("Fee Payments",
+                              style: TextStyle(
+                                  color: LocalTheme.home["sub_heading"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["sub_heading"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["sub_heading"]
+                                      ["font_family"],
+                                  fontSize: 18)),
+                        ),
+                        Container(
+                          width: 150.0,
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(bottom: 20.0, left: 15.0),
+                          child: Text("Your fee is pending for this Quarter.",
+                              style: TextStyle(
+                                  color: LocalTheme.home["student_description"]
+                                      ["color"],
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  fontFamily:
+                                      LocalTheme.home["student_description"]
+                                          ["font_family"])),
+                        ),
+                        Container(
+                            width: 140.0,
+                            alignment: Alignment.topLeft,
+                            padding: EdgeInsets.only(bottom: 0.0, left: 12.0),
+                            child: RaisedButton(
+                                onPressed: () {},
+                                color: Color.fromRGBO(126, 211, 33, 1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),                                
+                                textColor: Colors.white,
+                                padding: EdgeInsets.only(
+                                    left: 35.0,
+                                    right: 35.0,
+                                    top: 12.0,
+                                    bottom: 12.0),
+                                child: Text('Pay Now',
+                                    style: TextStyle(fontSize: 12))))
+                      ]),
+                      Column(children: [
+                        Container(
+                            width: 150.0,
+                            alignment: Alignment.topRight,
+                            padding: EdgeInsets.only(left: 30.0, right: 0.0),
+                            child: Image.asset('assets/images/payment_img.jpg'))
+                      ])
+                    ]),
+              )
             ]));
   }
 
