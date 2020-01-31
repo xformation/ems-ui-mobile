@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
-import 'package:provider/provider.dart';
-import 'package:ems/controller/menu_controller.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-// import 'package:flutter_segment/flutter_segment.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -104,7 +101,7 @@ class _DashboardState extends State<Dashboard> {
           leading: IconButton(
             icon: Icon(Icons.menu, color: LocalTheme.home["heading"]["color"]),
             onPressed: () {
-              Provider.of<MenuController>(context, listen: true).toggle();
+              Scaffold.of(context).openDrawer();
             },
           ),
         ),

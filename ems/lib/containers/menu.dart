@@ -1,6 +1,4 @@
-import 'package:ems/controller/menu_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:ems/theme_data.dart';
 import 'package:ems/assets/local_icons.dart';
 
@@ -21,12 +19,8 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onPanUpdate: (details) {
-        if (details.delta.dx < -6) {
-          Provider.of<MenuController>(context, listen: true).toggle();
-        }
-      },
+    return SizedBox(
+      width: 278,
       child: Container(
           color: Colors.white,
           padding: EdgeInsets.only(
@@ -117,7 +111,9 @@ class MenuItemWidget extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
             onTap: () {
-              Provider.of<MenuController>(context, listen: true).close();
+              // Provider.of<MenuController>(context, listen: true).close();
+              Navigator.pop(context);
+              // Navigator.popAndPushNamed(context, item.route);
               Navigator.pushNamed(context, item.route);
             },
             child: Container(

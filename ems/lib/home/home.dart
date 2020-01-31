@@ -1,8 +1,8 @@
-import 'package:ems/controller/menu_controller.dart';
+// import 'package:ems/controller/menu_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
                     color: LocalTheme.Header["title"]["title_color"]),
                 iconSize: 24.0,
                 onPressed: () {
-                  Provider.of<MenuController>(context, listen: true).toggle();
+                  Scaffold.of(context).openDrawer();
                 },
               )),
           title: Container(
