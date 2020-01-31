@@ -20,7 +20,7 @@ class LocalTheme {
     },
   };
 
-  static const Map<String, dynamic> dashboard = {
+  static const Map<String, dynamic> home = {
     "heading": {
       "color": Color.fromRGBO(41, 43, 35, 1),
       "font_family": "Montserrat",
