@@ -16,11 +16,8 @@ class _SlideScaffoldState extends State<SlideScaffold>
   Curve slideOutCurve = Interval(0.0, 1.0, curve: Curves.easeOut);
 
   createContentDisplay() {
-    return slideContent(Container(
-        child: Scaffold(
-           
-            body: widget.contentBuilder(context))
-            ));
+    return slideContent(
+        Container(child: Scaffold(body: widget.contentBuilder(context))));
   }
 
   slideContent(Widget content) {
@@ -46,7 +43,6 @@ class _SlideScaffoldState extends State<SlideScaffold>
       transform: Matrix4.translationValues(slideAmount, 0.0, 0.0),
       alignment: Alignment.centerLeft,
       child: Container(
-        
         child: content,
       ),
     );
@@ -56,7 +52,25 @@ class _SlideScaffoldState extends State<SlideScaffold>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(child: Scaffold(body: widget.menuScreen,)),
+        Container(
+          color: Colors.white,
+          child: AnimatedOpacity(
+            opacity:
+                Provider.of<MenuController>(context, listen: true).menuState ==
+                        MenuState.open
+                    ? 1
+                    : 0,
+            duration: Duration(milliseconds: 200),
+            child: Visibility(
+              visible: Provider.of<MenuController>(context, listen: true)
+                      .menuState !=
+                  MenuState.closed,
+              child: Scaffold(
+                body: widget.menuScreen,
+              ),
+            ),
+          ),
+        ),
         createContentDisplay()
       ],
     );
