@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
 
   Widget studentprofileDetail() {
     return Container(
-        height: 80.0,
+        height: 96.0,
         margin:
             EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
         color: Colors.white,
@@ -208,7 +208,7 @@ class _DashboardState extends State<Dashboard> {
 
   Widget studentFeesPaymentStatus() {
     return Container(
-        height: 220.0,
+        height: 192.0,
         margin:
             EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
         color: Colors.white,
@@ -217,6 +217,7 @@ class _DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
+                 margin: const EdgeInsets.only(left: 30.0, bottom: 9.0,top:20.0),
                   // width: 122.0,
                   // alignment: Alignment.topLeft,
                   child:ListTile(
@@ -233,16 +234,27 @@ class _DashboardState extends State<Dashboard> {
                           style: TextStyle(
                               color: LocalTheme.home["student_description"]
                                   ["color"],
-                              fontSize: 12,
+                              fontSize: 14,
+                              wordSpacing: 2,
                               fontFamily: LocalTheme.home["student_description"]
                                   ["font_family"])),
-                      trailing: RaisedButton(
+                      trailing: Container(
+                        height: 150,
+                        child: Column(children: <Widget>[
+                          Image.asset('assets/images/payment_img.jpg')     
+                        ],)
+                      ),
+                      ),
+                    ),
+                     Container(
+                      margin: const EdgeInsets.only(left: 30.0, bottom: 29.0,top: 20.0),
+                      child: RaisedButton(
                           onPressed: () {},
+                          color: Color.fromRGBO(126,211,33, 1),
+                          textColor: Colors.white,
+                          padding: EdgeInsets.only(left: 45.0,right: 46.0,top: 13.0,bottom: 12.0),
                           child: Text('Pay Now',
-                              style: TextStyle(fontSize: 20)))))
-              //     width: 140.0,
-              //     alignment: Alignment.topRight,
-              //     child: Image.asset('assets/images/payment_img.jpg'))
+                              style: TextStyle(fontSize: 20)))),
             ]));
   }
 
