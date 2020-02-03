@@ -214,7 +214,8 @@ class _DashboardState extends State<Dashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 0.0, right: 0.0),
+                padding: EdgeInsets.only(
+                    top: 15.0, bottom: 15.0, left: 0.0, right: 0.0),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -256,7 +257,7 @@ class _DashboardState extends State<Dashboard> {
                                 color: Color.fromRGBO(126, 211, 33, 1),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
-                                ),                                
+                                ),
                                 textColor: Colors.white,
                                 padding: EdgeInsets.only(
                                     left: 35.0,
@@ -282,21 +283,16 @@ class _DashboardState extends State<Dashboard> {
       String chartname, String chartHeading, String chartSubheading) {
     return Container(
       width: 276.0,
+      height: 142.0,
       child: Card(
-        child: Wrap(
-          children: <Widget>[
-            //  Expanded(
-            //       child: charts.PieChart(seriesList,
-            //           animate: animate,
-            //           defaultRenderer: new charts.ArcRendererConfig(
-            //               arcWidth: 30,
-            //               startAngle: 4 / 5 * (3.14),
-            //               arcLength: 7 / 5 * (3.14)))),
-            ListTile(
-              title: Text(chartHeading),
-              subtitle: Text(chartSubheading),
-            )
-          ],
+        child: charts.PieChart(
+          seriesList,
+          animate: animate,
+          defaultRenderer: new charts.ArcRendererConfig(
+            arcWidth: 30,
+            startAngle: 4 / 5 * (3.14),
+            arcLength: 7 / 5 * (3.14),
+          ),
         ),
       ),
     );
