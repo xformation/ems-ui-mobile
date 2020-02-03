@@ -11,7 +11,7 @@ class _DashboardState extends State<Dashboard> {
   List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
 
-  List<charts.Series<LinearSales, int>> seriesLine;
+  List<charts.Series<StudentProgress, int>> seriesLine;
   final bool animates = true;
 
   @override
@@ -44,36 +44,36 @@ class _DashboardState extends State<Dashboard> {
 
   _createProgressData() {
     final myFakeDesktopData = [
-      new LinearSales(0, 5),
-      new LinearSales(1, 55),
-      new LinearSales(2, 20),
-      new LinearSales(3, 65),
-      new LinearSales(3, 60),
-      new LinearSales(3, 75),
+      new StudentProgress(0, 5),
+      new StudentProgress(1, 55),
+      new StudentProgress(2, 20),
+      new StudentProgress(3, 65),
+      new StudentProgress(4, 60),
+      new StudentProgress(5, 75),
     ];
 
     var myFakeTabletData = [
-      new LinearSales(0, 10),
-      new LinearSales(1, 60),
-      new LinearSales(2, 30),
-      new LinearSales(3, 80),
-      new LinearSales(3, 70),
-      new LinearSales(3, 100),
+      new StudentProgress(0, 10),
+      new StudentProgress(1, 60),
+      new StudentProgress(2, 30),
+      new StudentProgress(3, 80),
+      new StudentProgress(4, 70),
+      new StudentProgress(5, 100),
     ];
 
     seriesLine = [
-      charts.Series<LinearSales, int>(
+      charts.Series<StudentProgress, int>(
         id: 'Desktop',
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.progress,
+        domainFn: (StudentProgress sales, _) => sales.year,
+        measureFn: (StudentProgress sales, _) => sales.progress,
         data: myFakeDesktopData,
       ),
-      charts.Series<LinearSales, int>(
+      charts.Series<StudentProgress, int>(
         id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.progress,
+        colorFn: (_, __) => charts.MaterialPalette.yellow.shadeDefault,
+        domainFn: (StudentProgress sales, _) => sales.year,
+        measureFn: (StudentProgress sales, _) => sales.progress,
         data: myFakeTabletData,
       )
     ];
@@ -163,9 +163,9 @@ class _DashboardState extends State<Dashboard> {
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           horizontallscrollchart('barchart', 'Attendance', '2020'),
-          horizontallscrollchart('barchart', 'Attendance', '2020'),
-          horizontallscrollchart('barchart', 'Attendance', '2020'),
-          horizontallscrollchart('barchart', 'Attendance', '2020'),
+          // horizontallscrollchart('barchart', 'Attendance', '2020'),
+          // horizontallscrollchart('barchart', 'Attendance', '2020'),
+          // horizontallscrollchart('barchart', 'Attendance', '2020'),
         ],
       ),
     );
@@ -197,8 +197,10 @@ class _DashboardState extends State<Dashboard> {
                 defaultRenderer:
                     charts.LineRendererConfig(includeArea: true, stacked: true),
                 animate: animates,
-                primaryMeasureAxis:
-                    charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
+                 primaryMeasureAxis: charts.NumericAxisSpec(
+                    renderSpec: charts.NoneRenderSpec(), showAxisLine: false),
+                domainAxis: new charts.NumericAxisSpec(),
+              
               )),
             ]));
   }
@@ -309,9 +311,9 @@ class MonthwiseAttendance {
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }
 
-class LinearSales {
+class StudentProgress {
   final int year;
   final int progress;
 
-  LinearSales(this.year, this.progress);
+  StudentProgress(this.year, this.progress);
 }
