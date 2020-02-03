@@ -4,7 +4,7 @@ class LocalTheme {
   LocalTheme._();
   static const Map<String, dynamic> menu = {
     "item": {
-      "color": Color(0xFF6C8A26),
+      "color": Color(0xFF000000),
       "font_family": "Montserrat",
       "font_weight": FontWeight.bold,
     },
@@ -14,7 +14,7 @@ class LocalTheme {
 
   static const Map<String, dynamic> Header = {
     "title": {
-      "title_color": Color(0xFF6C8A26),
+      "title_color": Color(0xFF000000),
       "font_family": "SFProText",
       "fontsize": 17
     },
