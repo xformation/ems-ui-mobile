@@ -146,9 +146,10 @@ class _DashboardDetailState extends State<DashboardDetail> {
                               ["font_family"],
                           fontSize: 16)), //    <-- label
                   value: false,
-                  onChanged: (newValue) {}
-                  // onChanged: (newValue) { ... },
-                  ),
+                  onChanged: (newValue) {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/subjectwiseattendance");
+                  }),
               CheckboxListTile(
                   title: Text("Day wise Attendance",
                       style: TextStyle(
@@ -158,9 +159,10 @@ class _DashboardDetailState extends State<DashboardDetail> {
                               ["font_family"],
                           fontSize: 16)), //    <-- label
                   value: false,
-                  onChanged: (newValue) {}
-                  // onChanged: (newValue) { ... },
-                  )
+                  onChanged: (newValue) {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/subjectwiseattendance");
+                  })
             ]));
   }
 
