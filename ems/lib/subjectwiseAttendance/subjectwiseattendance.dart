@@ -7,6 +7,8 @@ class SubjectAttendance extends StatefulWidget {
 }
 
 class _SubjectAttendanceState extends State<SubjectAttendance> {
+  String _selected;
+
   @override
   void initState() {
     super.initState();
@@ -43,6 +45,8 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
             child: SingleChildScrollView(
                 child: Column(children: <Widget>[
               studentprofileDetail(),
+              selectSubjectDate(),
+              attendanceView(),
             ]))));
   }
 
@@ -81,6 +85,66 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
                         fontSize: 12,
                         fontFamily: LocalTheme.home["student_description"]
                             ["font_family"])),
+              ),
+            ]));
+  }
+
+  Widget selectSubjectDate() {
+    return Container(
+        height: 200.0,
+        margin:
+            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+        color: Colors.white,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              DropdownButton<String>(
+                isExpanded: true,
+                // hint: Text("Please choose a subject"),
+                items: <String>['Physics', 'Maths', 'English', 'Chemistry']
+                    .map((String value) {
+                  return new DropdownMenuItem<String>(
+                    value: _selected,
+                    child: new Text(value),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  print(value);
+                  setState(() => _selected = value);
+                },
+              )
+            ]));
+  }
+
+  Widget attendanceView() {
+    return Container(
+        height: 600.0,
+        margin:
+            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+        color: Colors.white,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              DefaultTabController(
+                length: 2,
+                child: TabBar(tabs: <Widget>[
+                  Text("Week View",
+                      style: TextStyle(
+                          color: LocalTheme.Tab["heading"]["title_color"],
+                          fontSize: 14,
+                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                          fontWeight: LocalTheme.Tab["heading"]
+                              ["font_weight"])),
+                  Text("Month View",
+                      style: TextStyle(
+                          color: LocalTheme.Tab["heading"]["title_color"],
+                          fontSize: 14,
+                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                          fontWeight: LocalTheme.Tab["heading"]
+                              ["font_weight"])),
+                ]),
               ),
             ]));
   }

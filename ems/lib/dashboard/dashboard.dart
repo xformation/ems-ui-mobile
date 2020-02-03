@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
+
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => new _DashboardState();
@@ -163,8 +164,8 @@ class _DashboardState extends State<Dashboard> {
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           horizontallscrollchart('barchart', 'Attendance', '2020'),
-          // horizontallscrollchart('barchart', 'Attendance', '2020'),
-          // horizontallscrollchart('barchart', 'Attendance', '2020'),
+          horizontallscrollnews(),
+          // horizontallscrollbaziarchart(),
           // horizontallscrollchart('barchart', 'Attendance', '2020'),
         ],
       ),
@@ -197,10 +198,9 @@ class _DashboardState extends State<Dashboard> {
                 defaultRenderer:
                     charts.LineRendererConfig(includeArea: true, stacked: true),
                 animate: animates,
-                 primaryMeasureAxis: charts.NumericAxisSpec(
+                primaryMeasureAxis: charts.NumericAxisSpec(
                     renderSpec: charts.NoneRenderSpec(), showAxisLine: false),
                 domainAxis: new charts.NumericAxisSpec(),
-              
               )),
             ]));
   }
@@ -299,6 +299,61 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
+
+  Widget horizontallscrollnews() {
+    return Container(
+        width: 276.0,
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.all(0.0),
+        height: 142.0,
+        child: Card(
+          child: Wrap(
+            children: <Widget>[
+              Image.asset('assets/images/Page-1.png'),
+              ListTile(
+                title: Text("New & Notifications"),
+                subtitle: Text("Get all the updates here."),
+              )
+            ],
+          ),
+          //  Expanded(
+        ));
+  }
+
+//   Widget horizontallscrollbaziarchart(BuildContext context) {
+//   return Center(
+//     child: Container(
+//       color: Colors.red,
+//       height: MediaQuery.of(context).size.height / 2,
+//       width: MediaQuery.of(context).size.width * 0.9,
+//       child: BezierLineChart(
+//         bezierLineChartScale: BezierLineChartScale.CUSTOM,
+//         xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
+//         series: const [
+//           BezierLine(
+//             data: const [
+//               DataPoint<double>(value: 10, xAxis: 0),
+//               DataPoint<double>(value: 130, xAxis: 5),
+//               DataPoint<double>(value: 50, xAxis: 10),
+//               DataPoint<double>(value: 150, xAxis: 15),
+//               DataPoint<double>(value: 75, xAxis: 20),
+//               DataPoint<double>(value: 0, xAxis: 25),
+//               DataPoint<double>(value: 5, xAxis: 30),
+//               DataPoint<double>(value: 45, xAxis: 35),
+//             ],
+//           ),
+//         ],
+//         config: BezierLineChartConfig(
+//           verticalIndicatorStrokeWidth: 3.0,
+//           verticalIndicatorColor: Colors.black26,
+//           showVerticalIndicator: true,
+//           backgroundColor: Colors.red,
+//           snap: false,
+//         ),
+//       ),
+//     ),
+//   );
+// }
 }
 
 class MonthwiseAttendance {

@@ -41,4 +41,12 @@ class LocalTheme {
       "font_weight": FontWeight.bold,
     }
   };
+
+  static const Map<String, dynamic> Tab = {
+    "heading": {
+      "title_color": Color(0xFF6C8A26),
+      "font_family": "Montserrat",
+      "font_weight": FontWeight.bold
+    },
+  };
 }
