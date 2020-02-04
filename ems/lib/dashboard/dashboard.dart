@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => new _DashboardState();
@@ -100,9 +99,10 @@ class _DashboardState extends State<Dashboard> {
           ],
           elevation: 0.0,
           leading: IconButton(
-            icon: Icon(Icons.menu, color: LocalTheme.home["heading"]["color"]),
+            icon: Icon(Icons.keyboard_arrow_left, color: LocalTheme.home["heading"]["color"],size: 40,),
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              Navigator.pop(context);
+              // Scaffold.of(context).openDrawer();
             },
           ),
         ),

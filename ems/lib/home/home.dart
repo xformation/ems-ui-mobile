@@ -111,351 +111,352 @@ class _HomeState extends State<Home> {
                       fontSize: 28),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      blurRadius: 8.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: ListTile(
-                        dense: true,
-                        title: Text(
-                          "Select Student",
-                          style: TextStyle(
-                              color: LocalTheme.home["sub_heading"]["color"],
-                              fontWeight: LocalTheme.home["sub_heading"]
-                                  ["font_weight"],
-                              fontFamily: LocalTheme.home["sub_heading"]
-                                  ["font_family"],
-                              fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      margin: EdgeInsets.only(bottom: 10.0),
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1.0,
-                            color: Color(0xFFFFE0E5D4),
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            width: 60,
-                            height: 60,
-                            padding: EdgeInsets.all(0.0),
-                            margin: EdgeInsets.only(left: 20.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(
-                                color: Color(0xffE0E5D4),
-                                width: 1,
-                              ),
-                            ),
-                            child: Image.asset(
-                              'assets/images/Image.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.all(0.0),
-                            width: 220,
-                            child: ListTile(
-                              title: Text(
-                                "Sara Adamas",
-                                style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 16),
-                              ),
-                              subtitle: Text(
-                                "8th Grade, Telangana State Boardd",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_description"]
-                                      ["color"],
-                                  fontSize: 12,
-                                  fontFamily:
-                                      LocalTheme.home["student_description"]
-                                          ["font_family"],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            width: 60,
-                            height: 60,
-                            padding: EdgeInsets.all(0.0),
-                            margin: EdgeInsets.only(left: 20.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(
-                                color: Color(0xffE0E5D4),
-                                width: 1,
-                              ),
-                            ),
-                            child: Image.asset(
-                              'assets/images/Image2.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.all(0.0),
-                            width: 250,
-                            child: ListTile(
-                              title: Text(
-                                "Kevin Dean",
-                                style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 16),
-                              ),
-                              subtitle: Text(
-                                "10th Grade, Telangana State Board",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_description"]
-                                      ["color"],
-                                  fontSize: 12,
-                                  fontFamily:
-                                      LocalTheme.home["student_description"]
-                                          ["font_family"],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 20.0,
-                  right: 20.0,
-                  top: 0.0,
-                  bottom: 20.0,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      blurRadius: 8.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: ListTile(
-                        dense: true,
-                        title: Text(
-                          "News and Notifications",
-                          style: TextStyle(
-                              color: LocalTheme.home["sub_heading"]["color"],
-                              fontWeight: LocalTheme.home["sub_heading"]
-                                  ["font_weight"],
-                              fontFamily: LocalTheme.home["sub_heading"]
-                                  ["font_family"],
-                              fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      margin: EdgeInsets.only(bottom: 10.0),
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1.0,
-                            color: Color(0xFFFFE0E5D4),
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            width: 48,
-                            height: 48,
-                            padding: EdgeInsets.all(0.0),
-                            margin: EdgeInsets.only(left: 26.0, right: 5.0),
-                            child: Image.asset('assets/images/indian.png',
-                                fit: BoxFit.cover),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.all(0.0),
-                            width: 220,
-                            child: ListTile(
-                              title: Text(
-                                "Republic Day",
-                                style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 16),
-                              ),
-                              subtitle: Text(
-                                "9:00 am, 26th January, 2020",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_description"]
-                                      ["color"],
-                                  fontSize: 12,
-                                  fontFamily:
-                                      LocalTheme.home["student_description"]
-                                          ["font_family"],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            width: 48,
-                            height: 48,
-                            padding: EdgeInsets.all(0.0),
-                            margin: EdgeInsets.only(left: 26.0, right: 5.0),
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage('https://i.pravatar.cc/300'),
-                              radius: 30.0,
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.all(0.0),
-                            width: 250,
-                            child: ListTile(
-                              title: Text(
-                                "Annual Day Celebrations",
-                                style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 16),
-                              ),
-                              subtitle: Text(
-                                "6:00 pm, 10th February, 2020",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_description"]
-                                      ["color"],
-                                  fontSize: 12,
-                                  fontFamily:
-                                      LocalTheme.home["student_description"]
-                                          ["font_family"],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 220.0,
-                margin: EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      blurRadius: 8.0,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ListTile(
-                      dense: true,
-                      title: Text(
-                        "Attendance",
-                        style: TextStyle(
-                            color: LocalTheme.home["sub_heading"]["color"],
-                            fontWeight: LocalTheme.home["sub_heading"]
-                                ["font_weight"],
-                            fontFamily: LocalTheme.home["sub_heading"]
-                                ["font_family"],
-                            fontSize: 18),
-                      ),
-                    ),
-                    Expanded(
-                      child: charts.BarChart(
-                        seriesList,
-                        animate: animate,
-                        primaryMeasureAxis: charts.NumericAxisSpec(
-                          renderSpec: charts.NoneRenderSpec(),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              studentProfileDetail(),
+              newNotificationsDetail(),
+              studentAttendanceChart(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget studentProfileDetail() {
+    return Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            child: ListTile(
+              dense: true,
+              title: Text(
+                "Select Student",
+                style: TextStyle(
+                    color: LocalTheme.home["sub_heading"]["color"],
+                    fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                    fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                    fontSize: 18),
+              ),
+            ),
+          ),
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/dashboard");
+              },
+              child: Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(bottom: 10.0),
+                padding: EdgeInsets.only(bottom: 10.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1.0,
+                      color: Color(0xFFFFE0E5D4),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 60,
+                      height: 60,
+                      padding: EdgeInsets.all(0.0),
+                      margin: EdgeInsets.only(left: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                          color: Color(0xffE0E5D4),
+                          width: 1,
+                        ),
+                      ),
+                      child: Image.asset(
+                        'assets/images/Image.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.all(0.0),
+                      width: 220,
+                      child: ListTile(
+                        title: Text(
+                          "Sara Adamas",
+                          style: TextStyle(
+                              color: LocalTheme.home["student_name"]["color"],
+                              fontWeight: LocalTheme.home["student_name"]
+                                  ["font_weight"],
+                              fontFamily: LocalTheme.home["student_name"]
+                                  ["font_family"],
+                              fontSize: 16),
+                        ),
+                        subtitle: Text(
+                          "8th Grade, Telangana State Boardd",
+                          style: TextStyle(
+                            color: LocalTheme.home["student_description"]
+                                ["color"],
+                            fontSize: 12,
+                            fontFamily: LocalTheme.home["student_description"]
+                                ["font_family"],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/dashboard");
+              },
+              child: Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.only(bottom: 10.0),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 60,
+                      height: 60,
+                      padding: EdgeInsets.all(0.0),
+                      margin: EdgeInsets.only(left: 20.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                          color: Color(0xffE0E5D4),
+                          width: 1,
+                        ),
+                      ),
+                      child: Image.asset(
+                        'assets/images/Image2.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.all(0.0),
+                      width: 250,
+                      child: ListTile(
+                        title: Text(
+                          "Kevin Dean",
+                          style: TextStyle(
+                              color: LocalTheme.home["student_name"]["color"],
+                              fontWeight: LocalTheme.home["student_name"]
+                                  ["font_weight"],
+                              fontFamily: LocalTheme.home["student_name"]
+                                  ["font_family"],
+                              fontSize: 16),
+                        ),
+                        subtitle: Text(
+                          "10th Grade, Telangana State Board",
+                          style: TextStyle(
+                            color: LocalTheme.home["student_description"]
+                                ["color"],
+                            fontSize: 12,
+                            fontFamily: LocalTheme.home["student_description"]
+                                ["font_family"],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget newNotificationsDetail() {
+    return Container(
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 0.0,
+        bottom: 20.0,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            child: ListTile(
+              dense: true,
+              title: Text(
+                "News and Notifications",
+                style: TextStyle(
+                    color: LocalTheme.home["sub_heading"]["color"],
+                    fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                    fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                    fontSize: 18),
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            margin: EdgeInsets.only(bottom: 10.0),
+            padding: EdgeInsets.only(bottom: 10.0),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFFFFE0E5D4),
+                ),
+              ),
+            ),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 48,
+                  height: 48,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(left: 26.0, right: 5.0),
+                  child: Image.asset('assets/images/indian.png',
+                      fit: BoxFit.cover),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(0.0),
+                  width: 220,
+                  child: ListTile(
+                    title: Text(
+                      "Republic Day",
+                      style: TextStyle(
+                          color: LocalTheme.home["student_name"]["color"],
+                          fontWeight: LocalTheme.home["student_name"]
+                              ["font_weight"],
+                          fontFamily: LocalTheme.home["student_name"]
+                              ["font_family"],
+                          fontSize: 16),
+                    ),
+                    subtitle: Text(
+                      "9:00 am, 26th January, 2020",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 48,
+                  height: 48,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(left: 26.0, right: 5.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+                    radius: 30.0,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(0.0),
+                  width: 250,
+                  child: ListTile(
+                    title: Text(
+                      "Annual Day Celebrations",
+                      style: TextStyle(
+                          color: LocalTheme.home["student_name"]["color"],
+                          fontWeight: LocalTheme.home["student_name"]
+                              ["font_weight"],
+                          fontFamily: LocalTheme.home["student_name"]
+                              ["font_family"],
+                          fontSize: 16),
+                    ),
+                    subtitle: Text(
+                      "6:00 pm, 10th February, 2020",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget studentAttendanceChart() {
+    return Container(
+      height: 220.0,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ListTile(
+            dense: true,
+            title: Text(
+              "Attendance",
+              style: TextStyle(
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 18),
+            ),
+          ),
+          Expanded(
+            child: charts.BarChart(
+              seriesList,
+              animate: animate,
+              primaryMeasureAxis: charts.NumericAxisSpec(
+                renderSpec: charts.NoneRenderSpec(),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

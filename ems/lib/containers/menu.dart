@@ -6,7 +6,7 @@ class Menu extends StatelessWidget {
   final List<MenuItem> options = [
     MenuItem(LocalIcons.home, 'Home', "/"),
     MenuItem(LocalIcons.attendance, 'Attendance', "/attendance"),
-    MenuItem(LocalIcons.timetable, 'Time Table', "/dashboard"),
+    MenuItem(LocalIcons.timetable, 'Time Table', "/attendance"),
     MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/dashboardDetail"),
     MenuItem(LocalIcons.examination, 'Examinations', "/attendance"),
     MenuItem(LocalIcons.grades, 'Grades', "/attendance"),
