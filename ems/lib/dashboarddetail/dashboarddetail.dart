@@ -120,7 +120,8 @@ class _DashboardDetailState extends State<DashboardDetail> {
         ],
       ),
       child: Row(
-        children: <Widget>[
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Container(
             alignment: Alignment.centerLeft,
             width: 60,
@@ -137,7 +138,7 @@ class _DashboardDetailState extends State<DashboardDetail> {
             child: Image.asset('assets/images/Image.png', fit: BoxFit.cover),
           ),
           Container(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.centerRight,
             padding: EdgeInsets.all(0.0),
             width: 220,
             child: ListTile(
@@ -198,31 +199,36 @@ class _DashboardDetailState extends State<DashboardDetail> {
             padding: EdgeInsets.only(bottom: 10.0),
             child: Row(
               children: <Widget>[
-                Container(
-                  width: 20.0,
-                  height: 20.0,
-                  margin: EdgeInsets.only(right: 15.0),
-                  alignment: Alignment.centerLeft,
-                  child: CheckboxListTile(
-                    value: false,
-                    onChanged: (newValue) {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, "/subjectwiseattendance");
-                    },
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Subject Wise Attendance",
-                    style: TextStyle(
-                      color: LocalTheme.home["student_description"]["color"],
-                      fontFamily: LocalTheme.home["student_description"]
-                          ["font_family"],
-                      fontSize: 16,
+                Column(
+                  children: <Widget>[
+                    Container(
+                      width: 20.0,
+                      height: 20.0,
+                      margin: EdgeInsets.only(right: 15.0),
+                      alignment: Alignment.centerLeft,
+                      // child: CheckboxListTile(
+                      //   value: false,
+                      //   onChanged: (newValue) {
+                      //     Navigator.pop(context);
+                      //     Navigator.pushNamed(context, "/subjectwiseattendance");
+                      //   },
+                      // ),
                     ),
-                  ),
-                )
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Subject Wise Attendance",
+                        style: TextStyle(
+                          color: LocalTheme.home["student_description"]
+                              ["color"],
+                          fontFamily: LocalTheme.home["student_description"]
+                              ["font_family"],
+                          fontSize: 16,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -236,13 +242,13 @@ class _DashboardDetailState extends State<DashboardDetail> {
                   height: 20.0,
                   margin: EdgeInsets.only(right: 15.0),
                   alignment: Alignment.centerLeft,
-                  child: CheckboxListTile(
-                    value: false,
-                    onChanged: (newValue) {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, "/subjectwiseattendance");
-                    },
-                  ),
+                  // child: CheckboxListTile(
+                  //   value: false,
+                  //   onChanged: (newValue) {
+                  //     //Navigator.pop(context);
+                  //     //Navigator.pushNamed(context, "/subjectwiseattendance");
+                  //   },
+                  // ),
                 ),
                 Container(
                   alignment: Alignment.topLeft,
