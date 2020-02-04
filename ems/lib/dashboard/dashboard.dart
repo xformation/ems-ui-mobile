@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:bezier_chart/bezier_chart.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -99,7 +100,11 @@ class _DashboardState extends State<Dashboard> {
           ],
           elevation: 0.0,
           leading: IconButton(
-            icon: Icon(Icons.keyboard_arrow_left, color: LocalTheme.home["heading"]["color"],size: 40,),
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: LocalTheme.home["heading"]["color"],
+              size: 40,
+            ),
             onPressed: () {
               Navigator.pop(context);
               // Scaffold.of(context).openDrawer();
@@ -111,7 +116,7 @@ class _DashboardState extends State<Dashboard> {
             child: SingleChildScrollView(
                 child: Column(children: <Widget>[
               studentprofileDetail(),
-              studentDetailRepresentChart(),
+              studentDetailRepresentChart(context),
               studentProgressChart(),
               studentFeesPaymentStatus(),
             ]))));
@@ -156,7 +161,7 @@ class _DashboardState extends State<Dashboard> {
             ]));
   }
 
-  Widget studentDetailRepresentChart() {
+  Widget studentDetailRepresentChart(BuildContext context) {
     return Container(
       height: 142.0,
       margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -165,8 +170,7 @@ class _DashboardState extends State<Dashboard> {
         children: <Widget>[
           horizontallscrollchart('barchart', 'Attendance', '2020'),
           horizontallscrollnews(),
-          // horizontallscrollbaziarchart(),
-          // horizontallscrollchart('barchart', 'Attendance', '2020'),
+          horizontallscrollbeziarchart(context),
         ],
       ),
     );
@@ -284,20 +288,24 @@ class _DashboardState extends State<Dashboard> {
   Widget horizontallscrollchart(
       String chartname, String chartHeading, String chartSubheading) {
     return Container(
-      width: 276.0,
-      height: 142.0,
-      child: Card(
-        child: charts.PieChart(
-          seriesList,
-          animate: animate,
-          defaultRenderer: new charts.ArcRendererConfig(
-            arcWidth: 30,
-            startAngle: 4 / 5 * (3.14),
-            arcLength: 7 / 5 * (3.14),
-          ),
-        ),
-      ),
-    );
+        width: 276.0,
+        height: 142.0,
+        //  GestureDetector(
+        //     onTap: () {
+        //       Navigator.pushNamed(context, "/dashboardDetail");
+        //     },
+          child: Card(
+              child: charts.PieChart(
+                seriesList,
+                animate: animate,
+                defaultRenderer: new charts.ArcRendererConfig(
+                  arcWidth: 30,
+                  startAngle: 4 / 5 * (3.14),
+                  arcLength: 7 / 5 * (3.14),
+                ),
+              ),
+            ),
+        );
   }
 
   Widget horizontallscrollnews() {
@@ -307,53 +315,74 @@ class _DashboardState extends State<Dashboard> {
         padding: EdgeInsets.all(0.0),
         height: 142.0,
         child: Card(
-          child: Wrap(
+          child: new Stack(
+            alignment: AlignmentDirectional.center,
+            // child: Padding(
+            //   padding: EdgeInsets.only(left: 55, bottom: 5),
+            // child: Wrap(
             children: <Widget>[
+              Container(
+                width: 200.0,
+                height: 200.0,
+              ),
               Image.asset('assets/images/Page-1.png'),
               ListTile(
-                title: Text("New & Notifications"),
-                subtitle: Text("Get all the updates here."),
+                title: Text("New & Notifications",
+                    style: TextStyle(
+                        color: LocalTheme.home["student_name"]["color"],
+                        fontWeight: LocalTheme.home["student_name"]
+                            ["font_weight"],
+                        fontFamily: LocalTheme.home["student_name"]
+                            ["font_family"],
+                        fontSize: 16)),
+                subtitle: Text("Get all the updates here.",
+                    style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"])),
               )
             ],
           ),
-          //  Expanded(
         ));
   }
 
-//   Widget horizontallscrollbaziarchart(BuildContext context) {
-//   return Center(
-//     child: Container(
-//       color: Colors.red,
-//       height: MediaQuery.of(context).size.height / 2,
-//       width: MediaQuery.of(context).size.width * 0.9,
-//       child: BezierLineChart(
-//         bezierLineChartScale: BezierLineChartScale.CUSTOM,
-//         xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
-//         series: const [
-//           BezierLine(
-//             data: const [
-//               DataPoint<double>(value: 10, xAxis: 0),
-//               DataPoint<double>(value: 130, xAxis: 5),
-//               DataPoint<double>(value: 50, xAxis: 10),
-//               DataPoint<double>(value: 150, xAxis: 15),
-//               DataPoint<double>(value: 75, xAxis: 20),
-//               DataPoint<double>(value: 0, xAxis: 25),
-//               DataPoint<double>(value: 5, xAxis: 30),
-//               DataPoint<double>(value: 45, xAxis: 35),
-//             ],
-//           ),
-//         ],
-//         config: BezierLineChartConfig(
-//           verticalIndicatorStrokeWidth: 3.0,
-//           verticalIndicatorColor: Colors.black26,
-//           showVerticalIndicator: true,
-//           backgroundColor: Colors.red,
-//           snap: false,
-//         ),
-//       ),
-//     ),
-//   );
-// }
+  Widget horizontallscrollbeziarchart(BuildContext context) {
+    return Container(
+      width: 276.0,
+      height: 142.0,
+      // color: Colors.red,
+      // height: MediaQuery.of(context).size.height / 2,
+      // width: MediaQuery.of(context).size.width * 0.9,
+      child: BezierChart(
+        bezierChartScale: BezierChartScale.CUSTOM,
+        xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
+        series: const [
+          BezierLine(
+            lineColor: Colors.blueAccent,
+            lineStrokeWidth: 1.0,
+            data: const [
+              DataPoint<double>(value: 10, xAxis: 0),
+              DataPoint<double>(value: 110, xAxis: 5),
+              DataPoint<double>(value: 50, xAxis: 10),
+              DataPoint<double>(value: 100, xAxis: 15),
+              DataPoint<double>(value: 75, xAxis: 20),
+              DataPoint<double>(value: 0, xAxis: 25),
+              DataPoint<double>(value: 5, xAxis: 30),
+              DataPoint<double>(value: 45, xAxis: 35),
+            ],
+          ),
+        ],
+        config: BezierChartConfig(
+          verticalIndicatorStrokeWidth: 2.0,
+          verticalIndicatorColor: Colors.black,
+          showVerticalIndicator: true,
+          backgroundColor: Colors.white,
+          snap: false,
+        ),
+      ),
+    );
+  }
 }
 
 class MonthwiseAttendance {

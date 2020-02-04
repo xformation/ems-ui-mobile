@@ -32,7 +32,7 @@ class LocalTheme {
       "font_weight": FontWeight.bold,
     },
     "student_description": {
-      "color": Color.fromRGBO(88, 89, 84, 1),
+      "color": Color.fromRGBO(88,89,84,1),
       "font_family": "OpenSans",
     },
     "sub_heading": {
