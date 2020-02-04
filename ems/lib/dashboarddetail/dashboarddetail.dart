@@ -174,15 +174,34 @@ class _DashboardDetailState extends State<DashboardDetail> {
 
   Widget selectAttendanceType() {
     return Container(
-      height: 147.0,
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
       padding: EdgeInsets.all(10.0),
       child: Center(
         child: Column(
           children: <Widget>[
-            // new Checkbox(value: _value1, onChanged: _value1Changed),
+            ListTile(
+              dense: true,
+              title: Text(
+                "Select Attendance Type",
+                style: TextStyle(
+                    color: LocalTheme.home["sub_heading"]["color"],
+                    fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                    fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                    fontSize: 18),
+              ),
+            ),
             CheckboxListTile(
+              dense: true,
               value: _value2,
               onChanged: _value2Changed,
               title: Text('Select Attendance Type',
@@ -197,6 +216,7 @@ class _DashboardDetailState extends State<DashboardDetail> {
               activeColor: Colors.blue,
             ),
             CheckboxListTile(
+              dense: true,
               value: _value1,
               onChanged: _value1Changed,
               title: Text('Subject Wise Attendance',
@@ -214,43 +234,6 @@ class _DashboardDetailState extends State<DashboardDetail> {
         ),
       ),
     );
-
-    // return Container(
-    //     height: 200.0,
-    //     margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-    //     color: Colors.white,
-    //     child: Column(
-    //         // mainAxisSize: MainAxisSize.min,
-    //         // crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: <Widget>[
-    //           ListTile(
-    //               title: Text("Select Attendance Type",
-    //                   )),
-    //           CheckboxListTile(
-    //               title: Text("Subject Wise Attendance",
-    //                   style: TextStyle(
-    //                       color: LocalTheme.home["student_description"]
-    //                           ["color"],
-    //                       fontFamily: LocalTheme.home["student_description"]
-    //                           ["font_family"],
-    //                       fontSize: 16)), //    <-- label
-    //               value: true,
-    //               onChanged: (newValue) {}
-    //               // onChanged: (newValue) { ... },
-    //               ),
-    //           CheckboxListTile(
-    //               title: Text("Day wise Attendance",
-    //                   style: TextStyle(
-    //                       color: LocalTheme.home["student_description"]
-    //                           ["color"],
-    //                       fontFamily: LocalTheme.home["student_description"]
-    //                           ["font_family"],
-    //                       fontSize: 16)), //    <-- label
-    //               value: false,
-    //               onChanged: (newValue) {}
-    //               // onChanged: (newValue) { ... },
-    //               )
-    //         ]));
   }
 
   Widget displayAttendanceGraph() {

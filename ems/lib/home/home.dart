@@ -153,128 +153,132 @@ class _HomeState extends State<Home> {
             ),
           ),
           GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/dashboard");
-              },
-              child: Container(
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.only(bottom: 10.0),
-                padding: EdgeInsets.only(bottom: 10.0),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1.0,
-                      color: Color(0xFFFFE0E5D4),
-                    ),
+            onTap: () {
+              Navigator.pushNamed(context, "/dashboard");
+            },
+            child: Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.only(bottom: 10.0),
+              padding: EdgeInsets.only(bottom: 10.0),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1.0,
+                    color: Color(0xFFFFE0E5D4),
                   ),
                 ),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      width: 60,
-                      height: 60,
-                      padding: EdgeInsets.all(0.0),
-                      margin: EdgeInsets.only(left: 20.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: Color(0xffE0E5D4),
-                          width: 1,
-                        ),
-                      ),
-                      child: Image.asset(
-                        'assets/images/Image.png',
-                        fit: BoxFit.cover,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: 60,
+                    height: 60,
+                    padding: EdgeInsets.all(0.0),
+                    margin: EdgeInsets.only(left: 20.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(
+                        color: Color(0xffE0E5D4),
+                        width: 1,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(0.0),
-                      width: 220,
-                      child: ListTile(
-                        title: Text(
-                          "Sara Adamas",
-                          style: TextStyle(
-                              color: LocalTheme.home["student_name"]["color"],
-                              fontWeight: LocalTheme.home["student_name"]
-                                  ["font_weight"],
-                              fontFamily: LocalTheme.home["student_name"]
-                                  ["font_family"],
-                              fontSize: 16),
-                        ),
-                        subtitle: Text(
-                          "8th Grade, Telangana State Boardd",
-                          style: TextStyle(
-                            color: LocalTheme.home["student_description"]
-                                ["color"],
-                            fontSize: 12,
-                            fontFamily: LocalTheme.home["student_description"]
+                    child: Image.asset(
+                      'assets/images/Image.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.all(0.0),
+                    width: 220,
+                    child: ListTile(
+                      title: Text(
+                        "Sara Adamas",
+                        style: TextStyle(
+                            color: LocalTheme.home["student_name"]["color"],
+                            fontWeight: LocalTheme.home["student_name"]
+                                ["font_weight"],
+                            fontFamily: LocalTheme.home["student_name"]
                                 ["font_family"],
-                          ),
+                            fontSize: 16),
+                      ),
+                      subtitle: Text(
+                        "8th Grade, Telangana State Boardd",
+                        style: TextStyle(
+                          color: LocalTheme.home["student_description"]
+                              ["color"],
+                          fontSize: 12,
+                          fontFamily: LocalTheme.home["student_description"]
+                              ["font_family"],
                         ),
                       ),
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
           GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, "/dashboard");
-              },
-              child: Container(
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      width: 60,
-                      height: 60,
-                      padding: EdgeInsets.all(0.0),
-                      margin: EdgeInsets.only(left: 20.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(
-                          color: Color(0xffE0E5D4),
-                          width: 1,
-                        ),
-                      ),
-                      child: Image.asset(
-                        'assets/images/Image2.png',
-                        fit: BoxFit.cover,
+            onTap: () {
+              Navigator.pushNamed(context, "/dashboard");
+            },
+            child: Container(
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(bottom: 10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: 60,
+                    height: 60,
+                    padding: EdgeInsets.all(0.0),
+                    margin: EdgeInsets.only(left: 20.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(
+                        color: Color(0xffE0E5D4),
+                        width: 1,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(0.0),
-                      width: 250,
-                      child: ListTile(
-                        title: Text(
-                          "Kevin Dean",
-                          style: TextStyle(
-                              color: LocalTheme.home["student_name"]["color"],
-                              fontWeight: LocalTheme.home["student_name"]
-                                  ["font_weight"],
-                              fontFamily: LocalTheme.home["student_name"]
-                                  ["font_family"],
-                              fontSize: 16),
-                        ),
-                        subtitle: Text(
-                          "10th Grade, Telangana State Board",
-                          style: TextStyle(
-                            color: LocalTheme.home["student_description"]
-                                ["color"],
-                            fontSize: 12,
-                            fontFamily: LocalTheme.home["student_description"]
+                    child: Image.asset(
+                      'assets/images/Image2.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.all(0.0),
+                    width: 220,
+                    child: ListTile(
+                      title: Text(
+                        "Kevin Dean",
+                        style: TextStyle(
+                            color: LocalTheme.home["student_name"]["color"],
+                            fontWeight: LocalTheme.home["student_name"]
+                                ["font_weight"],
+                            fontFamily: LocalTheme.home["student_name"]
                                 ["font_family"],
-                          ),
+                            fontSize: 16),
+                      ),
+                      subtitle: Text(
+                        "10th Grade, Telangana State Board",
+                        style: TextStyle(
+                          color: LocalTheme.home["student_description"]
+                              ["color"],
+                          fontSize: 12,
+                          fontFamily: LocalTheme.home["student_description"]
+                              ["font_family"],
                         ),
                       ),
                     ),
-                  ],
-                ),
-              )),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -329,20 +333,21 @@ class _HomeState extends State<Home> {
               ),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
                   width: 48,
                   height: 48,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 26.0, right: 5.0),
+                  margin: EdgeInsets.only(left: 20.0, right: 0.0),
                   child: Image.asset('assets/images/indian.png',
                       fit: BoxFit.cover),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.all(0.0),
-                  width: 220,
+                  width: 240,
                   child: ListTile(
                     title: Text(
                       "Republic Day",
@@ -372,13 +377,14 @@ class _HomeState extends State<Home> {
             alignment: Alignment.topLeft,
             padding: EdgeInsets.only(bottom: 10.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
                   width: 48,
                   height: 48,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 26.0, right: 5.0),
+                  margin: EdgeInsets.only(left: 20.0, right: 0.0),
                   child: CircleAvatar(
                     backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
                     radius: 30.0,
@@ -387,7 +393,7 @@ class _HomeState extends State<Home> {
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.all(0.0),
-                  width: 250,
+                  width: 240,
                   child: ListTile(
                     title: Text(
                       "Annual Day Celebrations",
@@ -412,7 +418,7 @@ class _HomeState extends State<Home> {
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
