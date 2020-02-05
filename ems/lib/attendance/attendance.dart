@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class DashboardDetail extends StatefulWidget {
+class AttendanceDetail extends StatefulWidget {
   @override
-  _DashboardDetailState createState() => new _DashboardDetailState();
+  _AttendanceDetailState createState() => new _AttendanceDetailState();
 }
 
-class _DashboardDetailState extends State<DashboardDetail> {
+class _AttendanceDetailState extends State<AttendanceDetail> {
   List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
 
