@@ -118,34 +118,6 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
   }
 
   Widget attendanceView() {
-    return Container(
-        height: 600.0,
-        margin:
-            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-        color: Colors.white,
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              DefaultTabController(
-                length: 2,
-                child: TabBar(tabs: <Widget>[
-                  Text("Week View",
-                      style: TextStyle(
-                          color: LocalTheme.Tab["heading"]["title_color"],
-                          fontSize: 14,
-                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                          fontWeight: LocalTheme.Tab["heading"]
-                              ["font_weight"])),
-                  Text("Month View",
-                      style: TextStyle(
-                          color: LocalTheme.Tab["heading"]["title_color"],
-                          fontSize: 14,
-                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                          fontWeight: LocalTheme.Tab["heading"]
-                              ["font_weight"])),
-                ]),
-              ),
-            ]));
+    
   }
 }

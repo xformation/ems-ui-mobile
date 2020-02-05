@@ -10,13 +10,32 @@ class DashboardDetail extends StatefulWidget {
 class _DashboardDetailState extends State<DashboardDetail> {
   List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
+
+  List<charts.Series<MonthWiseStudentAttendanceChart, int>> seriesLists;
+  final bool animates = true;
+
   bool _value1 = false;
   bool _value2 = false;
+
+  TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+    // _tabController = TabController(vsync: , length: 2);
+    // _tabController.addListener(_handleTabChange);
     _createSampleData();
+    _createAttendanceData();
+  }
+
+  // void _handleTabChange() {
+  //   print("bhxbhbfshdjs");
+  // }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   _createSampleData() {
@@ -46,6 +65,30 @@ class _DashboardDetailState extends State<DashboardDetail> {
     ];
   }
 
+  _createAttendanceData() {
+    final data = [
+      new MonthWiseStudentAttendanceChart(
+          0, 100, Color.fromARGB(111, 184, 222, 1)),
+      new MonthWiseStudentAttendanceChart(
+          1, 75, Color.fromARGB(253, 202, 64, 1)),
+      new MonthWiseStudentAttendanceChart(
+          2, 25, Color.fromARGB(38, 98, 240, 1)),
+      // new MonthwiseAttendance('Highly Unusual', 5),
+    ];
+
+    seriesLists = [
+      new charts.Series<MonthWiseStudentAttendanceChart, int>(
+        id: 'Attendance',
+        domainFn: (MonthWiseStudentAttendanceChart attendance, _) =>
+            attendance.attendance,
+        measureFn: (MonthWiseStudentAttendanceChart attendance, _) =>
+            attendance.size,
+        colorFn: (MonthWiseStudentAttendanceChart segment, _) => segment.color,
+        data: data,
+      )
+    ];
+  }
+
   void _value2Changed(bool value) => setState(() => _value2 = value);
   void _value1Changed(bool value) => setState(() => _value1 = value);
 
@@ -60,13 +103,14 @@ class _DashboardDetailState extends State<DashboardDetail> {
           width: 30.0,
           padding: EdgeInsets.only(left: 20.0),
           child: IconButton(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.all(0.0),
-            icon: Icon(Icons.menu,
-                color: LocalTheme.Header["title"]["title_color"]),
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: LocalTheme.home["heading"]["color"],
+              size: 40,
+            ),
             iconSize: 24.0,
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              Navigator.pop(context);
             },
           ),
         ),
@@ -74,7 +118,7 @@ class _DashboardDetailState extends State<DashboardDetail> {
           alignment: Alignment(-1.2, 0.0),
           padding: EdgeInsets.all(0.0),
           child: Text(
-            "Dashboard",
+            "Attendance",
             style: TextStyle(
                 color: LocalTheme.Header["title"]["title_color"],
                 fontFamily: LocalTheme.Header["title"]["font_family"],
@@ -104,6 +148,9 @@ class _DashboardDetailState extends State<DashboardDetail> {
               studentprofileDetail(),
               selectAttendanceType(),
               displayAttendanceGraph(),
+              tabForViewAttendance(),
+              subjectwiseAttendance(),
+              displayDaywiseAttendance(),
             ],
           ),
         ),
@@ -192,7 +239,7 @@ class _DashboardDetailState extends State<DashboardDetail> {
             ListTile(
               dense: true,
               title: Text(
-                "Select Attendance Type",
+                "Subject Wise Attendance",
                 style: TextStyle(
                     color: LocalTheme.home["sub_heading"]["color"],
                     fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
@@ -204,7 +251,7 @@ class _DashboardDetailState extends State<DashboardDetail> {
               dense: true,
               value: _value2,
               onChanged: _value2Changed,
-              title: Text('Select Attendance Type',
+              title: Text('Day wise Attendance',
                   style: TextStyle(
                       color: LocalTheme.home["student_description"]["color"],
                       fontWeight: LocalTheme.home["student_description"]
@@ -228,10 +275,193 @@ class _DashboardDetailState extends State<DashboardDetail> {
                           ["font_family"],
                       fontSize: 16)),
               controlAffinity: ListTileControlAffinity.leading,
-              activeColor: Colors.blue,
+              activeColor: Colors.blue[100],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget tabForViewAttendance() {
+    return Container(
+      height: 100.0,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          PreferredSize(
+              preferredSize: Size.fromHeight(100.0),
+              child: DefaultTabController(
+                length: 2,
+                child: Padding(
+                    padding:
+                        EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                    child: TabBar(
+                        // controller: _tabController,
+                        tabs: <Widget>[
+                          Container(
+                            height: 35,
+                            child: Text("Week View",
+                                style: TextStyle(
+                                    color: LocalTheme.Tab["heading"]
+                                        ["title_color"],
+                                    fontSize: 14,
+                                    fontFamily: LocalTheme.Tab["heading"]
+                                        ["font_family"],
+                                    fontWeight: LocalTheme.Tab["heading"]
+                                        ["font_weight"])),
+                          ),
+                          Container(
+                            height: 35,
+                            child: Text("Month View",
+                                style: TextStyle(
+                                    color: LocalTheme.Tab["heading"]
+                                        ["title_color"],
+                                    fontSize: 14,
+                                    fontFamily: LocalTheme.Tab["heading"]
+                                        ["font_family"],
+                                    fontWeight: LocalTheme.Tab["heading"]
+                                        ["font_weight"])),
+                          ),
+                        ])),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget subjectwiseAttendance() {
+    return Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      padding: EdgeInsets.all(10.0),
+      height: 250,
+      width: 400,
+      color: Colors.white,
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Column(children: <Widget>[
+          DataTable(
+            columnSpacing: 200,
+            // headingRowHeight: 100,
+            horizontalMargin: 10,
+            columns: <DataColumn>[
+              DataColumn(
+                  label: Text("Day",
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                  numeric: true),
+              DataColumn(
+                label: Text("Attendance",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                numeric: false,
+              ),
+            ],
+            rows: <DataRow>[
+              DataRow(cells: [
+                DataCell(Text("Monday",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("pRESENT",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("Tuesday",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("pRESENT",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("WEDNESDAY",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("sICK lEAVE",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("THURSDAY",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("PRESENT",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("FRIDAY",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("HOLIDAY",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("SATURDAY",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center)),
+                DataCell(Text("NO Lecture",
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center)),
+              ]),
+            ],
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget displayDaywiseAttendance() {
+    return Container(
+      height: 250.0,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 15.0),
+      padding: EdgeInsets.only(bottom: 10.0, top: 10.0, left: 5.0, right: 5.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: charts.PieChart(
+              seriesLists,
+              animate: animates,
+              behaviors: [
+                charts.DatumLegend(
+                  position: charts.BehaviorPosition.bottom,
+                  outsideJustification: charts.OutsideJustification.middleDrawArea,
+                  horizontalFirst: false,
+                  desiredMaxRows: 1,
+                  cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
+                  entryTextStyle: charts.TextStyleSpec(
+                      color: charts.MaterialPalette.purple.shadeDefault,
+                      fontFamily: 'Georgia',
+                      fontSize: 11),
+                )
+              ],
+              defaultRenderer: new charts.ArcRendererConfig(
+                arcWidth: 30,
+                startAngle: 4 / 5 * (3.14),
+                arcLength: 7 / 5 * (3.14),
+              ),
+              //  defaultRenderer: new charts.ArcRendererConfig(arcWidth: 60))
+            ),
+           
+          ),
+        ],
       ),
     );
   }
@@ -286,4 +516,14 @@ class MonthwiseAttendance {
   final int attendance;
 
   MonthwiseAttendance(this.month, this.attendance);
+}
+
+class MonthWiseStudentAttendanceChart {
+  final int attendance;
+  final int size;
+  final charts.Color color;
+
+  MonthWiseStudentAttendanceChart(this.attendance, this.size, Color color)
+      : this.color = charts.Color(
+            r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }

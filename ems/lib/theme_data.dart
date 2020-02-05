@@ -44,7 +44,7 @@ class LocalTheme {
 
   static const Map<String, dynamic> Tab = {
     "heading": {
-      "title_color": Color(0xFF6C8A26),
+      "title_color": Color(0xFF292B23),
       "font_family": "Montserrat",
       "font_weight": FontWeight.bold
     },
