@@ -29,7 +29,6 @@ class _DashboardState extends State<Dashboard> {
       new MonthwiseAttendance('High', 85, Color.fromARGB(253, 202, 64, 1)),
       new MonthwiseAttendance(
           'Acceptable', 100, Color.fromARGB(38, 98, 240, 1)),
-      // new MonthwiseAttendance('Highly Unusual', 5),
     ];
 
     seriesList = [
@@ -83,88 +82,123 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(1, 250, 250, 248),
-          title: Text("Dashboard",
-              style: TextStyle(
-                  color: LocalTheme.Header["title"]["title_color"],
-                  fontFamily: LocalTheme.Header["title"]["font_family"],
-                  fontSize: 17)),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              color: LocalTheme.Header["title"]["title_color"],
-              tooltip: 'Show Notifications',
-              onPressed: () {},
-            ),
-          ],
-          elevation: 0.0,
-          leading: IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: LocalTheme.home["heading"]["color"],
-              size: 40,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              // Scaffold.of(context).openDrawer();
-            },
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(1, 250, 250, 248),
+        title: Text(
+          "Dashboard",
+          style: TextStyle(
+            color: LocalTheme.Header["title"]["title_color"],
+            fontFamily: LocalTheme.Header["title"]["font_family"],
+            fontSize: 17,
           ),
         ),
-        body: Container(
-            color: Color.fromARGB(1, 250, 250, 248),
-            child: SingleChildScrollView(
-                child: Column(children: <Widget>[
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            color: LocalTheme.Header["title"]["title_color"],
+            tooltip: 'Show Notifications',
+            onPressed: () {},
+          ),
+        ],
+        elevation: 0.0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: LocalTheme.home["heading"]["color"],
+            size: 40,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Container(
+        color: Color.fromARGB(1, 250, 250, 248),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
               studentprofileDetail(),
               studentDetailRepresentChart(context),
               studentProgressChart(),
               studentFeesPaymentStatus(),
-            ]))));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget studentprofileDetail() {
     return Container(
-        height: 96.0,
-        margin:
-            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+      padding: EdgeInsets.only(top: 15.0, left: 0.0, right: 0.0, bottom: 15.0),
+      decoration: BoxDecoration(
         color: Colors.white,
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ListTile(
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 44,
-                    maxWidth: 64,
-                    maxHeight: 64,
-                  ),
-                  child:
-                      Image.asset('assets/images/Image.png', fit: BoxFit.cover),
-                ),
-                title: Text("Sara Adamas",
-                    style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 16)),
-                subtitle: Text("8th Grade, Telangana State Boardd",
-                    style: TextStyle(
-                        color: LocalTheme.home["student_description"]["color"],
-                        fontSize: 12,
-                        fontFamily: LocalTheme.home["student_description"]
-                            ["font_family"])),
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerLeft,
+            width: 60,
+            height: 60,
+            padding: EdgeInsets.all(0.0),
+            margin: EdgeInsets.only(left: 20.0, right: 5.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: Color(0xffE0E5D4),
+                width: 1,
               ),
-            ]));
+            ),
+            child: Image.asset(
+              'assets/images/Image.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.all(0.0),
+            margin: EdgeInsets.all(0.0),
+            width: 220,
+            child: ListTile(
+              title: Text(
+                "Sara Adamas",
+                style: TextStyle(
+                  color: LocalTheme.home["student_name"]["color"],
+                  fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                  fontFamily: LocalTheme.home["student_name"]["font_family"],
+                  fontSize: 16,
+                ),
+              ),
+              subtitle: Text(
+                "8th Grade, Telangana State Boardd",
+                style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontSize: 12,
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget studentDetailRepresentChart(BuildContext context) {
     return Container(
-      height: 142.0,
-      margin: EdgeInsets.symmetric(horizontal: 20.0),
+      height: 152.0,
+      padding: EdgeInsets.only(top: 5.0, right: 0.0, bottom: 5.0, left: 0.0),
+      //margin: EdgeInsets.symmetric(horizontal: 0.0),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -178,182 +212,254 @@ class _DashboardState extends State<Dashboard> {
 
   Widget studentProgressChart() {
     return Container(
-        height: 220.0,
-        margin:
-            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+      height: 220.0,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+      decoration: BoxDecoration(
         color: Colors.white,
-        child: Column(
-            // mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ListTile(
-                  dense: true,
-                  title: Text("Progress",
-                      style: TextStyle(
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ListTile(
+            dense: true,
+            title: Text(
+              "Progress",
+              style: TextStyle(
+                color: LocalTheme.home["sub_heading"]["color"],
+                fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                fontSize: 18,
+              ),
+            ),
+          ),
+          Expanded(
+            child: charts.LineChart(
+              seriesLine,
+              defaultRenderer:
+                  charts.LineRendererConfig(includeArea: true, stacked: true),
+              animate: animates,
+              primaryMeasureAxis: charts.NumericAxisSpec(
+                  renderSpec: charts.NoneRenderSpec(), showAxisLine: false),
+              domainAxis: new charts.NumericAxisSpec(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget studentFeesPaymentStatus() {
+    return Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding:
+                EdgeInsets.only(top: 15.0, bottom: 15.0, left: 0.0, right: 0.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 150.0,
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(bottom: 10.0, left: 15.0),
+                      child: Text(
+                        "Fee Payments",
+                        style: TextStyle(
                           color: LocalTheme.home["sub_heading"]["color"],
                           fontWeight: LocalTheme.home["sub_heading"]
                               ["font_weight"],
                           fontFamily: LocalTheme.home["sub_heading"]
                               ["font_family"],
-                          fontSize: 18))),
-              Expanded(
-                  child: charts.LineChart(
-                seriesLine,
-                defaultRenderer:
-                    charts.LineRendererConfig(includeArea: true, stacked: true),
-                animate: animates,
-                primaryMeasureAxis: charts.NumericAxisSpec(
-                    renderSpec: charts.NoneRenderSpec(), showAxisLine: false),
-                domainAxis: new charts.NumericAxisSpec(),
-              )),
-            ]));
-  }
-
-  Widget studentFeesPaymentStatus() {
-    return Container(
-        //height: 192.0,
-        margin:
-            EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
-        color: Colors.white,
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(
-                    top: 15.0, bottom: 15.0, left: 0.0, right: 0.0),
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(children: [
-                        Container(
-                          width: 150.0,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(bottom: 10.0, left: 15.0),
-                          child: Text("Fee Payments",
-                              style: TextStyle(
-                                  color: LocalTheme.home["sub_heading"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["sub_heading"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["sub_heading"]
-                                      ["font_family"],
-                                  fontSize: 18)),
+                          fontSize: 18,
                         ),
-                        Container(
-                          width: 150.0,
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(bottom: 20.0, left: 15.0),
-                          child: Text("Your fee is pending for this Quarter.",
-                              style: TextStyle(
-                                  color: LocalTheme.home["student_description"]
-                                      ["color"],
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  fontFamily:
-                                      LocalTheme.home["student_description"]
-                                          ["font_family"])),
+                      ),
+                    ),
+                    Container(
+                      width: 150.0,
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(bottom: 20.0, left: 15.0),
+                      child: Text(
+                        "Your fee is pending for this Quarter.",
+                        style: TextStyle(
+                          color: LocalTheme.home["student_description"]
+                              ["color"],
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: LocalTheme.home["student_description"]
+                              ["font_family"],
                         ),
-                        Container(
-                            width: 140.0,
-                            alignment: Alignment.topLeft,
-                            padding: EdgeInsets.only(bottom: 0.0, left: 12.0),
-                            child: RaisedButton(
-                                onPressed: () {},
-                                color: Color.fromRGBO(126, 211, 33, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                textColor: Colors.white,
-                                padding: EdgeInsets.only(
-                                    left: 35.0,
-                                    right: 35.0,
-                                    top: 12.0,
-                                    bottom: 12.0),
-                                child: Text('Pay Now',
-                                    style: TextStyle(fontSize: 12))))
-                      ]),
-                      Column(children: [
-                        Container(
-                            width: 150.0,
-                            alignment: Alignment.topRight,
-                            padding: EdgeInsets.only(left: 30.0, right: 0.0),
-                            child: Image.asset('assets/images/payment_img.jpg'))
-                      ])
-                    ]),
-              )
-            ]));
+                      ),
+                    ),
+                    Container(
+                      width: 140.0,
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(bottom: 0.0, left: 12.0),
+                      child: RaisedButton(
+                        onPressed: () {},
+                        color: Color.fromRGBO(126, 211, 33, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        textColor: Colors.white,
+                        padding: EdgeInsets.only(
+                          left: 35.0,
+                          right: 35.0,
+                          top: 12.0,
+                          bottom: 12.0,
+                        ),
+                        child: Text(
+                          'Pay Now',
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: 200.0,
+                      alignment: Alignment.topRight,
+                      margin: EdgeInsets.only(left: 0.0),
+                      padding: EdgeInsets.only(left: 0.0, right: 0.0),
+                      child: Image.asset('assets/images/payment_img.jpg'),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget horizontallscrollchart(
       String chartname, String chartHeading, String chartSubheading) {
     return Container(
-        width: 276.0,
-        height: 142.0,
-        //  GestureDetector(
-        //     onTap: () {
-        //       Navigator.pushNamed(context, "/dashboardDetail");
-        //     },
-          child: Card(
-              child: charts.PieChart(
-                seriesList,
-                animate: animate,
-                defaultRenderer: new charts.ArcRendererConfig(
-                  arcWidth: 30,
-                  startAngle: 4 / 5 * (3.14),
-                  arcLength: 7 / 5 * (3.14),
-                ),
-              ),
-            ),
-        );
+      width: 276.0,
+      height: 142.0,
+      margin: EdgeInsets.only(top: 0.0, right: 20.0, bottom: 0.0, left: 70.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Card(
+        margin: EdgeInsets.only(top: 0.0, right: 0.0, bottom: 0.0, left: 0.0),
+        child: charts.PieChart(
+          seriesList,
+          animate: animate,
+          defaultRenderer: charts.ArcRendererConfig(
+            arcWidth: 10,
+            startAngle: 3 / 6 * (2.0),
+            arcLength: 7 / 4 * (50.0),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget horizontallscrollnews() {
     return Container(
-        width: 276.0,
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(0.0),
-        height: 142.0,
-        child: Card(
-          child: new Stack(
-            alignment: AlignmentDirectional.center,
-            // child: Padding(
-            //   padding: EdgeInsets.only(left: 55, bottom: 5),
-            // child: Wrap(
-            children: <Widget>[
-              Container(
-                width: 200.0,
-                height: 200.0,
-              ),
-              Image.asset('assets/images/Page-1.png'),
-              ListTile(
-                title: Text("New & Notifications",
-                    style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 16)),
-                subtitle: Text("Get all the updates here.",
-                    style: TextStyle(
-                        color: LocalTheme.home["student_description"]["color"],
-                        fontSize: 12,
-                        fontFamily: LocalTheme.home["student_description"]
-                            ["font_family"])),
-              )
-            ],
+      width: 276.0,
+      alignment: Alignment.topCenter,
+      padding: EdgeInsets.all(0.0),
+      height: 142.0,
+      margin: EdgeInsets.only(top: 0.0, right: 20.0, bottom: 0.0, left: 0.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
           ),
-        ));
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 70.0,
+            padding:
+                EdgeInsets.only(top: 20.0, right: 0.0, bottom: 10.0, left: 0.0),
+            child: Image.asset('assets/images/Page-1.png'),
+          ),
+          ListTile(
+            title: Center(
+              child: Text(
+                "New & Notifications",
+                style: TextStyle(
+                  color: LocalTheme.home["student_name"]["color"],
+                  fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                  fontFamily: LocalTheme.home["student_name"]["font_family"],
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            subtitle: Center(
+              child: Text(
+                "Get all the updates here.",
+                style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget horizontallscrollbeziarchart(BuildContext context) {
     return Container(
       width: 276.0,
       height: 142.0,
-      // color: Colors.red,
-      // height: MediaQuery.of(context).size.height / 2,
-      // width: MediaQuery.of(context).size.width * 0.9,
+      margin: EdgeInsets.only(top: 0.0, right: 70.0, bottom: 0.0, left: 0.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
       child: BezierChart(
         bezierChartScale: BezierChartScale.CUSTOM,
         xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],

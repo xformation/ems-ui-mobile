@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
             },
             child: Container(
               alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(bottom: 10.0),
+              margin: EdgeInsets.only(bottom: 15.0),
               padding: EdgeInsets.only(bottom: 10.0),
               decoration: BoxDecoration(
                 border: Border(
@@ -192,17 +192,19 @@ class _HomeState extends State<Home> {
                   Container(
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(0.0),
+                    margin: EdgeInsets.all(0.0),
                     width: 220,
                     child: ListTile(
                       title: Text(
                         "Sara Adamas",
                         style: TextStyle(
-                            color: LocalTheme.home["student_name"]["color"],
-                            fontWeight: LocalTheme.home["student_name"]
-                                ["font_weight"],
-                            fontFamily: LocalTheme.home["student_name"]
-                                ["font_family"],
-                            fontSize: 16),
+                          color: LocalTheme.home["student_name"]["color"],
+                          fontWeight: LocalTheme.home["student_name"]
+                              ["font_weight"],
+                          fontFamily: LocalTheme.home["student_name"]
+                              ["font_family"],
+                          fontSize: 16,
+                        ),
                       ),
                       subtitle: Text(
                         "8th Grade, Telangana State Boardd",
@@ -249,8 +251,9 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.topLeft,
                     padding: EdgeInsets.all(0.0),
+                    margin: EdgeInsets.all(0.0),
                     width: 220,
                     child: ListTile(
                       title: Text(
@@ -322,8 +325,8 @@ class _HomeState extends State<Home> {
           ),
           Container(
             alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(bottom: 10.0),
-            padding: EdgeInsets.only(bottom: 10.0),
+            margin: EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 10.0),
+            padding: EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 10.0),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -340,13 +343,15 @@ class _HomeState extends State<Home> {
                   width: 48,
                   height: 48,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 20.0, right: 0.0),
+                  margin: EdgeInsets.only(
+                      left: 20.0, right: 0.0, top: 0, bottom: 0.0),
                   child: Image.asset('assets/images/indian.png',
                       fit: BoxFit.cover),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
                   width: 240,
                   child: ListTile(
                     title: Text(
@@ -375,6 +380,7 @@ class _HomeState extends State<Home> {
           ),
           Container(
             alignment: Alignment.topLeft,
+            margin: EdgeInsets.all(0.0),
             padding: EdgeInsets.only(bottom: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -384,7 +390,8 @@ class _HomeState extends State<Home> {
                   width: 48,
                   height: 48,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 20.0, right: 0.0),
+                  margin: EdgeInsets.only(
+                      left: 20.0, right: 0.0, top: 0.0, bottom: 0.0),
                   child: CircleAvatar(
                     backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
                     radius: 30.0,
