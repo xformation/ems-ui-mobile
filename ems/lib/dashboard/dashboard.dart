@@ -84,33 +84,49 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(1, 250, 250, 248),
-        title: Text(
-          "Dashboard",
-          style: TextStyle(
-            color: LocalTheme.Header["title"]["title_color"],
-            fontFamily: LocalTheme.Header["title"]["font_family"],
-            fontSize: 17,
+        elevation: 0.0,
+        leading: Container(
+          alignment: Alignment.centerLeft,
+          width: 30.0,
+          padding: EdgeInsets.only(left: 20.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: LocalTheme.home["heading"]["color"],
+              size: 40,
+            ),
+            iconSize: 24.0,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        title: Container(
+          alignment: Alignment(-1.1, 0.0),
+          padding:
+              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          child: Text(
+            "Dashboard",
+            style: TextStyle(
+                color: LocalTheme.Header["title"]["title_color"],
+                fontFamily: LocalTheme.Header["title"]["font_family"],
+                fontSize: 17),
           ),
         ),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            color: LocalTheme.Header["title"]["title_color"],
-            tooltip: 'Show Notifications',
-            onPressed: () {},
+          Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.all(0.0),
+              icon: const Icon(Icons.notifications),
+              color: LocalTheme.Header["title"]["title_color"],
+              tooltip: 'Show Notifications',
+              onPressed: () {},
+            ),
           ),
         ],
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: LocalTheme.home["heading"]["color"],
-            size: 40,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: Container(
         color: Color.fromARGB(1, 250, 250, 248),

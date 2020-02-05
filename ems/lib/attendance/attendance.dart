@@ -115,8 +115,8 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
           ),
         ),
         title: Container(
-          alignment: Alignment(-1.2, 0.0),
-          padding: EdgeInsets.all(0.0),
+          alignment: Alignment(-1.1, 0.0),
+          padding: EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
           child: Text(
             "Attendance",
             style: TextStyle(
