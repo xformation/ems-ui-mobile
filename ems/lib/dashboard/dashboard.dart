@@ -427,7 +427,6 @@ class _DashboardState extends State<Dashboard> {
               ),
               child: horizontallscrollchart('barchart', 'Attendance', '2020'),
             ),
-            
           ),
           horizontallscrollnews(),
           horizontallscrollbeziarchart(context),
@@ -438,7 +437,7 @@ class _DashboardState extends State<Dashboard> {
 
   Widget studentProgressChart() {
     return Container(
-      height: 220.0,
+      //height: 220.0,
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -474,29 +473,65 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 0.0, left: 0.0),
-              child: LineChart(
-                isShowingMainData ? sampleData1() : sampleData2(),
-                swapAnimationDuration: Duration(milliseconds: 250),
-              ),
+          Container(
+            alignment: Alignment.centerLeft,
+            height: 150,
+            padding: EdgeInsets.only(top: 20.0),
+            child: LineChart(
+              isShowingMainData ? sampleData1() : sampleData2(),
+              swapAnimationDuration: Duration(milliseconds: 250),
             ),
           ),
-          // Container(
-          // height: 100,
-          //   RaisedButton(
-          //   onPressed: () {},
-          //   child: const Text('QUAR-I', style: TextStyle(fontSize: 15)),
-          //   color: Color.fromARGB(252,190,87,0),
-          //   textColor: Colors.black,
-          // ),
-          //   RaisedButton(
-          //   onPressed: () {},
-          //   child: const Text('QUAR-II', style: TextStyle(fontSize: 15)),
-          //   color: Color.fromARGB(252,190,87,0),
-          //   textColor: Colors.black38,
-          // ),
+          Container(
+            padding: EdgeInsets.only(bottom: 20.0),
+            alignment: Alignment.topLeft,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: RaisedButton(
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    child: Text(
+                      'QUAR-I',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: Color(0xFFfdca40),
+                    textColor: Colors.black,
+                  ),
+                ),
+                Container(
+                  child: RaisedButton(
+                    onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      side: BorderSide(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                    child: Text(
+                      'QUAR-II',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: Color(0xFFfdca40),
+                    textColor: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -589,7 +624,7 @@ class _DashboardState extends State<Dashboard> {
                 Column(
                   children: [
                     Container(
-                      width: 200.0,
+                      width: 160.0,
                       alignment: Alignment.topRight,
                       margin: EdgeInsets.only(left: 0.0),
                       padding: EdgeInsets.only(left: 0.0, right: 0.0),
