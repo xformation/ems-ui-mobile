@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ems/home/home.dart';
 import 'package:ems/attendanceform/mark_attendance.dart';
 import 'package:ems/attendance/attendance.dart';
-import 'package:ems/try_el_graph/elQraph.dart';
+//import 'package:ems/try_el_graph/elQraph.dart';
 
 import 'package:ems/containers/parent_container.dart';
 
@@ -17,6 +17,6 @@ void main() {
     '/dashboard': (context) => ParentContainer(Dashboard()),
     '/attendance': (context) => ParentContainer(MarkAttendancePage(store)),
     '/AttendanceDetail': (context) => ParentContainer(AttendanceDetail()),
-    '/graph': (context) => ParentContainer(LineChartSample1()),
+    //'/graph': (context) => ParentContainer(LineChartSample1()),
   }));
 }

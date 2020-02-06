@@ -34,7 +34,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
 
   @override
   void dispose() {
-    // _tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -116,7 +116,8 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
         ),
         title: Container(
           alignment: Alignment(-1.1, 0.0),
-          padding: EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          padding:
+              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
           child: Text(
             "Attendance",
             style: TextStyle(
@@ -149,7 +150,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
               selectAttendanceType(),
               displayAttendanceGraph(),
               tabForViewAttendance(),
-              subjectwiseAttendance(),
+              //subjectwiseAttendance(),
               displayDaywiseAttendance(),
             ],
           ),
@@ -241,24 +242,28 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
               title: Text(
                 "Subject Wise Attendance",
                 style: TextStyle(
-                    color: LocalTheme.home["sub_heading"]["color"],
-                    fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-                    fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                    fontSize: 18),
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 18,
+                ),
               ),
             ),
             CheckboxListTile(
               dense: true,
               value: _value2,
               onChanged: _value2Changed,
-              title: Text('Day wise Attendance',
-                  style: TextStyle(
-                      color: LocalTheme.home["student_description"]["color"],
-                      fontWeight: LocalTheme.home["student_description"]
-                          ["font_weight"],
-                      fontFamily: LocalTheme.home["student_description"]
-                          ["font_family"],
-                      fontSize: 16)),
+              title: Text(
+                'Day wise Attendance',
+                style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontWeight: LocalTheme.home["student_description"]
+                      ["font_weight"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 16,
+                ),
+              ),
               controlAffinity: ListTileControlAffinity.leading,
               activeColor: Colors.blue,
             ),
@@ -266,14 +271,17 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
               dense: true,
               value: _value1,
               onChanged: _value1Changed,
-              title: Text('Subject Wise Attendance',
-                  style: TextStyle(
-                      color: LocalTheme.home["student_description"]["color"],
-                      fontWeight: LocalTheme.home["student_description"]
-                          ["font_weight"],
-                      fontFamily: LocalTheme.home["student_description"]
-                          ["font_family"],
-                      fontSize: 16)),
+              title: Text(
+                'Subject Wise Attendance',
+                style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontWeight: LocalTheme.home["student_description"]
+                      ["font_weight"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 16,
+                ),
+              ),
               controlAffinity: ListTileControlAffinity.leading,
               activeColor: Colors.blue[100],
             ),
@@ -285,136 +293,454 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
 
   Widget tabForViewAttendance() {
     return Container(
-      height: 100.0,
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-      color: Colors.white,
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          DropdownButton<String>(
+            isExpanded: true,
+            // hint: Text("Please choose a subject"),
+            items: <String>['Physics', 'Maths', 'English', 'Chemistry']
+                .map((String value) {
+              return new DropdownMenuItem<String>(
+                //value: _selected,
+                child: new Text(value),
+              );
+            }).toList(),
+            onChanged: (value) {
+              print(value);
+              //setState(() => _selected = value);
+            },
+          ),
           PreferredSize(
-              preferredSize: Size.fromHeight(100.0),
-              child: DefaultTabController(
-                length: 2,
-                child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                    child: TabBar(
-                        // controller: _tabController,
-                        tabs: <Widget>[
+            preferredSize: Size.fromHeight(54.0),
+            child: DefaultTabController(
+              length: 2,
+              child: TabBar(
+                tabs: <Widget>[
+                  Container(
+                    height: 54,
+                    padding: EdgeInsets.only(
+                        top: 18.0, right: 0.0, bottom: 18.0, left: 0.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        bottom:
+                            BorderSide(width: 4.0, color: Color(0xFF292B23)),
+                      ),
+                    ),
+                    child: Text(
+                      "Week View",
+                      style: TextStyle(
+                        color: LocalTheme.Tab["heading"]["title_color"],
+                        fontSize: 14,
+                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 54,
+                    padding: EdgeInsets.only(
+                        top: 18.0, right: 0.0, bottom: 18.0, left: 0.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border(
+                        bottom:
+                            BorderSide(width: 4.0, color: Color(0xFF292B23)),
+                      ),
+                    ),
+                    child: Text(
+                      "Month View",
+                      style: TextStyle(
+                        color: LocalTheme.Tab["heading"]["title_color"],
+                        fontSize: 14,
+                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+                top: 30.0, right: 30.0, bottom: 30.0, left: 30.0),
+            child: Row(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+                      height: 25,
+                      child: Row(
+                        children: <Widget>[
                           Container(
-                            height: 35,
-                            child: Text("Week View",
-                                style: TextStyle(
-                                    color: LocalTheme.Tab["heading"]
-                                        ["title_color"],
-                                    fontSize: 14,
-                                    fontFamily: LocalTheme.Tab["heading"]
-                                        ["font_family"],
-                                    fontWeight: LocalTheme.Tab["heading"]
-                                        ["font_weight"])),
+                            width: 160,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "DAY",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
                           ),
                           Container(
-                            height: 35,
-                            child: Text("Month View",
-                                style: TextStyle(
-                                    color: LocalTheme.Tab["heading"]
-                                        ["title_color"],
-                                    fontSize: 14,
-                                    fontFamily: LocalTheme.Tab["heading"]
-                                        ["font_family"],
-                                    fontWeight: LocalTheme.Tab["heading"]
-                                        ["font_weight"])),
+                            width: 100,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 0.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "ATTENDANCE",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "Monday",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
                           ),
-                        ])),
-              )),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "PRESENT",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "Tuesday",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "PRESENT",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "WEDNESDAY",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "sICK lEAVE",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "THURSDAY",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "PRESENT",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "FRIDAY",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "PRESENT",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 160,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 22.0),
+                            child: Text(
+                              "SATURDAY",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 0.0, left: 13.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFAFAF8),
+                            ),
+                            child: Text(
+                              "PRESENT",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 9,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget subjectwiseAttendance() {
-    return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
-      padding: EdgeInsets.all(10.0),
-      height: 250,
-      width: 400,
-      color: Colors.white,
-      child: FittedBox(
-        fit: BoxFit.contain,
-        child: Column(children: <Widget>[
-          DataTable(
-            columnSpacing: 200,
-            // headingRowHeight: 100,
-            horizontalMargin: 10,
-            columns: <DataColumn>[
-              DataColumn(
-                  label: Text("Day",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                  numeric: true),
-              DataColumn(
-                label: Text("Attendance",
-                    style:
-                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                numeric: false,
-              ),
-            ],
-            rows: <DataRow>[
-              DataRow(cells: [
-                DataCell(Text("Monday",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("pRESENT",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("Tuesday",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("pRESENT",
-                    style: TextStyle(fontSize: 12),
-                    textAlign: TextAlign.center)),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("WEDNESDAY",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("sICK lEAVE",
-                    style: TextStyle(fontSize: 12),
-                    textAlign: TextAlign.center)),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("THURSDAY",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("PRESENT",
-                    style: TextStyle(fontSize: 12),
-                    textAlign: TextAlign.center)),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("FRIDAY",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("HOLIDAY",
-                    style: TextStyle(fontSize: 12),
-                    textAlign: TextAlign.center)),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("SATURDAY",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center)),
-                DataCell(Text("NO Lecture",
-                    style: TextStyle(fontSize: 12),
-                    textAlign: TextAlign.center)),
-              ]),
-            ],
-          ),
-        ]),
-      ),
-    );
-  }
+  // Widget subjectwiseAttendance() {
+  //   return Container(
+  //     margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+  //     padding: EdgeInsets.all(10.0),
+  //     //height: 250,
+  //     width: 320,
+  //     color: Colors.white,
+  //     child:
+  //   );
+  // }
 
   Widget displayDaywiseAttendance() {
     return Container(
@@ -442,7 +768,8 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
               behaviors: [
                 charts.DatumLegend(
                   position: charts.BehaviorPosition.bottom,
-                  outsideJustification: charts.OutsideJustification.middleDrawArea,
+                  outsideJustification:
+                      charts.OutsideJustification.middleDrawArea,
                   horizontalFirst: false,
                   desiredMaxRows: 1,
                   cellPadding: EdgeInsets.only(right: 4.0, bottom: 4.0),
@@ -457,9 +784,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                 startAngle: 4 / 5 * (3.14),
                 arcLength: 7 / 5 * (3.14),
               ),
-              //  defaultRenderer: new charts.ArcRendererConfig(arcWidth: 60))
             ),
-           
           ),
         ],
       ),
@@ -490,10 +815,11 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
             title: Text(
               "Attendance",
               style: TextStyle(
-                  color: LocalTheme.home["sub_heading"]["color"],
-                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                  fontSize: 18),
+                color: LocalTheme.home["sub_heading"]["color"],
+                fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                fontSize: 18,
+              ),
             ),
           ),
           Expanded(
