@@ -34,7 +34,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
 
   @override
   void dispose() {
-    _tabController.dispose();
+    // _tabController.dispose();
     super.dispose();
   }
 
