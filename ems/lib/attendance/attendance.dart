@@ -8,7 +8,8 @@ class AttendanceDetail extends StatefulWidget {
   _AttendanceDetailState createState() => new _AttendanceDetailState();
 }
 
-class _AttendanceDetailState extends State<AttendanceDetail> {
+class _AttendanceDetailState extends State<AttendanceDetail>
+    with TickerProviderStateMixin {
   List<charts.Series<MonthwiseAttendance, String>> seriesList;
   final bool animate = true;
 
@@ -20,7 +21,6 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
   bool _issubjectWise = false;
 
   String _studentAttrndance = '';
-
   TabController _tabController;
   CalendarController _calendarController;
 
@@ -29,15 +29,11 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
     super.initState();
     _isVisible = true;
     _calendarController = CalendarController();
-    // _tabController = TabController(vsync: , length: 2);
-    // _tabController.addListener(_handleTabChange);
+    _tabController = TabController(vsync: this, length: 2);
+    _tabController.addListener(_handleTabChange);
     _createSampleData();
     _createAttendanceData();
   }
-
-  // void _handleTabChange() {
-  //   print("bhxbhbfshdjs");
-  // }
 
   @override
   void dispose() {
@@ -75,13 +71,9 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
 
   _createAttendanceData() {
     final data = [
-      new MonthWiseStudentAttendanceChart(
-          0, 100, Color.fromARGB(111, 184, 222, 1)),
-      new MonthWiseStudentAttendanceChart(
-          1, 75, Color.fromARGB(253, 202, 64, 1)),
-      new MonthWiseStudentAttendanceChart(
-          2, 25, Color.fromARGB(38, 98, 240, 1)),
-      // new MonthwiseAttendance('Highly Unusual', 5),
+      MonthWiseStudentAttendanceChart(0, 110, Color(0xFF2662F0)),
+      MonthWiseStudentAttendanceChart(1, 25, Color(0xFF6FB8DE)),
+      MonthWiseStudentAttendanceChart(2, 10, Color(0xFFFDCA40)),
     ];
 
     seriesLists = [
@@ -93,12 +85,13 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
             attendance.size,
         colorFn: (MonthWiseStudentAttendanceChart segment, _) => segment.color,
         data: data,
+        labelAccessorFn: (MonthWiseStudentAttendanceChart row, _) => '${row.attendance}: ${row.size}',
+
       )
     ];
   }
 
   void _displayAttendance(value) {
-    print(value);
     setState(() {
       _studentAttrndance = value;
       _isVisible = false;
@@ -110,6 +103,22 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
         _isDaywise = true;
       }
     });
+  }
+
+  _handleTabChange() {
+    if (_tabController.indexIsChanging) {
+      setState(() {
+        if (_tabController.index == 0) {
+          _issubjectWise = false;
+          _isDaywise = true;
+          _studentAttrndance = 'day';
+        } else if (_tabController.index == 1) {
+          _issubjectWise = true;
+          _isDaywise = false;
+          _studentAttrndance = 'subject';
+        }
+      });
+    }
   }
 
   @override
@@ -274,40 +283,47 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                 ),
               ),
             ),
-            Radio(
-              value: 'day',
-              onChanged: _displayAttendance,
-              activeColor: Colors.blue,
-              groupValue: _studentAttrndance,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Radio(
+                  value: 'day',
+                  onChanged: _displayAttendance,
+                  activeColor: Colors.blue,
+                  groupValue: _studentAttrndance,
+                ),
+                Text(
+                  'Subject Wise Attendance',
+                  style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontWeight: LocalTheme.home["student_description"]
+                        ["font_weight"],
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"],
+                    fontSize: 16,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              'Subject Wise Attendance',
-              style: TextStyle(
-                color: LocalTheme.home["student_description"]["color"],
-                fontWeight: LocalTheme.home["student_description"]
-                    ["font_weight"],
-                fontFamily: LocalTheme.home["student_description"]
-                    ["font_family"],
-                fontSize: 16,
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+              Radio(
+                value: 'subject',
+                onChanged: _displayAttendance,
+                groupValue: _studentAttrndance,
+                activeColor: Colors.blue[100],
               ),
-            ),
-            Radio(
-              value: 'subject',
-              onChanged: _displayAttendance,
-              groupValue: _studentAttrndance,
-              activeColor: Colors.blue[100],
-            ),
-            Text(
-              'Day wise Attendance',
-              style: TextStyle(
-                color: LocalTheme.home["student_description"]["color"],
-                fontWeight: LocalTheme.home["student_description"]
-                    ["font_weight"],
-                fontFamily: LocalTheme.home["student_description"]
-                    ["font_family"],
-                fontSize: 16,
+              Text(
+                'Day wise Attendance',
+                style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontWeight: LocalTheme.home["student_description"]
+                      ["font_weight"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 16,
+                ),
               ),
-            ),
+            ]),
           ],
         ),
       ),
@@ -331,74 +347,53 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            DropdownButton<String>(
-              isExpanded: true,
-              // hint: Text("Please choose a subject"),
-              items: <String>['Physics', 'Maths', 'English', 'Chemistry']
-                  .map((String value) {
-                return new DropdownMenuItem<String>(
-                  //value: _selected,
-                  child: new Text(value),
-                );
-              }).toList(),
-              onChanged: (value) {
-                print(value);
-                //setState(() => _selected = value);
-              },
-            ),
-            TableCalendar(
-              calendarController: _calendarController,
-            ),
+            // DropdownButton<String>(
+            //   isExpanded: true,
+            //   // hint: Text("Please choose a subject"),
+            //   items: <String>['Physics', 'Maths', 'English', 'Chemistry']
+            //       .map((String value) {
+            //     return new DropdownMenuItem<String>(
+            //       //value: _selected,
+            //       child: new Text(value),
+            //     );
+            //   }).toList(),
+            //   onChanged: (value) {
+            //     //setState(() => _selected = value);
+            //   },
+            // ),
+            // TableCalendar(
+            //   calendarController: _calendarController,
+            // ),
             PreferredSize(
               preferredSize: Size.fromHeight(54.0),
-              child: DefaultTabController(
-                length: 2,
-                child: TabBar(
-                  tabs: <Widget>[
-                    Container(
-                      height: 54,
-                      padding: EdgeInsets.only(
-                          top: 18.0, right: 0.0, bottom: 18.0, left: 0.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom:
-                              BorderSide(width: 4.0, color: Color(0xFF292B23)),
-                        ),
-                      ),
-                      child: Text(
-                        "Week View",
-                        style: TextStyle(
-                          color: LocalTheme.Tab["heading"]["title_color"],
-                          fontSize: 14,
-                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                          fontWeight: LocalTheme.Tab["heading"]["font_weight"],
-                        ),
+              child: TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.yellow[300],
+                unselectedLabelColor: LocalTheme.Tab["heading"]
+                    ["unactive_color"],
+                labelColor: LocalTheme.Tab["heading"]["active_color"],
+                tabs: <Widget>[
+                  Tab(
+                    child: Text(
+                      "Week View",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
                       ),
                     ),
-                    Container(
-                      height: 54,
-                      padding: EdgeInsets.only(
-                          top: 18.0, right: 0.0, bottom: 18.0, left: 0.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          bottom:
-                              BorderSide(width: 4.0, color: Color(0xFF292B23)),
-                        ),
-                      ),
-                      child: Text(
-                        "Month View",
-                        style: TextStyle(
-                          color: LocalTheme.Tab["heading"]["title_color"],
-                          fontSize: 14,
-                          fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                          fontWeight: LocalTheme.Tab["heading"]["font_weight"],
-                        ),
+                  ),
+                  Tab(
+                    child: Text(
+                      "Month View",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
                       ),
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             Visibility(
@@ -414,7 +409,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 3.0, left: 20.0),
                           height: 25,
                           child: Row(
                             children: <Widget>[
@@ -472,7 +467,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -528,7 +523,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -584,7 +579,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -640,7 +635,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -696,7 +691,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -752,7 +747,7 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -824,31 +819,15 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
-                        child: charts.PieChart(
-                          seriesLists,
-                          animate: animates,
-                          behaviors: [
-                            charts.DatumLegend(
-                              position: charts.BehaviorPosition.bottom,
-                              outsideJustification:
-                                  charts.OutsideJustification.middleDrawArea,
-                              horizontalFirst: false,
-                              desiredMaxRows: 1,
-                              cellPadding:
-                                  EdgeInsets.only(right: 4.0, bottom: 4.0),
-                              entryTextStyle: charts.TextStyleSpec(
-                                  color: charts
-                                      .MaterialPalette.purple.shadeDefault,
-                                  fontFamily: 'Georgia',
-                                  fontSize: 11),
-                            )
-                          ],
-                          defaultRenderer: new charts.ArcRendererConfig(
-                            arcWidth: 30,
-                            startAngle: 4 / 5 * (3.14),
-                            arcLength: 7 / 5 * (3.14),
-                          ),
-                        ),
+                        child: charts.PieChart(seriesLists,
+                            animate: animates,
+                            defaultRenderer: charts.ArcRendererConfig(
+                                arcWidth: 25,
+                                arcRendererDecorators: [
+                                  charts.ArcLabelDecorator(
+                                      labelPosition:
+                                          charts.ArcLabelPosition.outside)
+                                ])),
                       ),
                     ],
                   ),
@@ -856,10 +835,6 @@ class _AttendanceDetailState extends State<AttendanceDetail> {
           ]),
     );
   }
-
-  // Widget displayDaywiseAttendance() {
-  //   return
-  // }
 
   Widget displayAttendanceGraph() {
     return Container(

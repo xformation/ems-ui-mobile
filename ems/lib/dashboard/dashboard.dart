@@ -10,7 +10,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<charts.Series<MonthwiseAttendance, String>> seriesList;
+  List<charts.Series<MonthwiseAttendance, int>> seriesList;
   final bool animate = true;
   bool isShowingMainData;
 
@@ -23,19 +23,24 @@ class _DashboardState extends State<Dashboard> {
 
   _createSampleData() {
     final data = [
-      new MonthwiseAttendance('Low', 75, Color.fromARGB(111, 184, 222, 1)),
-      new MonthwiseAttendance('High', 85, Color.fromARGB(253, 202, 64, 1)),
-      new MonthwiseAttendance(
-          'Acceptable', 100, Color.fromARGB(38, 98, 240, 1)),
+     MonthwiseAttendance(0, 110, Color(0xFF2662F0)),
+     MonthwiseAttendance(1, 25, Color(0xFF6FB8DE)),
+     MonthwiseAttendance(2, 10, Color(0xFFFDCA40)),
+    //  MonthwiseAttendance(3, 5),
+      // new MonthwiseAttendance('Low', 75, ),
+      // new MonthwiseAttendance('High', 85, ),
+      // new MonthwiseAttendance(
+      //     'Acceptable', 100, ),
     ];
 
     seriesList = [
-      new charts.Series<MonthwiseAttendance, String>(
+      new charts.Series<MonthwiseAttendance, int>(
         id: 'Attendance',
         domainFn: (MonthwiseAttendance attendance, _) => attendance.attendance,
         measureFn: (MonthwiseAttendance attendance, _) => attendance.size,
         colorFn: (MonthwiseAttendance segment, _) => segment.color,
         data: data,
+        labelAccessorFn: (MonthwiseAttendance row, _) => '${row.attendance}: ${row.size}',
       )
     ];
   }
@@ -407,7 +412,6 @@ class _DashboardState extends State<Dashboard> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              print("fhjbhfbhjsa");
               Navigator.pushNamed(context, "/AttendanceDetail");
             },
             child: Container(
@@ -647,12 +651,10 @@ class _DashboardState extends State<Dashboard> {
       child: charts.PieChart(
         seriesList,
         animate: animate,
-        defaultRenderer: charts.ArcRendererConfig(
-          arcWidth: 10,
-          startAngle: 3 / 6 * (2.0),
-          arcLength: 7 / 4 * (50.0),
-        ),
-      ),
+         defaultRenderer: charts.ArcRendererConfig(arcWidth: 15,arcRendererDecorators: [
+          charts.ArcLabelDecorator(
+              labelPosition: charts.ArcLabelPosition.outside)
+        ])),
     );
   }
 
@@ -761,7 +763,7 @@ class _DashboardState extends State<Dashboard> {
 }
 
 class MonthwiseAttendance {
-  final String attendance;
+  final int attendance;
   final int size;
   final charts.Color color;
 
