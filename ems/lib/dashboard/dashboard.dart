@@ -23,10 +23,10 @@ class _DashboardState extends State<Dashboard> {
 
   _createSampleData() {
     final data = [
-     MonthwiseAttendance(0, 110, Color(0xFF2662F0)),
-     MonthwiseAttendance(1, 25, Color(0xFF6FB8DE)),
-     MonthwiseAttendance(2, 10, Color(0xFFFDCA40)),
-    //  MonthwiseAttendance(3, 5),
+      MonthwiseAttendance(0, 110, Color(0xFF2662F0)),
+      MonthwiseAttendance(1, 25, Color(0xFF6FB8DE)),
+      MonthwiseAttendance(2, 10, Color(0xFFFDCA40)),
+      //  MonthwiseAttendance(3, 5),
       // new MonthwiseAttendance('Low', 75, ),
       // new MonthwiseAttendance('High', 85, ),
       // new MonthwiseAttendance(
@@ -40,7 +40,8 @@ class _DashboardState extends State<Dashboard> {
         measureFn: (MonthwiseAttendance attendance, _) => attendance.size,
         colorFn: (MonthwiseAttendance segment, _) => segment.color,
         data: data,
-        labelAccessorFn: (MonthwiseAttendance row, _) => '${row.attendance}: ${row.size}',
+        labelAccessorFn: (MonthwiseAttendance row, _) =>
+            '${row.attendance}: ${row.size}',
       )
     ];
   }
@@ -418,7 +419,8 @@ class _DashboardState extends State<Dashboard> {
               width: 276.0,
               height: 142.0,
               margin: EdgeInsets.only(
-                  top: 0.0, right: 20.0, bottom: 0.0, left: 70.0),
+                  top: 0.0, right: 20.0, bottom: 0.0, left: 40.0),
+                  padding: EdgeInsets.only(bottom:4.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
@@ -454,7 +456,7 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           ListTile(
             dense: true,
@@ -479,15 +481,15 @@ class _DashboardState extends State<Dashboard> {
           ),
           Container(
             alignment: Alignment.centerLeft,
-            height: 150,
-            padding: EdgeInsets.only(top: 20.0),
+            height: 140,
+            padding: EdgeInsets.only(top: 15.0),
             child: LineChart(
               isShowingMainData ? sampleData1() : sampleData2(),
               swapAnimationDuration: Duration(milliseconds: 250),
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 10.0),
             alignment: Alignment.topLeft,
             child: Row(
               children: <Widget>[
@@ -646,16 +648,35 @@ class _DashboardState extends State<Dashboard> {
 
   Widget horizontallscrollchart(
       String chartname, String chartHeading, String chartSubheading) {
-    return Card(
-      margin: EdgeInsets.only(top: 0.0, right: 0.0, bottom: 0.0, left: 0.0),
-      child: charts.PieChart(
-        seriesList,
-        animate: animate,
-         defaultRenderer: charts.ArcRendererConfig(arcWidth: 15,arcRendererDecorators: [
-          charts.ArcLabelDecorator(
-              labelPosition: charts.ArcLabelPosition.outside)
-        ])),
-    );
+    return Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: charts.PieChart(
+              seriesList,
+              animate: animate,
+              defaultRenderer: charts.ArcRendererConfig(
+                  arcWidth: 10,
+                  arcRendererDecorators: [
+                    charts.ArcLabelDecorator(
+                        labelPosition: charts.ArcLabelPosition.outside)
+                  ]),
+            ),
+          ),
+          Text("Attendance",
+              style: TextStyle(
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 16)),
+          Text("January 2020",
+              style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 12)),
+        ]);
   }
 
   Widget horizontallscrollnews() {
@@ -718,7 +739,8 @@ class _DashboardState extends State<Dashboard> {
     return Container(
       width: 276.0,
       height: 142.0,
-      margin: EdgeInsets.only(top: 0.0, right: 70.0, bottom: 0.0, left: 0.0),
+      margin: EdgeInsets.only(top: 0.0, right: 40.0, bottom: 0.0, left: 0.0),
+      padding: EdgeInsets.only(bottom: 4.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -729,35 +751,56 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      child: BezierChart(
-        bezierChartScale: BezierChartScale.CUSTOM,
-        xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35, 40],
-        series: const [
-          BezierLine(
-            lineColor: Colors.blueAccent,
-            lineStrokeWidth: 1.0,
-            data: const [
-              DataPoint<double>(value: 10, xAxis: 0),
-              DataPoint<double>(value: 150, xAxis: 5),
-              DataPoint<double>(value: 50, xAxis: 10),
-              DataPoint<double>(value: 130, xAxis: 15),
-              DataPoint<double>(value: 75, xAxis: 20),
-              DataPoint<double>(value: 0, xAxis: 25),
-              DataPoint<double>(value: 90, xAxis: 30),
-              DataPoint<double>(value: 65, xAxis: 35),
-              DataPoint<double>(value: 95, xAxis: 40),
-            ],
+      child:Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: BezierChart(
+              bezierChartScale: BezierChartScale.CUSTOM,
+              xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
+              series: const [
+                BezierLine(
+                  lineColor: Color(0xFF292B23),
+                  lineStrokeWidth: 2.0,
+                  data: const [
+                    DataPoint<double>(value: 10, xAxis: 0),
+                    DataPoint<double>(value: 70, xAxis: 5),
+                    DataPoint<double>(value: 20, xAxis: 10),
+                    DataPoint<double>(value: 90, xAxis: 15),
+                    DataPoint<double>(value: 55, xAxis: 20),
+                    DataPoint<double>(value: 95, xAxis: 25),
+                    DataPoint<double>(value: 60, xAxis: 30),
+                    DataPoint<double>(value: 120, xAxis: 35),
+                    // DataPoint<double>(value: 105, xAxis: 40),
+                    // DataPoint<double>(value: 155, xAxis: 45),
+
+                  ],
+                ),
+              ],
+              config: BezierChartConfig(
+                verticalIndicatorStrokeWidth: 2.0,
+                verticalIndicatorColor: Colors.black38,
+                showVerticalIndicator: true,
+                backgroundColor: Colors.white,
+                // color: charts.ColorUtil.fromDartColor(Colors.white),
+                snap: false,
+              ),
+            ),
           ),
-        ],
-        config: BezierChartConfig(
-          verticalIndicatorStrokeWidth: 2.0,
-          verticalIndicatorColor: Colors.black38,
-          showVerticalIndicator: true,
-          backgroundColor: Colors.white,
-          // color: charts.ColorUtil.fromDartColor(Colors.white),
-          snap: false,
-        ),
-      ),
+           Text("Progress",
+              style: TextStyle(
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 16)),
+          Text("Quarter - I",
+              style: TextStyle(
+                  color: LocalTheme.home["student_description"]["color"],
+                  fontFamily: LocalTheme.home["student_description"]
+                      ["font_family"],
+                  fontSize: 12)),
+        ]),
     );
   }
 }

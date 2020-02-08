@@ -85,8 +85,8 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             attendance.size,
         colorFn: (MonthWiseStudentAttendanceChart segment, _) => segment.color,
         data: data,
-        labelAccessorFn: (MonthWiseStudentAttendanceChart row, _) => '${row.attendance}: ${row.size}',
-
+        labelAccessorFn: (MonthWiseStudentAttendanceChart row, _) =>
+            '${row.attendance}: ${row.size}',
       )
     ];
   }
@@ -289,7 +289,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                 Radio(
                   value: 'day',
                   onChanged: _displayAttendance,
-                  activeColor: Colors.blue,
+                  activeColor: Colors.black38,
                   groupValue: _studentAttrndance,
                 ),
                 Text(
@@ -310,7 +310,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                 value: 'subject',
                 onChanged: _displayAttendance,
                 groupValue: _studentAttrndance,
-                activeColor: Colors.blue[100],
+                activeColor: Colors.black38,
               ),
               Text(
                 'Day wise Attendance',
@@ -334,7 +334,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+       color: Colors.white,
         borderRadius: BorderRadius.circular(4),
         boxShadow: [
           BoxShadow(
@@ -361,9 +361,14 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             //     //setState(() => _selected = value);
             //   },
             // ),
-            // TableCalendar(
-            //   calendarController: _calendarController,
-            // ),
+            Container(
+              color: Color(0xFFFAFBFD),
+              padding: EdgeInsets.only(bottom: 5.0),
+              child: TableCalendar(
+              headerVisible : true,
+              calendarController: _calendarController,
+            ),
+            ),
             PreferredSize(
               preferredSize: Size.fromHeight(54.0),
               child: TabBar(
@@ -399,6 +404,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             Visibility(
               visible: _isDaywise,
               child: Container(
+                color: Colors.white,
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.only(
                     top: 30.0, right: 30.0, bottom: 30.0, left: 30.0),
@@ -809,11 +815,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             Visibility(
                 visible: _issubjectWise,
                 child: Container(
-                  height: 250.0,
-                  margin: EdgeInsets.only(
-                      left: 20.0, right: 20.0, top: 0.0, bottom: 15.0),
-                  padding: EdgeInsets.only(
-                      bottom: 10.0, top: 10.0, left: 5.0, right: 5.0),
+                  height: 220.0,
+                  color: Colors.white,
+                  // margin: EdgeInsets.only(
+                  //     left: 20.0, right: 20.0, top: 0.0, bottom: 15.0),
+                  // padding: EdgeInsets.only(
+                  //     bottom: 10.0, top: 10.0, left: 5.0, right: 5.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
