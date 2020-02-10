@@ -95,14 +95,20 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     setState(() {
       _studentAttrndance = value;
       _isVisible = false;
-      if (value == 'subject') {
+    });
+    if (value == 'subject') {
+      setState(() {
         _issubjectWise = true;
         _isDaywise = false;
-      } else if (value == 'day') {
+      });
+      _tabController.index = 1;
+    } else if (value == 'day') {
+      setState(() {
         _issubjectWise = false;
         _isDaywise = true;
-      }
-    });
+      });
+      _tabController.index = 0;
+    }
   }
 
   _handleTabChange() {
@@ -121,6 +127,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     }
   }
 
+String _dropdownValue = 'Physics';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -349,35 +356,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // DropdownButton<String>(
-            //   isExpanded: true,
-            //   // hint: Text("Please choose a subject"),
-            //   items: <String>['Physics', 'Maths', 'English', 'Chemistry']
-            //       .map((String value) {
-            //     return new DropdownMenuItem<String>(
-            //       //value: _selected,
-            //       child: new Text(value),
-            //     );
-            //   }).toList(),
-            //   onChanged: (value) {
-            //     //setState(() => _selected = value);
-            //   },
-            // ),
-            // Container(
-            //   color: Color(0xFFFAFBFD),
-            //   padding: EdgeInsets.only(bottom: 5.0),
-            //   child: TableCalendar(
-            //     headerVisible: true,
-            //     calendarController: _calendarController,
-            //   ),
-            // ),
-
             Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(
-                  top: 30.0, bottom: 15.0, left: 24.0, right: 24.0),
+                  top: 30.0, bottom: 10.0, left: 24.0, right: 24.0),
               padding: EdgeInsets.only(
-                  top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+                  top: 10.0, bottom: 5.0, left: 15.0, right: 15.0),
               decoration: BoxDecoration(
                 color: Color(0xFFFDCA40),
               ),
@@ -387,54 +371,29 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                 ),
                 child: DropdownButton<String>(
                   isDense: true,
-                  elevation: 16,
+                  elevation: 5,
                   iconEnabledColor: Color(0xFF292B23),
                   underline: Text(''),
+                  value: _dropdownValue,
                   style: TextStyle(
                     color: Color(0xFF292B23),
                     decorationColor: Color(0xFFFDCA40),
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
-                  hint: Text(
-                    "Physics",
-                    style: TextStyle(
-                      color: Color(0xFF000000),
-                    ),
-                  ),
-                  items: [
-                    DropdownMenuItem<String>(
-                      value: "1",
-                      child: Text(
-                        "Physics",
-                      ),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: "2",
-                      child: Text(
-                        "Maths",
-                      ),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: "3",
-                      child: Text(
-                        "English",
-                      ),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: "4",
-                      child: Text(
-                        "Chemistry",
-                      ),
-                    ),
-                  ],
+                   isExpanded: true,
+                  items: <String>['Physics', 'Maths', 'English', 'Chemistry']
+                      .map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
                   onChanged: (value) {
                     setState(() {
-                      //_value = value;
+                      _dropdownValue = value;
                     });
                   },
-                  //value: _value,
-                  isExpanded: true,
                 ),
               ),
             ),
@@ -444,7 +403,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
               color: Color(0xFFFAFBFD),
               margin: EdgeInsets.only(
                 top: 0.0,
-                bottom: 15.0,
+                bottom: 5.0,
                 left: 24.0,
                 right: 24.0,
               ),
