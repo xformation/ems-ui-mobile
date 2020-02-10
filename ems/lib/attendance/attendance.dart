@@ -166,7 +166,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
               color: LocalTheme.Header["title"]["title_color"],
               // tooltip: 'Show Notifications',
               onPressed: () {
-                Navigator.pushNamed(context,"/");
+                Navigator.pushNamed(context, "/");
               },
             ),
           ),
@@ -363,14 +363,113 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             //     //setState(() => _selected = value);
             //   },
             // ),
+            // Container(
+            //   color: Color(0xFFFAFBFD),
+            //   padding: EdgeInsets.only(bottom: 5.0),
+            //   child: TableCalendar(
+            //     headerVisible: true,
+            //     calendarController: _calendarController,
+            //   ),
+            // ),
+
             Container(
-              color: Color(0xFFFAFBFD),
-              padding: EdgeInsets.only(bottom: 5.0),
-              child: TableCalendar(
-                headerVisible: true,
-                calendarController: _calendarController,
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(
+                  top: 30.0, bottom: 15.0, left: 24.0, right: 24.0),
+              padding: EdgeInsets.only(
+                  top: 10.0, bottom: 10.0, left: 15.0, right: 15.0),
+              decoration: BoxDecoration(
+                color: Color(0xFFFDCA40),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: Color(0xFFFDCA40),
+                ),
+                child: DropdownButton<String>(
+                  isDense: true,
+                  elevation: 16,
+                  iconEnabledColor: Color(0xFF292B23),
+                  underline: Text(''),
+                  style: TextStyle(
+                    color: Color(0xFF292B23),
+                    decorationColor: Color(0xFFFDCA40),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hint: Text(
+                    "Physics",
+                    style: TextStyle(
+                      color: Color(0xFF000000),
+                    ),
+                  ),
+                  items: [
+                    DropdownMenuItem<String>(
+                      value: "1",
+                      child: Text(
+                        "Physics",
+                      ),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: "2",
+                      child: Text(
+                        "Maths",
+                      ),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: "3",
+                      child: Text(
+                        "English",
+                      ),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: "4",
+                      child: Text(
+                        "Chemistry",
+                      ),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      //_value = value;
+                    });
+                  },
+                  //value: _value,
+                  isExpanded: true,
+                ),
               ),
             ),
+
+            Container(
+              alignment: Alignment.topLeft,
+              color: Color(0xFFFAFBFD),
+              margin: EdgeInsets.only(
+                top: 0.0,
+                bottom: 15.0,
+                left: 24.0,
+                right: 24.0,
+              ),
+              child: TableCalendar(
+                headerVisible: true,
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                calendarController: _calendarController,
+                headerStyle: HeaderStyle(
+                  centerHeaderTitle: true,
+                  formatButtonVisible: false,
+                  formatButtonTextStyle: TextStyle().copyWith(
+                    color: Color(0xFF3E4237),
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                calendarStyle: CalendarStyle(
+                  selectedColor: Colors.deepOrange[400],
+                  todayColor: Colors.deepOrange[200],
+                  markersColor: Colors.brown[700],
+                  outsideDaysVisible: false,
+                ),
+              ),
+            ),
+
             PreferredSize(
               preferredSize: Size.fromHeight(54.0),
               child: TabBar(
