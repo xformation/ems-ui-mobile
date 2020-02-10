@@ -281,12 +281,13 @@ class _DashboardState extends State<Dashboard> {
         leading: Container(
           alignment: Alignment.centerLeft,
           width: 30.0,
-          padding: EdgeInsets.only(left: 20.0),
+          padding: EdgeInsets.only(left: 0.0),
           child: IconButton(
             icon: Icon(
               Icons.keyboard_arrow_left,
               color: LocalTheme.home["heading"]["color"],
               size: 40,
+              
             ),
             iconSize: 24.0,
             onPressed: () {
@@ -295,15 +296,17 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
         title: Container(
-          alignment: Alignment(-1.1, 0.0),
+          alignment: Alignment(-1.4, 0.0),
           padding:
               EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
           child: Text(
             "Dashboard",
             style: TextStyle(
-                color: LocalTheme.Header["title"]["title_color"],
-                fontFamily: LocalTheme.Header["title"]["font_family"],
-                fontSize: 17),
+              color: LocalTheme.Header["title"]["title_color"],
+              fontFamily: LocalTheme.Header["title"]["font_family"],
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
         actions: <Widget>[
@@ -313,10 +316,12 @@ class _DashboardState extends State<Dashboard> {
             child: IconButton(
               alignment: Alignment.centerRight,
               padding: EdgeInsets.all(0.0),
-              icon: const Icon(Icons.notifications),
+              icon: const Icon(Icons.home),
               color: LocalTheme.Header["title"]["title_color"],
               tooltip: 'Show Notifications',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/");
+              },
             ),
           ),
         ],
@@ -420,7 +425,7 @@ class _DashboardState extends State<Dashboard> {
               height: 142.0,
               margin: EdgeInsets.only(
                   top: 0.0, right: 20.0, bottom: 0.0, left: 40.0),
-                  padding: EdgeInsets.only(bottom:4.0),
+              padding: EdgeInsets.only(bottom: 4.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
@@ -751,56 +756,55 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      child:Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: BezierChart(
-              bezierChartScale: BezierChartScale.CUSTOM,
-              xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
-              series: const [
-                BezierLine(
-                  lineColor: Color(0xFF292B23),
-                  lineStrokeWidth: 2.0,
-                  data: const [
-                    DataPoint<double>(value: 10, xAxis: 0),
-                    DataPoint<double>(value: 70, xAxis: 5),
-                    DataPoint<double>(value: 20, xAxis: 10),
-                    DataPoint<double>(value: 90, xAxis: 15),
-                    DataPoint<double>(value: 55, xAxis: 20),
-                    DataPoint<double>(value: 95, xAxis: 25),
-                    DataPoint<double>(value: 60, xAxis: 30),
-                    DataPoint<double>(value: 120, xAxis: 35),
-                    // DataPoint<double>(value: 105, xAxis: 40),
-                    // DataPoint<double>(value: 155, xAxis: 45),
-
-                  ],
+      child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: BezierChart(
+                bezierChartScale: BezierChartScale.CUSTOM,
+                xAxisCustomValues: const [0, 5, 10, 15, 20, 25, 30, 35],
+                series: const [
+                  BezierLine(
+                    lineColor: Color(0xFF292B23),
+                    lineStrokeWidth: 2.0,
+                    data: const [
+                      DataPoint<double>(value: 10, xAxis: 0),
+                      DataPoint<double>(value: 70, xAxis: 5),
+                      DataPoint<double>(value: 20, xAxis: 10),
+                      DataPoint<double>(value: 90, xAxis: 15),
+                      DataPoint<double>(value: 55, xAxis: 20),
+                      DataPoint<double>(value: 95, xAxis: 25),
+                      DataPoint<double>(value: 60, xAxis: 30),
+                      DataPoint<double>(value: 120, xAxis: 35),
+                      // DataPoint<double>(value: 105, xAxis: 40),
+                      // DataPoint<double>(value: 155, xAxis: 45),
+                    ],
+                  ),
+                ],
+                config: BezierChartConfig(
+                  verticalIndicatorStrokeWidth: 2.0,
+                  verticalIndicatorColor: Colors.black38,
+                  showVerticalIndicator: true,
+                  backgroundColor: Colors.white,
+                  // color: charts.ColorUtil.fromDartColor(Colors.white),
+                  snap: false,
                 ),
-              ],
-              config: BezierChartConfig(
-                verticalIndicatorStrokeWidth: 2.0,
-                verticalIndicatorColor: Colors.black38,
-                showVerticalIndicator: true,
-                backgroundColor: Colors.white,
-                // color: charts.ColorUtil.fromDartColor(Colors.white),
-                snap: false,
               ),
             ),
-          ),
-           Text("Progress",
-              style: TextStyle(
-                  color: LocalTheme.home["sub_heading"]["color"],
-                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                  fontSize: 16)),
-          Text("Quarter - I",
-              style: TextStyle(
-                  color: LocalTheme.home["student_description"]["color"],
-                  fontFamily: LocalTheme.home["student_description"]
-                      ["font_family"],
-                  fontSize: 12)),
-        ]),
+            Text("Progress",
+                style: TextStyle(
+                    color: LocalTheme.home["sub_heading"]["color"],
+                    fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                    fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                    fontSize: 16)),
+            Text("Quarter - I",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"],
+                    fontSize: 12)),
+          ]),
     );
   }
 }
