@@ -144,7 +144,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           ),
         ),
         title: Container(
-          alignment: Alignment(-1.1, 0.0),
+          alignment: Alignment(-1.2, 0.0),
           padding:
               EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
           child: Text(
@@ -162,10 +162,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
             child: IconButton(
               alignment: Alignment.centerRight,
               padding: EdgeInsets.all(0.0),
-              icon: const Icon(Icons.notifications),
+              icon: const Icon(Icons.home),
               color: LocalTheme.Header["title"]["title_color"],
-              tooltip: 'Show Notifications',
-              onPressed: () {},
+              // tooltip: 'Show Notifications',
+              onPressed: () {
+                Navigator.pushNamed(context,"/");
+              },
             ),
           ),
         ],
@@ -334,7 +336,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
       decoration: BoxDecoration(
-       color: Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(4),
         boxShadow: [
           BoxShadow(
@@ -365,9 +367,9 @@ class _AttendanceDetailState extends State<AttendanceDetail>
               color: Color(0xFFFAFBFD),
               padding: EdgeInsets.only(bottom: 5.0),
               child: TableCalendar(
-              headerVisible : true,
-              calendarController: _calendarController,
-            ),
+                headerVisible: true,
+                calendarController: _calendarController,
+              ),
             ),
             PreferredSize(
               preferredSize: Size.fromHeight(54.0),

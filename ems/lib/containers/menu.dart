@@ -5,16 +5,16 @@ import 'package:ems/assets/local_icons.dart';
 class Menu extends StatelessWidget {
   final List<MenuItem> options = [
     MenuItem(LocalIcons.home, 'Home', "/"),
-    MenuItem(LocalIcons.attendance, 'Attendance', "/attendance"),
-    MenuItem(LocalIcons.timetable, 'Time Table', "/attendance"),
-    MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/attendance"),
-    MenuItem(LocalIcons.examination, 'Examinations', "/attendance"),
+    MenuItem(LocalIcons.attendance, 'Attendance', "/"),
+    MenuItem(LocalIcons.timetable, 'Time Table', "/"),
+    MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/"),
+    MenuItem(LocalIcons.examination, 'Examinations', "/"),
     //MenuItem(LocalIcons.grades, 'Grades', "/graph"),
-    MenuItem(LocalIcons.notification, 'Notifications', "/attendance"),
-    MenuItem(LocalIcons.settings, 'Settings', "/attendance"),
-    MenuItem(LocalIcons.complaints, 'Complaints', "/attendance"),
-    MenuItem(LocalIcons.my_profile, 'My Profile', "/attendance"),
-    MenuItem(LocalIcons.logout, 'Logout', "/attendance"),
+    MenuItem(LocalIcons.notification, 'Notifications', "/"),
+    MenuItem(LocalIcons.settings, 'Settings', "/"),
+    MenuItem(LocalIcons.complaints, 'Complaints', "/"),
+    MenuItem(LocalIcons.my_profile, 'My Profile', "/"),
+    MenuItem(LocalIcons.logout, 'Logout', "/"),
   ];
 
   @override
