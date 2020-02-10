@@ -130,7 +130,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         leading: Container(
           alignment: Alignment.centerLeft,
           width: 30.0,
-          padding: EdgeInsets.only(left: 20.0),
+          padding: EdgeInsets.only(left: 0.0),
           child: IconButton(
             icon: Icon(
               Icons.keyboard_arrow_left,
@@ -144,7 +144,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           ),
         ),
         title: Container(
-          alignment: Alignment(-1.2, 0.0),
+          alignment: Alignment(-1.4, 0.0),
           padding:
               EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
           child: Text(
@@ -417,7 +417,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 3.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
                           height: 25,
                           child: Row(
                             children: <Widget>[
@@ -475,7 +475,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -488,7 +488,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                                     bottom: 0.0,
                                     left: 22.0),
                                 child: Text(
-                                  "Monday",
+                                  "MONDAY",
                                   style: TextStyle(
                                     color: LocalTheme.home["student_name"]
                                         ["color"],
@@ -531,7 +531,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -544,7 +544,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                                     bottom: 0.0,
                                     left: 22.0),
                                 child: Text(
-                                  "Tuesday",
+                                  "TUESDAY",
                                   style: TextStyle(
                                     color: LocalTheme.home["student_name"]
                                         ["color"],
@@ -587,7 +587,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -625,7 +625,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                                   color: Color(0xFFFAFAF8),
                                 ),
                                 child: Text(
-                                  "sICK lEAVE",
+                                  "SICK lEAVE",
                                   style: TextStyle(
                                     color: LocalTheme.home["student_name"]
                                         ["color"],
@@ -643,7 +643,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -699,7 +699,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(
@@ -755,7 +755,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 20.0),
+                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
                           child: Row(
                             children: <Widget>[
                               Container(

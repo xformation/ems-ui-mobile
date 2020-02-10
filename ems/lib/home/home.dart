@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          GestureDetector(
+          InkWell(
             onTap: () {
               Navigator.pushNamed(context, "/dashboard");
             },
@@ -222,7 +222,8 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          GestureDetector(
+          InkWell(
+            hoverColor: Colors.grey,
             onTap: () {
               Navigator.pushNamed(context, "/dashboard");
             },

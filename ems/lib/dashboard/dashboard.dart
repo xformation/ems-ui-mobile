@@ -26,11 +26,6 @@ class _DashboardState extends State<Dashboard> {
       MonthwiseAttendance(0, 110, Color(0xFF2662F0)),
       MonthwiseAttendance(1, 25, Color(0xFF6FB8DE)),
       MonthwiseAttendance(2, 10, Color(0xFFFDCA40)),
-      //  MonthwiseAttendance(3, 5),
-      // new MonthwiseAttendance('Low', 75, ),
-      // new MonthwiseAttendance('High', 85, ),
-      // new MonthwiseAttendance(
-      //     'Acceptable', 100, ),
     ];
 
     seriesList = [
