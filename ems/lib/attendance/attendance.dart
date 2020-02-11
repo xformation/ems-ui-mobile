@@ -288,7 +288,7 @@ String _dropdownValue = 'Physics';
                   color: LocalTheme.home["sub_heading"]["color"],
                   fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                   fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                  fontSize: 18,
+                  fontSize: 14,
                 ),
               ),
             ),

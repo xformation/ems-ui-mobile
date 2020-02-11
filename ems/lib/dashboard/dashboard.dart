@@ -420,7 +420,7 @@ class _DashboardState extends State<Dashboard> {
               height: 142.0,
               margin: EdgeInsets.only(
                   top: 0.0, right: 20.0, bottom: 0.0, left: 40.0),
-              padding: EdgeInsets.only(bottom: 4.0),
+              padding: EdgeInsets.only(bottom: 5.0,top: 5.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
@@ -466,7 +466,7 @@ class _DashboardState extends State<Dashboard> {
                 color: LocalTheme.home["sub_heading"]["color"],
                 fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                 fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                fontSize: 18,
+                fontSize: 14,
               ),
             ),
             subtitle: Text(
@@ -580,7 +580,7 @@ class _DashboardState extends State<Dashboard> {
                               ["font_weight"],
                           fontFamily: LocalTheme.home["sub_heading"]
                               ["font_family"],
-                          fontSize: 18,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -652,30 +652,34 @@ class _DashboardState extends State<Dashboard> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Expanded(
-            child: charts.PieChart(
-              seriesList,
-              animate: animate,
-              defaultRenderer: charts.ArcRendererConfig(
-                  arcWidth: 10,
-                  arcRendererDecorators: [
-                    charts.ArcLabelDecorator(
-                        labelPosition: charts.ArcLabelPosition.outside)
-                  ]),
-            ),
+          Container(
+            padding: EdgeInsets.only(bottom:10.0),
+           child:Image.asset("assets/images/duanutchart.jpg"),
           ),
+          // Expanded(
+          //   child: charts.PieChart(
+          //     seriesList,
+          //     animate: animate,
+          //     defaultRenderer: charts.ArcRendererConfig(
+          //         arcWidth: 10,
+          //         arcRendererDecorators: [
+          //           charts.ArcLabelDecorator(
+          //               labelPosition: charts.ArcLabelPosition.outside)
+          //         ]),
+          //   ),
+          // ),
           Text("Attendance",
               style: TextStyle(
                   color: LocalTheme.home["sub_heading"]["color"],
                   fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                   fontFamily: LocalTheme.home["sub_heading"]["font_family"],
                   fontSize: 16)),
-          Text("January 2020",
-              style: TextStyle(
-                  color: LocalTheme.home["student_description"]["color"],
-                  fontFamily: LocalTheme.home["student_description"]
-                      ["font_family"],
-                  fontSize: 12)),
+          // Text("January 2020",
+          //     style: TextStyle(
+          //         color: LocalTheme.home["student_description"]["color"],
+          //         fontFamily: LocalTheme.home["student_description"]
+          //             ["font_family"],
+          //         fontSize: 12)),
         ]);
   }
 

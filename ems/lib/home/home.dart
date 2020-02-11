@@ -98,19 +98,19 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.only(
-                    top: 0.0, bottom: 20.0, left: 20.0, right: 20.0),
-                child: Text(
-                  "Welcome Richard Grand!",
-                  style: TextStyle(
-                      color: LocalTheme.home["heading"]["color"],
-                      fontWeight: LocalTheme.home["heading"]["font_weight"],
-                      fontFamily: LocalTheme.home["heading"]["font_family"],
-                      fontSize: 28),
-                ),
-              ),
+              // Container(
+              //   alignment: Alignment.topCenter,
+              //   margin: EdgeInsets.only(
+              //       top: 0.0, bottom: 20.0, left: 20.0, right: 20.0),
+              //   child: Text(
+              //     "Welcome Richard Grand!",
+              //     style: TextStyle(
+              //         color: LocalTheme.home["heading"]["color"],
+              //         fontWeight: LocalTheme.home["heading"]["font_weight"],
+              //         fontFamily: LocalTheme.home["heading"]["font_family"],
+              //         fontSize: 28),
+              //   ),
+              // ),
               studentProfileDetail(),
               newNotificationsDetail(),
               studentAttendanceChart(),
@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                     color: LocalTheme.home["sub_heading"]["color"],
                     fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                     fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                    fontSize: 18),
+                    fontSize: 14),
               ),
             ),
           ),
@@ -320,7 +320,7 @@ class _HomeState extends State<Home> {
                     color: LocalTheme.home["sub_heading"]["color"],
                     fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                     fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                    fontSize: 18),
+                    fontSize: 14),
               ),
             ),
           ),
@@ -458,7 +458,7 @@ class _HomeState extends State<Home> {
                   color: LocalTheme.home["sub_heading"]["color"],
                   fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
                   fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                  fontSize: 18),
+                  fontSize: 14),
             ),
           ),
           Expanded(
