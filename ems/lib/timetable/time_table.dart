@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
+import 'package:flutter/cupertino.dart';
 
 class TimeTable extends StatefulWidget {
   @override
@@ -50,19 +51,31 @@ class _TimeTableState extends State<TimeTable> {
           ),
           actions: <Widget>[
             Container(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: 20.0),
-              child: IconButton(
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.all(0.0),
-                icon: const Icon(Icons.home),
-                color: LocalTheme.Header["title"]["title_color"],
-                // tooltip: '',
-                onPressed: () {
-                  Navigator.pushNamed(context, "/");
-                },
-              ),
-            ),
+                // padding: EdgeInsets.only(right: 20.0),
+                child: Row(children: <Widget>[
+                  GestureDetector(
+                    child: Image.asset(
+                      'assets/images/Student.png',
+                      fit: BoxFit.cover,
+                    ),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        child: openalertdialog(),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                    icon: Icon(Icons.home),
+                    iconSize: 32.0,
+                    color: LocalTheme.Header["title"]["title_color"],
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/");
+                    },
+                  ),
+                ])),
           ],
         ),
         body: Container(
@@ -76,10 +89,32 @@ class _TimeTableState extends State<TimeTable> {
         ));
   }
 
+  Widget openstudentDialog() {
+    return AlertDialog(
+      title: Text('Rewind and remember'),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            Text('You will never be satisfied.'),
+            Text('You\’re like me. I’m never satisfied.'),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton(
+          child: Text('Regret'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
+
   Widget studentprofileDetail() {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-      padding: EdgeInsets.only(top: 15.0, left: 0.0, right: 0.0, bottom: 15.0),
+      padding: EdgeInsets.only(top: 15.0, left: 0.0, right: 0.0, bottom: 5.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -127,7 +162,7 @@ class _TimeTableState extends State<TimeTable> {
                 ),
               ),
               subtitle: Text(
-                "8th Grade, Telangana State Boardd",
+                "8th Grade, Telangana State Board",
                 style: TextStyle(
                   color: LocalTheme.home["student_description"]["color"],
                   fontSize: 12,
@@ -182,12 +217,12 @@ class _TimeTableState extends State<TimeTable> {
                                   top: 0.0,
                                   right: 0.0,
                                   bottom: 0.0,
-                                  left: 22.0),
+                                  left: 15.0),
                               decoration: BoxDecoration(
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "DAY",
+                                "SUBEJCT",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -203,12 +238,15 @@ class _TimeTableState extends State<TimeTable> {
                               width: 100,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
-                                  top: 0.0, right: 0.0, bottom: 0.0, left: 0.0),
+                                  top: 0.0,
+                                  right: 0.0,
+                                  bottom: 0.0,
+                                  left: 25.0),
                               decoration: BoxDecoration(
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "ATTENDANCE",
+                                "TIME",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -226,34 +264,55 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                  top: 0.0,
-                                  right: 0.0,
-                                  bottom: 0.0,
-                                  left: 22.0),
-                              child: Text(
-                                "MONDAY",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 9,
-                                ),
-                              ),
-                            ),
+                                width: 160,
+                                // height: 25,
+                                alignment: Alignment.topLeft,
+                                padding: EdgeInsets.only(
+                                    top: 0.0,
+                                    right: 0.0,
+                                    bottom: 0.0,
+                                    left: 15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "ENGLISH",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["color"],
+                                        fontWeight: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_weight"],
+                                        fontFamily: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_family"],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Julie Wade",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                            .timetable["sub_heading"]["color"],
+                                        fontWeight:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_weight"],
+                                        fontFamily:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_family"],
+                                        fontSize: 9,
+                                      ),
+                                    ),
+                                  ],
+                                )),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -264,7 +323,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "PRESENT",
+                                "09 - 10 am",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -282,34 +341,55 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                  top: 0.0,
-                                  right: 0.0,
-                                  bottom: 0.0,
-                                  left: 22.0),
-                              child: Text(
-                                "TUESDAY",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 9,
-                                ),
-                              ),
-                            ),
+                                width: 160,
+                                // height: 25,
+                                alignment: Alignment.topLeft,
+                                padding: EdgeInsets.only(
+                                    top: 0.0,
+                                    right: 0.0,
+                                    bottom: 0.0,
+                                    left: 15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "MATHS",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["color"],
+                                        fontWeight: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_weight"],
+                                        fontFamily: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_family"],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Philip Gomez",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                            .timetable["sub_heading"]["color"],
+                                        fontWeight:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_weight"],
+                                        fontFamily:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_family"],
+                                        fontSize: 9,
+                                      ),
+                                    ),
+                                  ],
+                                )),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -320,7 +400,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "PRESENT",
+                                "10 - 11 am",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -338,34 +418,42 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
                               width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
+                              // height: 25,
+                              alignment: Alignment.topLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
                                   right: 0.0,
                                   bottom: 0.0,
-                                  left: 22.0),
-                              child: Text(
-                                "WEDNESDAY",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 9,
-                                ),
+                                  left: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "BREAK",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["color"],
+                                      fontWeight: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_weight"],
+                                      fontFamily: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_family"],
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -376,7 +464,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "SICK lEAVE",
+                                "11 - 15 am",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -394,34 +482,55 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
                               width: 160,
-                              height: 25,
+                              // height: 25,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
                                   right: 0.0,
                                   bottom: 0.0,
-                                  left: 22.0),
-                              child: Text(
-                                "THURSDAY",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 9,
-                                ),
-                              ),
+                                  left: 15.0),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "PHYSICS",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["color"],
+                                        fontWeight: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_weight"],
+                                        fontFamily: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_family"],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Anthony Richards",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                            .timetable["sub_heading"]["color"],
+                                        fontWeight:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_weight"],
+                                        fontFamily:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_family"],
+                                        fontSize: 9,
+                                      ),
+                                    ),
+                                  ]),
                             ),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -432,7 +541,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "PRESENT",
+                                "11:15 - 12:15 pm",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -450,34 +559,42 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
                               width: 160,
-                              height: 25,
+                              // height: 25,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
                                   right: 0.0,
                                   bottom: 0.0,
-                                  left: 22.0),
-                              child: Text(
-                                "FRIDAY",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 9,
-                                ),
+                                  left: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "LUNCH BREAK",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["color"],
+                                      fontWeight: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_weight"],
+                                      fontFamily: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_family"],
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -488,7 +605,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "PRESENT",
+                                "12:15 - 01:15 pm",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -506,20 +623,67 @@ class _TimeTableState extends State<TimeTable> {
                       Container(
                         alignment: Alignment.centerLeft,
                         padding: EdgeInsets.only(
-                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                            top: 0.0, right: 0.0, bottom: 4.0, left: 0.0),
                         child: Row(
                           children: <Widget>[
                             Container(
                               width: 160,
-                              height: 25,
+                              // height: 25,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
                                   right: 0.0,
                                   bottom: 0.0,
-                                  left: 22.0),
+                                  left: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "HINDI",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["color"],
+                                      fontWeight: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_weight"],
+                                      fontFamily: LocalTheme
+                                              .timetable["subject_heading"]
+                                          ["font_family"],
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Patricia Andrews",
+                                    style: TextStyle(
+                                      color: LocalTheme.timetable["sub_heading"]
+                                          ["color"],
+                                      fontWeight:
+                                          LocalTheme.timetable["sub_heading"]
+                                              ["font_weight"],
+                                      fontFamily:
+                                          LocalTheme.timetable["sub_heading"]
+                                              ["font_family"],
+                                      fontSize: 9,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 35,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                  top: 0.0,
+                                  right: 0.0,
+                                  bottom: 0.0,
+                                  left: 13.0),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
                               child: Text(
-                                "SATURDAY",
+                                "01:15 - 02:15 pm",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -531,9 +695,61 @@ class _TimeTableState extends State<TimeTable> {
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                            top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              // height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                  top: 0.0,
+                                  right: 0.0,
+                                  bottom: 0.0,
+                                  left: 15.0),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "SOCIAL",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["color"],
+                                        fontWeight: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_weight"],
+                                        fontFamily: LocalTheme
+                                                .timetable["subject_heading"]
+                                            ["font_family"],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Alan Riley",
+                                      style: TextStyle(
+                                        color: LocalTheme
+                                            .timetable["sub_heading"]["color"],
+                                        fontWeight:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_weight"],
+                                        fontFamily:
+                                            LocalTheme.timetable["sub_heading"]
+                                                ["font_family"],
+                                        fontSize: 9,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
                             Container(
                               width: 100,
-                              height: 25,
+                              height: 35,
                               alignment: Alignment.centerLeft,
                               padding: EdgeInsets.only(
                                   top: 0.0,
@@ -544,7 +760,7 @@ class _TimeTableState extends State<TimeTable> {
                                 color: Color(0xFFFAFAF8),
                               ),
                               child: Text(
-                                "PRESENT",
+                                "02:15 - 03:15 pm",
                                 style: TextStyle(
                                   color: LocalTheme.home["student_name"]
                                       ["color"],
@@ -555,7 +771,7 @@ class _TimeTableState extends State<TimeTable> {
                                   fontSize: 9,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -565,6 +781,70 @@ class _TimeTableState extends State<TimeTable> {
               ),
             ),
           ]),
+    );
+  }
+
+  Widget openalertdialog() {
+    return AlertDialog(
+      title: Text(
+        "Select Student",
+        style: TextStyle(
+            color: LocalTheme.home["sub_heading"]["color"],
+            fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+            fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+            fontSize: 14),
+      ),
+      content: Container(
+        height: 130.0,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.white,
+        child: ListView(children: <Widget>[
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Sara Adamas",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("8th Grade, Telangana State Boardd",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+          Divider(),
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image2.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Kevin Dean",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("10th Grade, Telangana State Board",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+        ]),
+      ),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
     );
   }
 }

@@ -19,6 +19,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
   bool _isVisible = true;
   bool _isDaywise = false;
   bool _issubjectWise = false;
+  bool _istableview = false;
 
   String _studentAttrndance = '';
   TabController _tabController;
@@ -93,6 +94,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
 
   void _displayAttendance(value) {
     setState(() {
+      _istableview = true;
       _studentAttrndance = value;
       _isVisible = false;
     });
@@ -101,13 +103,14 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         _issubjectWise = true;
         _isDaywise = false;
       });
-      _tabController.index = 1;
+      _tabController.index = 0;
     } else if (value == 'day') {
       setState(() {
         _issubjectWise = false;
-        _isDaywise = true;
+        _isDaywise = false;
+        _istableview = false;
       });
-      _tabController.index = 0;
+      // _tabController.index = 0;
     }
   }
 
@@ -117,17 +120,17 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         if (_tabController.index == 0) {
           _issubjectWise = false;
           _isDaywise = true;
-          _studentAttrndance = 'day';
+          _studentAttrndance = 'subject';
         } else if (_tabController.index == 1) {
           _issubjectWise = true;
           _isDaywise = false;
-          _studentAttrndance = 'subject';
+          // _studentAttrndance = 'day';
         }
       });
     }
   }
 
-String _dropdownValue = 'Physics';
+  String _dropdownValue = 'Physics';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,17 +168,31 @@ String _dropdownValue = 'Physics';
         actions: <Widget>[
           Container(
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.all(0.0),
-              icon: const Icon(Icons.home),
-              color: LocalTheme.Header["title"]["title_color"],
-              // tooltip: 'Show Notifications',
-              onPressed: () {
-                Navigator.pushNamed(context, "/");
-              },
-            ),
+            // padding: EdgeInsets.only(right: 20.0),
+            child: Row(children: <Widget>[
+              GestureDetector(
+                child: Image.asset(
+                  'assets/images/Student.png',
+                  fit: BoxFit.cover,
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    child: openalertdialog(),
+                  );
+                },
+              ),
+              IconButton(
+                // alignment: Alignment.centerRight,
+                padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                icon: Icon(Icons.home),
+                iconSize: 32.0,
+                color: LocalTheme.Header["title"]["title_color"],
+                onPressed: () {
+                  Navigator.pushNamed(context, "/");
+                },
+              ),
+            ]),
           ),
         ],
       ),
@@ -191,8 +208,12 @@ String _dropdownValue = 'Physics';
                 child: displayAttendanceGraph(),
               ),
               Visibility(
-                visible: !_isVisible,
+                visible: (!_isVisible && _istableview),
                 child: tabForViewAttendance(),
+              ),
+              Visibility(
+                visible: (!_isVisible && !_istableview),
+                child: calenderWiseAttendance(),
               )
               //subjectwiseAttendance(),
             ],
@@ -248,7 +269,7 @@ String _dropdownValue = 'Physics';
                     fontSize: 16),
               ),
               subtitle: Text(
-                "8th Grade, Telangana State Boardd",
+                "8th Grade, Telangana State Board",
                 style: TextStyle(
                   color: LocalTheme.home["student_description"]["color"],
                   fontSize: 12,
@@ -296,7 +317,7 @@ String _dropdownValue = 'Physics';
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Radio(
-                  value: 'day',
+                  value: 'subject',
                   onChanged: _displayAttendance,
                   activeColor: Colors.black38,
                   groupValue: _studentAttrndance,
@@ -316,7 +337,7 @@ String _dropdownValue = 'Physics';
             ),
             Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
               Radio(
-                value: 'subject',
+                value: 'day',
                 onChanged: _displayAttendance,
                 groupValue: _studentAttrndance,
                 activeColor: Colors.black38,
@@ -381,7 +402,7 @@ String _dropdownValue = 'Physics';
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
-                   isExpanded: true,
+                  isExpanded: true,
                   items: <String>['Physics', 'Maths', 'English', 'Chemistry']
                       .map((String value) {
                     return DropdownMenuItem<String>(
@@ -397,7 +418,6 @@ String _dropdownValue = 'Physics';
                 ),
               ),
             ),
-
             Container(
               alignment: Alignment.topLeft,
               color: Color(0xFFFAFBFD),
@@ -428,7 +448,6 @@ String _dropdownValue = 'Physics';
                 ),
               ),
             ),
-
             PreferredSize(
               preferredSize: Size.fromHeight(54.0),
               child: TabBar(
@@ -945,6 +964,283 @@ String _dropdownValue = 'Physics';
           ),
         ],
       ),
+    );
+  }
+
+  Widget calenderWiseAttendance() {
+    return Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8.0,
+          ),
+        ],
+      ),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              color: Colors.white,
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(
+                  top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
+              child: Row(children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+                      height: 70,
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                              width: 130,
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.only(
+                                  top: 0.0,
+                                  right: 0.0,
+                                  bottom: 8.0,
+                                  left: 10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.check_circle,
+                                    color: Colors.greenAccent,
+                                    size: 20.0,
+                                  ),
+                                  Text(
+                                    "01",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                          .attendanceCalender["title"]["color"],
+                                      fontFamily:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_family"],
+                                      fontWeight:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_weight"],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Leaves",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                          .attendanceCalender["title"]["color"],
+                                      fontFamily:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_family"],
+                                      fontWeight:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_weight"],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          Container(
+                            width: 130,
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: Column(children: <Widget>[
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.greenAccent,
+                                size: 20.0,
+                              ),
+                              Text(
+                                "265",
+                                style: TextStyle(
+                                  color: LocalTheme.attendanceCalender["title"]
+                                      ["color"],
+                                  fontFamily:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_family"],
+                                  fontWeight:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_weight"],
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "Working Days",
+                                style: TextStyle(
+                                  color: LocalTheme.attendanceCalender["title"]
+                                      ["color"],
+                                  fontFamily:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_family"],
+                                  fontWeight:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_weight"],
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              color: Color(0xFFFAFBFD),
+              margin: EdgeInsets.only(
+                top: 0.0,
+                bottom: 10.0,
+                left: 24.0,
+                right: 24.0,
+              ),
+              child: TableCalendar(
+                headerVisible: true,
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                calendarController: _calendarController,
+                headerStyle: HeaderStyle(
+                  centerHeaderTitle: true,
+                  formatButtonVisible: false,
+                  formatButtonTextStyle: TextStyle().copyWith(
+                    color: Color(0xFF3E4237),
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                calendarStyle: CalendarStyle(
+                  selectedColor: Colors.deepOrange[400],
+                  todayColor: Colors.deepOrange[200],
+                  markersColor: Colors.brown[700],
+                  outsideDaysVisible: false,
+                ),
+              ),
+            ),
+            Container(
+              height: 50,
+              color: Colors.white,
+              margin: EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+                  radius: 20.0,
+                ),
+                title: Text(
+                  "Sick Leave",
+                  style: TextStyle(
+                    color: LocalTheme.attendanceCalender["title"]["color"],
+                    fontFamily: LocalTheme.attendanceCalender["title"]
+                        ["font_family"],
+                    fontWeight: LocalTheme.attendanceCalender["title"]
+                        ["font_weight"],
+                    fontSize: 16,
+                  ),
+                ),
+                subtitle: Text(
+                  "04 Feb 2020",
+                  style: TextStyle(
+                    color: LocalTheme.attendanceCalender["title"]["color"],
+                    fontFamily: LocalTheme.attendanceCalender["title"]
+                        ["font_family"],
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                color: Color(0xFFE7EBF2),
+                margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Reason:"),
+                    Text("Due to high fever & cough."),
+                  ],
+                )),
+          ]),
+    );
+  }
+
+  Widget openalertdialog() {
+    return AlertDialog(
+      title: Text(
+        "Select Student",
+        style: TextStyle(
+            color: LocalTheme.home["sub_heading"]["color"],
+            fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+            fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+            fontSize: 14),
+      ),
+      content: Container(
+        height: 130.0,
+        width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.all(15.0),
+        color: Colors.white,
+        child: ListView(children: <Widget>[
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Sara Adamas",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("8th Grade, Telangana State Boardd",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+          Divider(),
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image2.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Kevin Dean",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("10th Grade, Telangana State Board",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+        ]),
+      ),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
     );
   }
 }

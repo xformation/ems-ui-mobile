@@ -282,7 +282,6 @@ class _DashboardState extends State<Dashboard> {
               Icons.keyboard_arrow_left,
               color: LocalTheme.home["heading"]["color"],
               size: 40,
-              
             ),
             iconSize: 24.0,
             onPressed: () {
@@ -307,17 +306,32 @@ class _DashboardState extends State<Dashboard> {
         actions: <Widget>[
           Container(
             alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: 20.0),
-            child: IconButton(
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.all(0.0),
-              icon: const Icon(Icons.home),
-              color: LocalTheme.Header["title"]["title_color"],
-              tooltip: 'Show Notifications',
-              onPressed: () {
-                Navigator.pushNamed(context, "/");
-              },
-            ),
+            // padding: EdgeInsets.only(right: 20.0),
+            child: Row(children: <Widget>[
+              GestureDetector(
+                child: Image.asset(
+                  'assets/images/Student.png',
+                  fit: BoxFit.cover,
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    child: openalertdialog(),
+                  );
+                },
+              ),
+              IconButton(
+                alignment: Alignment.centerRight,
+                padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                iconSize: 32.0,
+                icon: const Icon(Icons.home),
+                color: LocalTheme.Header["title"]["title_color"],
+                tooltip: 'Show Notifications',
+                onPressed: () {
+                  Navigator.pushNamed(context, "/");
+                },
+              ),
+            ]),
           ),
         ],
       ),
@@ -388,7 +402,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               subtitle: Text(
-                "8th Grade, Telangana State Boardd",
+                "8th Grade, Telangana State Board",
                 style: TextStyle(
                   color: LocalTheme.home["student_description"]["color"],
                   fontSize: 12,
@@ -420,7 +434,7 @@ class _DashboardState extends State<Dashboard> {
               height: 142.0,
               margin: EdgeInsets.only(
                   top: 0.0, right: 20.0, bottom: 0.0, left: 40.0),
-              padding: EdgeInsets.only(bottom: 5.0,top: 5.0),
+              padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
@@ -653,8 +667,8 @@ class _DashboardState extends State<Dashboard> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(bottom:10.0),
-           child:Image.asset("assets/images/duanutchart.jpg"),
+            padding: EdgeInsets.only(bottom: 10.0),
+            child: Image.asset("assets/images/duanutchart.jpg"),
           ),
           // Expanded(
           //   child: charts.PieChart(
@@ -713,7 +727,7 @@ class _DashboardState extends State<Dashboard> {
           ListTile(
             title: Center(
               child: Text(
-                "New & Notifications",
+                "News & Notifications",
                 style: TextStyle(
                   color: LocalTheme.home["student_name"]["color"],
                   fontWeight: LocalTheme.home["student_name"]["font_weight"],
@@ -804,6 +818,71 @@ class _DashboardState extends State<Dashboard> {
                         ["font_family"],
                     fontSize: 12)),
           ]),
+    );
+  }
+
+  Widget openalertdialog() {
+    return AlertDialog(
+      title: Text(
+        "Select Student",
+        style: TextStyle(
+            color: LocalTheme.home["sub_heading"]["color"],
+            fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+            fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+            fontSize: 14),
+      ),
+      content: Container(
+        height: 130.0,
+        width: MediaQuery.of(context).size.width,
+        // margin: EdgeInsets.all(15.0),
+        color: Colors.white,
+        child: ListView(children: <Widget>[
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Sara Adamas",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("8th Grade, Telangana State Boardd",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+          Divider(),
+          ListTile(
+            leading: Image.asset(
+              'assets/images/Image2.png',
+              fit: BoxFit.cover,
+            ),
+            title: Text("Kevin Dean",
+                style: TextStyle(
+                    color: LocalTheme.home["student_name"]["color"],
+                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                    fontFamily: LocalTheme.home["student_name"]["font_family"],
+                    fontSize: 16)),
+            subtitle: Text("10th Grade, Telangana State Board",
+                style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontSize: 12,
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"])),
+          ),
+        ]),
+      ),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+      ],
     );
   }
 }

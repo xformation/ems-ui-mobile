@@ -207,7 +207,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       subtitle: Text(
-                        "8th Grade, Telangana State Boardd",
+                        "8th Grade, Telangana State Board",
                         style: TextStyle(
                           color: LocalTheme.home["student_description"]
                               ["color"],

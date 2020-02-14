@@ -20,6 +20,27 @@ class LocalTheme {
     },
   };
 
+  static const Map<String, dynamic> timetable = {
+     "subject_heading": {
+      "color": Color(0xFF3E4237),
+      "font_family": "Montserrat",
+      "font_weight": FontWeight.bold,
+    },
+    "sub_heading": {
+      "title_color": Color(0xFF3E4237),
+      "font_family": "Montserrat",
+      "font_weight": FontWeight.normal,
+    },
+  };
+
+   static const Map<String, dynamic> attendanceCalender = {
+     "title": {
+      "color": Color(0xFF585954),
+      "font_family": "OpenSans",
+      "font_weight": FontWeight.normal,
+    }
+  };
+
   static const Map<String, dynamic> home = {
     "heading": {
       "color": Color.fromRGBO(41, 43, 35, 1),
