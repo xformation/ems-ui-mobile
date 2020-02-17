@@ -984,127 +984,14 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 100.0,
-              color: Colors.white,
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(
-                  top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
-              child: Row(children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(
-                          top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
-                      height: 70,
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                              width: 130,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.only(
-                                  top: 0.0,
-                                  right: 0.0,
-                                  bottom: 8.0,
-                                  left: 10.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.greenAccent,
-                                    size: 20.0,
-                                  ),
-                                  Text(
-                                    "01",
-                                    style: TextStyle(
-                                      color: LocalTheme
-                                          .attendanceCalender["title"]["color"],
-                                      fontFamily:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_family"],
-                                      fontWeight:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_weight"],
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Leaves",
-                                    style: TextStyle(
-                                      color: LocalTheme
-                                          .attendanceCalender["title"]["color"],
-                                      fontFamily:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_family"],
-                                      fontWeight:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_weight"],
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Container(
-                            width: 130,
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                            ),
-                            child: Column(children: <Widget>[
-                              Icon(
-                                Icons.check_circle,
-                                color: Colors.greenAccent,
-                                size: 20.0,
-                              ),
-                              Text(
-                                "265",
-                                style: TextStyle(
-                                  color: LocalTheme.attendanceCalender["title"]
-                                      ["color"],
-                                  fontFamily:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_family"],
-                                  fontWeight:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_weight"],
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                "Working Days",
-                                style: TextStyle(
-                                  color: LocalTheme.attendanceCalender["title"]
-                                      ["color"],
-                                  fontFamily:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_family"],
-                                  fontWeight:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_weight"],
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
-            ),
+            leavesandWorkingdays(),
             Container(
               alignment: Alignment.topLeft,
               color: Color(0xFFFAFBFD),
               margin: EdgeInsets.only(
                 top: 0.0,
-                bottom: 10.0,
+                bottom: 5.0,
+                
                 left: 24.0,
                 right: 24.0,
               ),
@@ -1243,6 +1130,107 @@ class _AttendanceDetailState extends State<AttendanceDetail>
       ],
     );
   }
+
+Widget leavesandWorkingdays(){
+   return Container(
+      height: 80.0,
+      // padding: EdgeInsets.only(top: 5.0, right: 0.0, bottom: 5.0, left: 0.0),
+      // margin: EdgeInsets.symmetric(horizontal: 0.0),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          Container(
+            width: 150.0,
+            color: Colors.white,
+            alignment: Alignment.topCenter,
+            padding: EdgeInsets.all(0.0),
+            height: 50.0,
+            margin:
+                EdgeInsets.only(top: 0.0, right: 1.0, bottom: 0.0, left: 20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.check_circle,
+                    color: Colors.greenAccent,
+                    size: 20.0,
+                  ),
+                  title: Text(
+                    "01",
+                    style: TextStyle(
+                      color: LocalTheme.attendanceCalender["title"]["color"],
+                      fontFamily: LocalTheme.attendanceCalender["title"]
+                          ["font_family"],
+                      fontWeight: LocalTheme.attendanceCalender["title"]
+                          ["font_weight"],
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Leaves",
+                    style: TextStyle(
+                      color: LocalTheme.attendanceCalender["title"]["color"],
+                      fontFamily: LocalTheme.attendanceCalender["title"]
+                          ["font_family"],
+                      fontWeight: LocalTheme.attendanceCalender["title"]
+                          ["font_weight"],
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 150.0,
+            color: Colors.white,
+            alignment: Alignment.topCenter,
+            height: 50.0,
+            margin:
+                EdgeInsets.only(top: 0.0, right: 20.0, bottom: 0.0, left: 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.check_circle,
+                    color: Colors.greenAccent,
+                    size: 20.0,
+                  ),
+                  title: Text(
+                    "265",
+                    style: TextStyle(
+                      color: LocalTheme.attendanceCalender["title"]["color"],
+                      fontFamily: LocalTheme.attendanceCalender["title"]
+                          ["font_family"],
+                      fontWeight: LocalTheme.attendanceCalender["title"]
+                          ["font_weight"],
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Working Days",
+                    style: TextStyle(
+                      color: LocalTheme.attendanceCalender["title"]["color"],
+                      fontFamily: LocalTheme.attendanceCalender["title"]
+                          ["font_family"],
+                      fontWeight: LocalTheme.attendanceCalender["title"]
+                          ["font_weight"],
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+}
+
 }
 
 class MonthwiseAttendance {
@@ -1261,3 +1249,120 @@ class MonthWiseStudentAttendanceChart {
       : this.color = charts.Color(
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }
+
+
+// Container(
+            //   height: 100.0,
+            //   color: Colors.white,
+            //   alignment: Alignment.topLeft,
+            //   padding: EdgeInsets.only(
+            //       top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
+            //   child: Row(children: <Widget>[
+            //     Column(
+            //       children: <Widget>[
+            //         Container(
+            //           alignment: Alignment.topLeft,
+            //           padding: EdgeInsets.only(
+            //               top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+            //           height: 70,
+            //           child: Row(
+            //             children: <Widget>[
+            //               Container(
+            //                   width: 130,
+            //                   alignment: Alignment.center,
+            //                   padding: EdgeInsets.only(
+            //                       top: 0.0,
+            //                       right: 0.0,
+            //                       bottom: 8.0,
+            //                       left: 10.0),
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.white,
+            //                   ),
+            //                   child: Column(
+            //                     children: <Widget>[
+            //                       Icon(
+            //                         Icons.check_circle,
+            //                         color: Colors.greenAccent,
+            //                         size: 20.0,
+            //                       ),
+            //                       Text(
+            //                         "01",
+            //                         style: TextStyle(
+            //                           color: LocalTheme
+            //                               .attendanceCalender["title"]["color"],
+            //                           fontFamily:
+            //                               LocalTheme.attendanceCalender["title"]
+            //                                   ["font_family"],
+            //                           fontWeight:
+            //                               LocalTheme.attendanceCalender["title"]
+            //                                   ["font_weight"],
+            //                           fontSize: 16,
+            //                         ),
+            //                       ),
+            //                       Text(
+            //                         "Leaves",
+            //                         style: TextStyle(
+            //                           color: LocalTheme
+            //                               .attendanceCalender["title"]["color"],
+            //                           fontFamily:
+            //                               LocalTheme.attendanceCalender["title"]
+            //                                   ["font_family"],
+            //                           fontWeight:
+            //                               LocalTheme.attendanceCalender["title"]
+            //                                   ["font_weight"],
+            //                           fontSize: 16,
+            //                         ),
+            //                       ),
+            //                     ],
+            //                   )),
+            //               Container(
+            //                 width: 130,
+            //                 alignment: Alignment.center,
+            //                 padding: EdgeInsets.only(
+            //                     top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.white,
+            //                 ),
+            //                 child: Column(children: <Widget>[
+            //                   Icon(
+            //                     Icons.check_circle,
+            //                     color: Colors.greenAccent,
+            //                     size: 20.0,
+            //                   ),
+            //                   Text(
+            //                     "265",
+            //                     style: TextStyle(
+            //                       color: LocalTheme.attendanceCalender["title"]
+            //                           ["color"],
+            //                       fontFamily:
+            //                           LocalTheme.attendanceCalender["title"]
+            //                               ["font_family"],
+            //                       fontWeight:
+            //                           LocalTheme.attendanceCalender["title"]
+            //                               ["font_weight"],
+            //                       fontSize: 16,
+            //                     ),
+            //                   ),
+            //                   Text(
+            //                     "Working Days",
+            //                     style: TextStyle(
+            //                       color: LocalTheme.attendanceCalender["title"]
+            //                           ["color"],
+            //                       fontFamily:
+            //                           LocalTheme.attendanceCalender["title"]
+            //                               ["font_family"],
+            //                       fontWeight:
+            //                           LocalTheme.attendanceCalender["title"]
+            //                               ["font_weight"],
+            //                       fontSize: 16,
+            //                     ),
+            //                   ),
+            //                 ]),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ]),
+            // ),
