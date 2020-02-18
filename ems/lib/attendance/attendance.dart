@@ -984,7 +984,122 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            leavesandWorkingdays(),
+            // leavesandWorkingdays(),
+            Container(
+              height: 100.0,
+              color: Colors.white,
+              alignment: Alignment.topLeft,
+              padding: EdgeInsets.only(
+                  top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
+              child: Row(children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(
+                          top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+                      height: 70,
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                              width: 130,
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.only(
+                                  top: 0.0,
+                                  right: 0.0,
+                                  bottom: 8.0,
+                                  left: 10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.check_circle,
+                                    color: Colors.greenAccent,
+                                    size: 20.0,
+                                  ),
+                                  Text(
+                                    "01",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                          .attendanceCalender["title"]["color"],
+                                      fontFamily:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_family"],
+                                      fontWeight:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_weight"],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Leaves",
+                                    style: TextStyle(
+                                      color: LocalTheme
+                                          .attendanceCalender["title"]["color"],
+                                      fontFamily:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_family"],
+                                      fontWeight:
+                                          LocalTheme.attendanceCalender["title"]
+                                              ["font_weight"],
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                          Container(
+                            width: 130,
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(
+                                top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: Column(children: <Widget>[
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.greenAccent,
+                                size: 20.0,
+                              ),
+                              Text(
+                                "265",
+                                style: TextStyle(
+                                  color: LocalTheme.attendanceCalender["title"]
+                                      ["color"],
+                                  fontFamily:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_family"],
+                                  fontWeight:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_weight"],
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "Working Days",
+                                style: TextStyle(
+                                  color: LocalTheme.attendanceCalender["title"]
+                                      ["color"],
+                                  fontFamily:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_family"],
+                                  fontWeight:
+                                      LocalTheme.attendanceCalender["title"]
+                                          ["font_weight"],
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
+            ),
             Container(
               alignment: Alignment.topLeft,
               color: Color(0xFFFAFBFD),
