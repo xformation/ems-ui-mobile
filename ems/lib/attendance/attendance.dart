@@ -1070,66 +1070,171 @@ class _AttendanceDetailState extends State<AttendanceDetail>
 
   Widget openalertdialog() {
     return AlertDialog(
-      title: Text(
-        "Select Student",
-        style: TextStyle(
-            color: LocalTheme.home["sub_heading"]["color"],
-            fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-            fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-            fontSize: 14),
-      ),
-      content: Container(
-        height: 130.0,
-        width: MediaQuery.of(context).size.width,
-        // margin: EdgeInsets.all(15.0),
-        color: Colors.white,
-        child: ListView(children: <Widget>[
-          ListTile(
-            leading: Image.asset(
-              'assets/images/Image.png',
-              fit: BoxFit.cover,
+      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      title: Container(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.only(top:0.0, bottom:15.0, left:0.0, right:0.0),
+        margin: EdgeInsets.all(0.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.topLeft,
+              width: 205,
+              padding: EdgeInsets.all(0.0),
+              margin: EdgeInsets.all(0.0),
+              child: Text(
+                "Select Student",
+                style: TextStyle(
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 14,
+                ),
+              ),
             ),
-            title: Text("Sara Adamas",
-                style: TextStyle(
-                    color: LocalTheme.home["student_name"]["color"],
-                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                    fontFamily: LocalTheme.home["student_name"]["font_family"],
-                    fontSize: 16)),
-            subtitle: Text("8th Grade, Telangana State Boardd",
-                style: TextStyle(
-                    color: LocalTheme.home["student_description"]["color"],
-                    fontSize: 12,
-                    fontFamily: LocalTheme.home["student_description"]
-                        ["font_family"])),
-          ),
-          Divider(),
-          ListTile(
-            leading: Image.asset(
-              'assets/images/Image2.png',
-              fit: BoxFit.cover,
-            ),
-            title: Text("Kevin Dean",
-                style: TextStyle(
-                    color: LocalTheme.home["student_name"]["color"],
-                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                    fontFamily: LocalTheme.home["student_name"]["font_family"],
-                    fontSize: 16)),
-            subtitle: Text("10th Grade, Telangana State Board",
-                style: TextStyle(
-                    color: LocalTheme.home["student_description"]["color"],
-                    fontSize: 12,
-                    fontFamily: LocalTheme.home["student_description"]
-                        ["font_family"])),
-          ),
-        ]),
+            Container(
+              alignment: Alignment.topRight,
+              width: 24,
+              height: 24,
+              padding: EdgeInsets.all(0.0),
+              margin: EdgeInsets.all(0.0),
+              child: IconButton(
+                alignment: Alignment.topRight,
+                padding: EdgeInsets.all(0.0),
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            )
+          ],
+        ),
       ),
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-      ],
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            margin: EdgeInsets.only(bottom: 15.0),
+            padding: EdgeInsets.only(bottom: 15.0),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFFFFE0E5D4),
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 60,
+                  height: 60,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(left: 20.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Color(0xffE0E5D4),
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/Image.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  width: 200,
+                  child: ListTile(
+                    title: Text(
+                      "Sara Adamas",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_name"]["color"],
+                        fontWeight: LocalTheme.home["student_name"]
+                            ["font_weight"],
+                        fontFamily: LocalTheme.home["student_name"]
+                            ["font_family"],
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "8th Grade, Telangana State Board",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(bottom: 15.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 60,
+                  height: 60,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(left: 20.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Color(0xffE0E5D4),
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/Image2.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  width: 200,
+                  child: ListTile(
+                    title: Text(
+                      "Kevin Dean",
+                      style: TextStyle(
+                          color: LocalTheme.home["student_name"]["color"],
+                          fontWeight: LocalTheme.home["student_name"]
+                              ["font_weight"],
+                          fontFamily: LocalTheme.home["student_name"]
+                              ["font_family"],
+                          fontSize: 16),
+                    ),
+                    subtitle: Text(
+                      "10th Grade, Telangana State Board",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
