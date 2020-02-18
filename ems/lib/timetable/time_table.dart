@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class TimeTable extends StatefulWidget {
   @override
@@ -8,9 +9,11 @@ class TimeTable extends StatefulWidget {
 }
 
 class _TimeTableState extends State<TimeTable> {
+  dynamic _slider;
   @override
   void initState() {
     super.initState();
+    _slider = calenderView();
   }
 
   @override
@@ -83,7 +86,7 @@ class _TimeTableState extends State<TimeTable> {
           child: SingleChildScrollView(
             child: Column(children: <Widget>[
               studentprofileDetail(),
-              studentTimetable(),
+              studentTimetable(_slider),
             ]),
           ),
         ));
@@ -177,7 +180,7 @@ class _TimeTableState extends State<TimeTable> {
     );
   }
 
-  Widget studentTimetable() {
+  Widget studentTimetable(slider) {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
       decoration: BoxDecoration(
@@ -194,6 +197,21 @@ class _TimeTableState extends State<TimeTable> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(
+                  right: 20.0, left: 20.0, top: 20.0, bottom: 20.0),
+              color: Color(0xFFFAFBFD),
+              child: slider,
+            ),
+            IconButton(
+                  icon: Icon(Icons.keyboard_arrow_left),
+                  color: Colors.black,
+                  iconSize: 25,
+                  onPressed: () {
+                    slider.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
+                  },
+                  // size: 20.0,
+                ),
             Container(
               color: Colors.white,
               alignment: Alignment.topLeft,
@@ -781,6 +799,100 @@ class _TimeTableState extends State<TimeTable> {
               ),
             ),
           ]),
+    );
+  }
+
+  Widget calenderView() {
+    return CarouselSlider(
+      height: 50.0,
+      initialPage: 0,
+      enableInfiniteScroll: false,
+      scrollDirection: Axis.horizontal,
+      items: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+              alignment: Alignment.centerRight,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
+              decoration: BoxDecoration(color: Color(0xFFFAFBFD)),
+              child: Row(children: <Widget>[
+                // IconButton(
+                //   icon: Icon(Icons.keyboard_arrow_left),
+                //   color: Colors.black,
+                //   iconSize: 25,
+                //   onPressed: () {},
+                //   // size: 20.0,
+                // ),
+                Center(
+                  child: Text(
+                    '$i',
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ),
+                // IconButton(
+                //   icon: Icon(Icons.keyboard_arrow_right),
+                //   color: Colors.black,
+                //   onPressed: () {
+                //     //  this.nextPage(3, 'curve');
+                //   },
+                //   iconSize: 25,
+                //   // size: 20.0,
+                // ),
+              ]),
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
+
+  Widget daywiseTimeTable(String day) {
+    return Container(
+      width: 280.0,
+      color: Color(0xFFFAFBFD),
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(0.0),
+      height: 30.0,
+      margin: EdgeInsets.only(top: 20.0, right: 20.0, bottom: 0.0, left: 20.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ListTile(
+            leading: Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.black,
+              size: 25.0,
+            ),
+            title: Center(
+              child: Text(
+                day,
+                style: TextStyle(
+                  color: LocalTheme.attendanceCalender["title"]["color"],
+                  fontFamily: LocalTheme.attendanceCalender["title"]
+                      ["font_family"],
+                  fontWeight: LocalTheme.attendanceCalender["title"]
+                      ["font_weight"],
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            trailing: Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.black,
+              size: 25.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
