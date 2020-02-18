@@ -996,24 +996,26 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                 right: 24.0,
               ),
               child: TableCalendar(
-                headerVisible: true,
+                initialCalendarFormat: CalendarFormat.week,
                 startingDayOfWeek: StartingDayOfWeek.monday,
+                // weekendDays: weekendStyle: (
+                    
+                // ),
                 calendarController: _calendarController,
                 headerStyle: HeaderStyle(
                   centerHeaderTitle: true,
                   formatButtonVisible: false,
-                  formatButtonTextStyle: TextStyle().copyWith(
-                    color: Color(0xFF3E4237),
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  formatButtonShowsNext: false,
                 ),
                 calendarStyle: CalendarStyle(
-                  selectedColor: Colors.deepOrange[400],
+                  selectedColor: Colors.blueAccent,
                   todayColor: Colors.deepOrange[200],
                   markersColor: Colors.brown[700],
                   outsideDaysVisible: false,
                 ),
+                onDaySelected: (date, events){
+                  print(date);
+                }
               ),
             ),
             Container(
