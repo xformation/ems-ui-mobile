@@ -110,7 +110,6 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         _isDaywise = false;
         _istableview = false;
       });
-      // _tabController.index = 0;
     }
   }
 
@@ -124,7 +123,6 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         } else if (_tabController.index == 1) {
           _issubjectWise = true;
           _isDaywise = false;
-          // _studentAttrndance = 'day';
         }
       });
     }
@@ -155,8 +153,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         ),
         title: Container(
           alignment: Alignment(-1.4, 0.0),
-          padding:
-              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          padding: EdgeInsets.only(
+            top: 5.0,
+            right: 0.0,
+            bottom: 0.0,
+            left: 0.0,
+          ),
           child: Text(
             "Attendance",
             style: TextStyle(
@@ -168,31 +170,34 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         actions: <Widget>[
           Container(
             alignment: Alignment.centerRight,
-            // padding: EdgeInsets.only(right: 20.0),
-            child: Row(children: <Widget>[
-              GestureDetector(
-                child: Image.asset(
-                  'assets/images/Student.png',
-                  fit: BoxFit.cover,
+            child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Student.png',
+                    fit: BoxFit.cover,
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      child: openalertdialog(),
+                    );
+                  },
                 ),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    child: openalertdialog(),
-                  );
-                },
-              ),
-              IconButton(
-                // alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(left: 20.0, right: 10.0),
-                icon: Icon(Icons.home),
-                iconSize: 32.0,
-                color: LocalTheme.Header["title"]["title_color"],
-                onPressed: () {
-                  Navigator.pushNamed(context, "/");
-                },
-              ),
-            ]),
+                IconButton(
+                  padding: EdgeInsets.only(
+                    left: 20.0,
+                    right: 10.0,
+                  ),
+                  icon: Icon(Icons.home),
+                  iconSize: 32.0,
+                  color: LocalTheme.Header["title"]["title_color"],
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -225,8 +230,16 @@ class _AttendanceDetailState extends State<AttendanceDetail>
 
   Widget studentprofileDetail() {
     return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 20.0,
+        bottom: 20.0,
+      ),
+      padding: EdgeInsets.only(
+        top: 10.0,
+        bottom: 10.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -296,7 +309,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           ),
         ],
       ),
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 0.0,
+        bottom: 20.0,
+      ),
       padding: EdgeInsets.all(10.0),
       child: Center(
         child: Column(
@@ -335,25 +353,28 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                 ),
               ],
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-              Radio(
-                value: 'day',
-                onChanged: _displayAttendance,
-                groupValue: _studentAttrndance,
-                activeColor: Colors.black38,
-              ),
-              Text(
-                'Day wise Attendance',
-                style: TextStyle(
-                  color: LocalTheme.home["student_description"]["color"],
-                  fontWeight: LocalTheme.home["student_description"]
-                      ["font_weight"],
-                  fontFamily: LocalTheme.home["student_description"]
-                      ["font_family"],
-                  fontSize: 16,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Radio(
+                  value: 'day',
+                  onChanged: _displayAttendance,
+                  groupValue: _studentAttrndance,
+                  activeColor: Colors.black38,
                 ),
-              ),
-            ]),
+                Text(
+                  'Day wise Attendance',
+                  style: TextStyle(
+                    color: LocalTheme.home["student_description"]["color"],
+                    fontWeight: LocalTheme.home["student_description"]
+                        ["font_weight"],
+                    fontFamily: LocalTheme.home["student_description"]
+                        ["font_family"],
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -362,7 +383,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
 
   Widget tabForViewAttendance() {
     return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 0.0,
+        bottom: 20.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -374,559 +400,628 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         ],
       ),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(
-                  top: 30.0, bottom: 10.0, left: 24.0, right: 24.0),
-              padding: EdgeInsets.only(
-                  top: 10.0, bottom: 5.0, left: 15.0, right: 15.0),
-              decoration: BoxDecoration(
-                color: Color(0xFFFDCA40),
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(
+              top: 30.0,
+              bottom: 10.0,
+              left: 24.0,
+              right: 24.0,
+            ),
+            padding: EdgeInsets.only(
+              top: 10.0,
+              bottom: 5.0,
+              left: 15.0,
+              right: 15.0,
+            ),
+            decoration: BoxDecoration(
+              color: Color(0xFFFDCA40),
+            ),
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Color(0xFFFDCA40),
               ),
-              child: Theme(
-                data: Theme.of(context).copyWith(
-                  canvasColor: Color(0xFFFDCA40),
+              child: DropdownButton<String>(
+                isDense: true,
+                elevation: 5,
+                iconEnabledColor: Color(0xFF292B23),
+                underline: Text(''),
+                value: _dropdownValue,
+                style: TextStyle(
+                  color: Color(0xFF292B23),
+                  decorationColor: Color(0xFFFDCA40),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: DropdownButton<String>(
-                  isDense: true,
-                  elevation: 5,
-                  iconEnabledColor: Color(0xFF292B23),
-                  underline: Text(''),
-                  value: _dropdownValue,
-                  style: TextStyle(
-                    color: Color(0xFF292B23),
-                    decorationColor: Color(0xFFFDCA40),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  isExpanded: true,
-                  items: <String>['Physics', 'Maths', 'English', 'Chemistry']
-                      .map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: new Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _dropdownValue = value;
-                    });
-                  },
-                ),
+                isExpanded: true,
+                items: <String>['Physics', 'Maths', 'English', 'Chemistry']
+                    .map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _dropdownValue = value;
+                  });
+                },
               ),
             ),
-            Container(
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            color: Color(0xFFFAFBFD),
+            margin: EdgeInsets.only(
+              top: 0.0,
+              bottom: 5.0,
+              left: 24.0,
+              right: 24.0,
+            ),
+            child: TableCalendar(
+              headerVisible: true,
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              calendarController: _calendarController,
+              headerStyle: HeaderStyle(
+                centerHeaderTitle: true,
+                formatButtonVisible: false,
+                formatButtonTextStyle: TextStyle().copyWith(
+                  color: Color(0xFF3E4237),
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              calendarStyle: CalendarStyle(
+                selectedColor: Colors.deepOrange[400],
+                todayColor: Colors.deepOrange[200],
+                markersColor: Colors.brown[700],
+                outsideDaysVisible: false,
+              ),
+            ),
+          ),
+          PreferredSize(
+            preferredSize: Size.fromHeight(54.0),
+            child: TabBar(
+              controller: _tabController,
+              indicatorColor: Colors.yellow[300],
+              unselectedLabelColor: LocalTheme.Tab["heading"]["unactive_color"],
+              labelColor: LocalTheme.Tab["heading"]["active_color"],
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    "Week View",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                      fontWeight: LocalTheme.Tab["heading"]["font_weight"],
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    "Month View",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: LocalTheme.Tab["heading"]["font_family"],
+                      fontWeight: LocalTheme.Tab["heading"]["font_weight"],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Visibility(
+            visible: _isDaywise,
+            child: Container(
+              color: Colors.white,
               alignment: Alignment.topLeft,
-              color: Color(0xFFFAFBFD),
-              margin: EdgeInsets.only(
-                top: 0.0,
-                bottom: 5.0,
-                left: 24.0,
-                right: 24.0,
+              padding: EdgeInsets.only(
+                top: 30.0,
+                right: 30.0,
+                bottom: 30.0,
+                left: 30.0,
               ),
-              child: TableCalendar(
-                headerVisible: true,
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                calendarController: _calendarController,
-                headerStyle: HeaderStyle(
-                  centerHeaderTitle: true,
-                  formatButtonVisible: false,
-                  formatButtonTextStyle: TextStyle().copyWith(
-                    color: Color(0xFF3E4237),
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                calendarStyle: CalendarStyle(
-                  selectedColor: Colors.deepOrange[400],
-                  todayColor: Colors.deepOrange[200],
-                  markersColor: Colors.brown[700],
-                  outsideDaysVisible: false,
-                ),
-              ),
-            ),
-            PreferredSize(
-              preferredSize: Size.fromHeight(54.0),
-              child: TabBar(
-                controller: _tabController,
-                indicatorColor: Colors.yellow[300],
-                unselectedLabelColor: LocalTheme.Tab["heading"]
-                    ["unactive_color"],
-                labelColor: LocalTheme.Tab["heading"]["active_color"],
-                tabs: <Widget>[
-                  Tab(
-                    child: Text(
-                      "Week View",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      "Month View",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: LocalTheme.Tab["heading"]["font_family"],
-                        fontWeight: LocalTheme.Tab["heading"]["font_weight"],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Visibility(
-              visible: _isDaywise,
-              child: Container(
-                color: Colors.white,
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(
-                    top: 30.0, right: 30.0, bottom: 30.0, left: 30.0),
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
-                          height: 25,
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "DAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 0.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "ATTENDANCE",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "MONDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "PRESENT",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "TUESDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "PRESENT",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "WEDNESDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "SICK lEAVE",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "THURSDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "PRESENT",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "FRIDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "PRESENT",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(
-                              top: 0.0, right: 0.0, bottom: 2.0, left: 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 160,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 22.0),
-                                child: Text(
-                                  "SATURDAY",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 100,
-                                height: 25,
-                                alignment: Alignment.centerLeft,
-                                padding: EdgeInsets.only(
-                                    top: 0.0,
-                                    right: 0.0,
-                                    bottom: 0.0,
-                                    left: 13.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFAFAF8),
-                                ),
-                                child: Text(
-                                  "PRESENT",
-                                  style: TextStyle(
-                                    color: LocalTheme.home["student_name"]
-                                        ["color"],
-                                    fontWeight: LocalTheme.home["student_name"]
-                                        ["font_weight"],
-                                    fontFamily: LocalTheme.home["student_name"]
-                                        ["font_family"],
-                                    fontSize: 9,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Visibility(
-                visible: _issubjectWise,
-                child: Container(
-                  height: 220.0,
-                  color: Colors.white,
-                  // margin: EdgeInsets.only(
-                  //     left: 20.0, right: 20.0, top: 0.0, bottom: 15.0),
-                  // padding: EdgeInsets.only(
-                  //     bottom: 10.0, top: 10.0, left: 5.0, right: 5.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                children: <Widget>[
+                  Column(
                     children: <Widget>[
-                      Expanded(
-                        child: charts.PieChart(seriesLists,
-                            animate: animates,
-                            defaultRenderer: charts.ArcRendererConfig(
-                                arcWidth: 25,
-                                arcRendererDecorators: [
-                                  charts.ArcLabelDecorator(
-                                      labelPosition:
-                                          charts.ArcLabelPosition.outside)
-                                ])),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 3.0,
+                          left: 0.0,
+                        ),
+                        height: 25,
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "DAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 0.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "ATTENDANCE",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "MONDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "PRESENT",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "TUESDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "PRESENT",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "WEDNESDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "SICK lEAVE",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "THURSDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "PRESENT",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "FRIDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "PRESENT",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(
+                          top: 0.0,
+                          right: 0.0,
+                          bottom: 2.0,
+                          left: 0.0,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: 160,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 22.0,
+                              ),
+                              child: Text(
+                                "SATURDAY",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 100,
+                              height: 25,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.only(
+                                top: 0.0,
+                                right: 0.0,
+                                bottom: 0.0,
+                                left: 13.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFAFAF8),
+                              ),
+                              child: Text(
+                                "PRESENT",
+                                style: TextStyle(
+                                  color: LocalTheme.home["student_name"]
+                                      ["color"],
+                                  fontWeight: LocalTheme.home["student_name"]
+                                      ["font_weight"],
+                                  fontFamily: LocalTheme.home["student_name"]
+                                      ["font_family"],
+                                  fontSize: 9,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                )),
-          ]),
+                ],
+              ),
+            ),
+          ),
+          Visibility(
+            visible: _issubjectWise,
+            child: Container(
+              height: 240.0,
+              padding: EdgeInsets.only(
+                top: 20.0,
+                right: 0.0,
+                bottom: 0.0,
+                left: 0.0,
+              ),
+              color: Colors.white,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: charts.PieChart(
+                      seriesLists,
+                      animate: animates,
+                      defaultRenderer: charts.ArcRendererConfig(
+                        arcWidth: 25,
+                        arcRendererDecorators: [
+                          charts.ArcLabelDecorator(
+                              labelPosition: charts.ArcLabelPosition.outside)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget displayAttendanceGraph() {
     return Container(
       height: 250.0,
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 15.0),
-      padding: EdgeInsets.only(bottom: 10.0, top: 10.0, left: 5.0, right: 5.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 0.0,
+        bottom: 15.0,
+      ),
+      padding: EdgeInsets.only(
+        bottom: 10.0,
+        top: 10.0,
+        left: 5.0,
+        right: 5.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -969,7 +1064,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
 
   Widget calenderWiseAttendance() {
     return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 0.0,
+        bottom: 20.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -981,141 +1081,167 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         ],
       ),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // leavesandWorkingdays(),
-            Container(
-              height: 100.0,
-              color: Colors.white,
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(
-                  top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
-              child: Row(children: <Widget>[
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(
+              top: 24.0,
+              right: 24.0,
+              bottom: 15.0,
+              left: 24.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
                 Column(
-                  children: <Widget>[
+                  children: [
                     Container(
-                      alignment: Alignment.topLeft,
+                      width: 100,
                       padding: EdgeInsets.only(
-                          top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
-                      height: 70,
+                        top: 0.0,
+                        bottom: 5.0,
+                      ),
+                      alignment: Alignment.topCenter,
                       child: Row(
-                        children: <Widget>[
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
                           Container(
-                              width: 130,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.only(
-                                  top: 0.0,
-                                  right: 0.0,
-                                  bottom: 8.0,
-                                  left: 10.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.greenAccent,
-                                    size: 20.0,
-                                  ),
-                                  Text(
-                                    "01",
-                                    style: TextStyle(
-                                      color: LocalTheme
-                                          .attendanceCalender["title"]["color"],
-                                      fontFamily:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_family"],
-                                      fontWeight:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_weight"],
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Leaves",
-                                    style: TextStyle(
-                                      color: LocalTheme
-                                          .attendanceCalender["title"]["color"],
-                                      fontFamily:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_family"],
-                                      fontWeight:
-                                          LocalTheme.attendanceCalender["title"]
-                                              ["font_weight"],
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              )),
-                          Container(
-                            width: 130,
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.only(
-                                top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
+                            alignment: Alignment.topRight,
+                            width: 42,
+                            padding: EdgeInsets.all(0.0),
+                            margin: EdgeInsets.all(0.0),
+                            child: Icon(
+                              Icons.check_circle,
+                              color: Colors.greenAccent,
+                              size: 24.0,
                             ),
-                            child: Column(children: <Widget>[
-                              Icon(
-                                Icons.check_circle,
-                                color: Colors.greenAccent,
-                                size: 20.0,
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            width: 42,
+                            padding: EdgeInsets.all(0.0),
+                            margin: EdgeInsets.all(0.0),
+                            child: Text(
+                              "01",
+                              style: TextStyle(
+                                color: LocalTheme.attendanceCalender["title"]
+                                    ["color"],
+                                fontFamily: LocalTheme
+                                    .attendanceCalender["title"]["font_family"],
+                                fontWeight: LocalTheme
+                                    .attendanceCalender["title"]["font_weight"],
+                                fontSize: 16,
                               ),
-                              Text(
-                                "265",
-                                style: TextStyle(
-                                  color: LocalTheme.attendanceCalender["title"]
-                                      ["color"],
-                                  fontFamily:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_family"],
-                                  fontWeight:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_weight"],
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                "Working Days",
-                                style: TextStyle(
-                                  color: LocalTheme.attendanceCalender["title"]
-                                      ["color"],
-                                  fontFamily:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_family"],
-                                  fontWeight:
-                                      LocalTheme.attendanceCalender["title"]
-                                          ["font_weight"],
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ]),
+                            ),
                           ),
                         ],
                       ),
                     ),
+                    Container(
+                      width: 100,
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        "Leaves",
+                        style: TextStyle(
+                          color: LocalTheme.attendanceCalender["title"]
+                              ["color"],
+                          fontFamily: LocalTheme.attendanceCalender["title"]
+                              ["font_family"],
+                          fontWeight: LocalTheme.attendanceCalender["title"]
+                              ["font_weight"],
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ]),
+                Column(
+                  children: [
+                    Container(
+                      width: 1,
+                      height: 50,
+                      color: Colors.indigo[50],
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    Container(
+                      width: 100,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        bottom: 5.0,
+                      ),
+                      alignment: Alignment.topCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            alignment: Alignment.topRight,
+                            width: 42,
+                            padding: EdgeInsets.all(0.0),
+                            margin: EdgeInsets.all(0.0),
+                            child: Icon(
+                              Icons.check_circle,
+                              color: Colors.greenAccent,
+                              size: 24.0,
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            width: 42,
+                            padding: EdgeInsets.all(0.0),
+                            margin: EdgeInsets.all(0.0),
+                            child: Text(
+                              "265",
+                              style: TextStyle(
+                                color: LocalTheme.attendanceCalender["title"]
+                                    ["color"],
+                                fontFamily: LocalTheme
+                                    .attendanceCalender["title"]["font_family"],
+                                fontWeight: LocalTheme
+                                    .attendanceCalender["title"]["font_weight"],
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        "Working Days",
+                        style: TextStyle(
+                          color: LocalTheme.attendanceCalender["title"]
+                              ["color"],
+                          fontFamily: LocalTheme.attendanceCalender["title"]
+                              ["font_family"],
+                          fontWeight: LocalTheme.attendanceCalender["title"]
+                              ["font_weight"],
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              color: Color(0xFFFAFBFD),
-              margin: EdgeInsets.only(
-                top: 0.0,
-                bottom: 5.0,
-                
-                left: 24.0,
-                right: 24.0,
-              ),
-              child: TableCalendar(
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            color: Color(0xFFFAFBFD),
+            margin: EdgeInsets.only(
+              top: 0.0,
+              bottom: 5.0,
+              left: 24.0,
+              right: 24.0,
+            ),
+            child: TableCalendar(
                 initialCalendarFormat: CalendarFormat.week,
                 startingDayOfWeek: StartingDayOfWeek.monday,
-                // weekendDays: weekendStyle: (
-                    
-                // ),
                 calendarController: _calendarController,
                 headerStyle: HeaderStyle(
                   centerHeaderTitle: true,
@@ -1128,58 +1254,76 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                   markersColor: Colors.brown[700],
                   outsideDaysVisible: false,
                 ),
-                onDaySelected: (date, events){
+                onDaySelected: (date, events) {
                   print(date);
-                }
-              ),
+                }),
+          ),
+          Container(
+            height: 50,
+            color: Colors.white,
+            margin: EdgeInsets.only(
+              left: 20.0,
+              right: 20.0,
+              top: 0.0,
+              bottom: 20.0,
             ),
-            Container(
-              height: 50,
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  left: 20.0, right: 20.0, top: 0.0, bottom: 20.0),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
-                  radius: 20.0,
-                ),
-                title: Text(
-                  "Sick Leave",
-                  style: TextStyle(
-                    color: LocalTheme.attendanceCalender["title"]["color"],
-                    fontFamily: LocalTheme.attendanceCalender["title"]
-                        ["font_family"],
-                    fontWeight: LocalTheme.attendanceCalender["title"]
-                        ["font_weight"],
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: Text(
-                  "04 Feb 2020",
-                  style: TextStyle(
-                    color: LocalTheme.attendanceCalender["title"]["color"],
-                    fontFamily: LocalTheme.attendanceCalender["title"]
-                        ["font_family"],
-                    fontSize: 12,
-                  ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage('https://i.pravatar.cc/300'),
+                radius: 20.0,
+              ),
+              title: Text(
+                "Sick Leave",
+                style: TextStyle(
+                  color: LocalTheme.attendanceCalender["title"]["color"],
+                  fontFamily: LocalTheme.attendanceCalender["title"]
+                      ["font_family"],
+                  fontWeight: LocalTheme.attendanceCalender["title"]
+                      ["font_weight"],
+                  fontSize: 16,
                 ),
               ),
+              subtitle: Text(
+                "04 Feb 2020",
+                style: TextStyle(
+                  color: LocalTheme.attendanceCalender["title"]["color"],
+                  fontFamily: LocalTheme.attendanceCalender["title"]
+                      ["font_family"],
+                  fontSize: 12,
+                ),
+              ),
             ),
-            Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                color: Color(0xFFE7EBF2),
-                margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Reason:"),
-                    Text("Due to high fever & cough."),
-                  ],
-                )),
-          ]),
+          ),
+          Container(
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            color: Color(0xFFE7EBF2),
+            margin: EdgeInsets.only(
+              left: 20.0,
+              right: 20.0,
+              bottom: 20.0,
+            ),
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(
+                    bottom: 5.0,
+                    left: 5.0,
+                  ),
+                  child: Text("Reason:"),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: Text("Due to high fever & cough."),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -1188,7 +1332,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       title: Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.only(top:0.0, bottom:15.0, left:0.0, right:0.0),
+        padding: EdgeInsets.only(
+          top: 0.0,
+          bottom: 15.0,
+          left: 0.0,
+          right: 0.0,
+        ),
         margin: EdgeInsets.all(0.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1222,7 +1371,7 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                   Navigator.of(context).pop();
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -1232,8 +1381,12 @@ class _AttendanceDetailState extends State<AttendanceDetail>
         children: <Widget>[
           Container(
             alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(bottom: 15.0),
-            padding: EdgeInsets.only(bottom: 15.0),
+            margin: EdgeInsets.only(
+              bottom: 15.0,
+            ),
+            padding: EdgeInsets.only(
+              bottom: 15.0,
+            ),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -1250,7 +1403,9 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                   width: 60,
                   height: 60,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 20.0),
+                  margin: EdgeInsets.only(
+                    left: 20.0,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -1296,7 +1451,9 @@ class _AttendanceDetailState extends State<AttendanceDetail>
           ),
           Container(
             alignment: Alignment.topLeft,
-            padding: EdgeInsets.only(bottom: 15.0),
+            padding: EdgeInsets.only(
+              bottom: 15.0,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -1305,7 +1462,9 @@ class _AttendanceDetailState extends State<AttendanceDetail>
                   width: 60,
                   height: 60,
                   padding: EdgeInsets.all(0.0),
-                  margin: EdgeInsets.only(left: 20.0),
+                  margin: EdgeInsets.only(
+                    left: 20.0,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -1353,11 +1512,9 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     );
   }
 
-Widget leavesandWorkingdays(){
-   return Container(
+  Widget leavesandWorkingdays() {
+    return Container(
       height: 80.0,
-      // padding: EdgeInsets.only(top: 5.0, right: 0.0, bottom: 5.0, left: 0.0),
-      // margin: EdgeInsets.symmetric(horizontal: 0.0),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -1367,8 +1524,12 @@ Widget leavesandWorkingdays(){
             alignment: Alignment.topCenter,
             padding: EdgeInsets.all(0.0),
             height: 50.0,
-            margin:
-                EdgeInsets.only(top: 0.0, right: 1.0, bottom: 0.0, left: 20.0),
+            margin: EdgeInsets.only(
+              top: 0.0,
+              right: 1.0,
+              bottom: 0.0,
+              left: 20.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -1410,8 +1571,12 @@ Widget leavesandWorkingdays(){
             color: Colors.white,
             alignment: Alignment.topCenter,
             height: 50.0,
-            margin:
-                EdgeInsets.only(top: 0.0, right: 20.0, bottom: 0.0, left: 0.0),
+            margin: EdgeInsets.only(
+              top: 0.0,
+              right: 20.0,
+              bottom: 0.0,
+              left: 0.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -1451,8 +1616,7 @@ Widget leavesandWorkingdays(){
         ],
       ),
     );
-}
-
+  }
 }
 
 class MonthwiseAttendance {
@@ -1472,119 +1636,118 @@ class MonthWiseStudentAttendanceChart {
             r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }
 
-
 // Container(
-            //   height: 100.0,
-            //   color: Colors.white,
-            //   alignment: Alignment.topLeft,
-            //   padding: EdgeInsets.only(
-            //       top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
-            //   child: Row(children: <Widget>[
-            //     Column(
-            //       children: <Widget>[
-            //         Container(
-            //           alignment: Alignment.topLeft,
-            //           padding: EdgeInsets.only(
-            //               top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
-            //           height: 70,
-            //           child: Row(
-            //             children: <Widget>[
-            //               Container(
-            //                   width: 130,
-            //                   alignment: Alignment.center,
-            //                   padding: EdgeInsets.only(
-            //                       top: 0.0,
-            //                       right: 0.0,
-            //                       bottom: 8.0,
-            //                       left: 10.0),
-            //                   decoration: BoxDecoration(
-            //                     color: Colors.white,
-            //                   ),
-            //                   child: Column(
-            //                     children: <Widget>[
-            //                       Icon(
-            //                         Icons.check_circle,
-            //                         color: Colors.greenAccent,
-            //                         size: 20.0,
-            //                       ),
-            //                       Text(
-            //                         "01",
-            //                         style: TextStyle(
-            //                           color: LocalTheme
-            //                               .attendanceCalender["title"]["color"],
-            //                           fontFamily:
-            //                               LocalTheme.attendanceCalender["title"]
-            //                                   ["font_family"],
-            //                           fontWeight:
-            //                               LocalTheme.attendanceCalender["title"]
-            //                                   ["font_weight"],
-            //                           fontSize: 16,
-            //                         ),
-            //                       ),
-            //                       Text(
-            //                         "Leaves",
-            //                         style: TextStyle(
-            //                           color: LocalTheme
-            //                               .attendanceCalender["title"]["color"],
-            //                           fontFamily:
-            //                               LocalTheme.attendanceCalender["title"]
-            //                                   ["font_family"],
-            //                           fontWeight:
-            //                               LocalTheme.attendanceCalender["title"]
-            //                                   ["font_weight"],
-            //                           fontSize: 16,
-            //                         ),
-            //                       ),
-            //                     ],
-            //                   )),
-            //               Container(
-            //                 width: 130,
-            //                 alignment: Alignment.center,
-            //                 padding: EdgeInsets.only(
-            //                     top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
-            //                 decoration: BoxDecoration(
-            //                   color: Colors.white,
-            //                 ),
-            //                 child: Column(children: <Widget>[
-            //                   Icon(
-            //                     Icons.check_circle,
-            //                     color: Colors.greenAccent,
-            //                     size: 20.0,
-            //                   ),
-            //                   Text(
-            //                     "265",
-            //                     style: TextStyle(
-            //                       color: LocalTheme.attendanceCalender["title"]
-            //                           ["color"],
-            //                       fontFamily:
-            //                           LocalTheme.attendanceCalender["title"]
-            //                               ["font_family"],
-            //                       fontWeight:
-            //                           LocalTheme.attendanceCalender["title"]
-            //                               ["font_weight"],
-            //                       fontSize: 16,
-            //                     ),
-            //                   ),
-            //                   Text(
-            //                     "Working Days",
-            //                     style: TextStyle(
-            //                       color: LocalTheme.attendanceCalender["title"]
-            //                           ["color"],
-            //                       fontFamily:
-            //                           LocalTheme.attendanceCalender["title"]
-            //                               ["font_family"],
-            //                       fontWeight:
-            //                           LocalTheme.attendanceCalender["title"]
-            //                               ["font_weight"],
-            //                       fontSize: 16,
-            //                     ),
-            //                   ),
-            //                 ]),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ]),
-            // ),
+//   height: 100.0,
+//   color: Colors.white,
+//   alignment: Alignment.topLeft,
+//   padding: EdgeInsets.only(
+//       top: 20.0, right: 10.0, bottom: 10.0, left: 10.0),
+//   child: Row(children: <Widget>[
+//     Column(
+//       children: <Widget>[
+//         Container(
+//           alignment: Alignment.topLeft,
+//           padding: EdgeInsets.only(
+//               top: 0.0, right: 0.0, bottom: 3.0, left: 0.0),
+//           height: 70,
+//           child: Row(
+//             children: <Widget>[
+//               Container(
+//                   width: 130,
+//                   alignment: Alignment.center,
+//                   padding: EdgeInsets.only(
+//                       top: 0.0,
+//                       right: 0.0,
+//                       bottom: 8.0,
+//                       left: 10.0),
+//                   decoration: BoxDecoration(
+//                     color: Colors.white,
+//                   ),
+//                   child: Column(
+//                     children: <Widget>[
+//                       Icon(
+//                         Icons.check_circle,
+//                         color: Colors.greenAccent,
+//                         size: 20.0,
+//                       ),
+//                       Text(
+//                         "01",
+//                         style: TextStyle(
+//                           color: LocalTheme
+//                               .attendanceCalender["title"]["color"],
+//                           fontFamily:
+//                               LocalTheme.attendanceCalender["title"]
+//                                   ["font_family"],
+//                           fontWeight:
+//                               LocalTheme.attendanceCalender["title"]
+//                                   ["font_weight"],
+//                           fontSize: 16,
+//                         ),
+//                       ),
+//                       Text(
+//                         "Leaves",
+//                         style: TextStyle(
+//                           color: LocalTheme
+//                               .attendanceCalender["title"]["color"],
+//                           fontFamily:
+//                               LocalTheme.attendanceCalender["title"]
+//                                   ["font_family"],
+//                           fontWeight:
+//                               LocalTheme.attendanceCalender["title"]
+//                                   ["font_weight"],
+//                           fontSize: 16,
+//                         ),
+//                       ),
+//                     ],
+//                   )),
+//               Container(
+//                 width: 130,
+//                 alignment: Alignment.center,
+//                 padding: EdgeInsets.only(
+//                     top: 0.0, right: 0.0, bottom: 8.0, left: 0.0),
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                 ),
+//                 child: Column(children: <Widget>[
+//                   Icon(
+//                     Icons.check_circle,
+//                     color: Colors.greenAccent,
+//                     size: 20.0,
+//                   ),
+//                   Text(
+//                     "265",
+//                     style: TextStyle(
+//                       color: LocalTheme.attendanceCalender["title"]
+//                           ["color"],
+//                       fontFamily:
+//                           LocalTheme.attendanceCalender["title"]
+//                               ["font_family"],
+//                       fontWeight:
+//                           LocalTheme.attendanceCalender["title"]
+//                               ["font_weight"],
+//                       fontSize: 16,
+//                     ),
+//                   ),
+//                   Text(
+//                     "Working Days",
+//                     style: TextStyle(
+//                       color: LocalTheme.attendanceCalender["title"]
+//                           ["color"],
+//                       fontFamily:
+//                           LocalTheme.attendanceCalender["title"]
+//                               ["font_family"],
+//                       fontWeight:
+//                           LocalTheme.attendanceCalender["title"]
+//                               ["font_weight"],
+//                       fontSize: 16,
+//                     ),
+//                   ),
+//                 ]),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     ),
+//   ]),
+// ),
