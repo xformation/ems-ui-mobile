@@ -100,13 +100,13 @@ class _AttendanceDetailState extends State<AttendanceDetail>
     });
     if (value == 'subject') {
       setState(() {
-        _issubjectWise = true;
-        _isDaywise = false;
+        _issubjectWise = false;
+        _isDaywise = true;
       });
-      _tabController.index = 0;
+      // _tabController.index = 0;
     } else if (value == 'day') {
       setState(() {
-        _issubjectWise = false;
+        _issubjectWise = true;
         _isDaywise = false;
         _istableview = false;
       });

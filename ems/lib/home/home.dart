@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:ems/theme_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 // import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -93,29 +94,21 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Container(
-        color: Color.fromARGB(1, 250, 250, 248),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              // Container(
-              //   alignment: Alignment.topCenter,
-              //   margin: EdgeInsets.only(
-              //       top: 0.0, bottom: 20.0, left: 20.0, right: 20.0),
-              //   child: Text(
-              //     "Welcome Richard Grand!",
-              //     style: TextStyle(
-              //         color: LocalTheme.home["heading"]["color"],
-              //         fontWeight: LocalTheme.home["heading"]["font_weight"],
-              //         fontFamily: LocalTheme.home["heading"]["font_family"],
-              //         fontSize: 28),
-              //   ),
-              // ),
-              studentProfileDetail(),
-              newNotificationsDetail(),
-              studentAttendanceChart(),
-            ],
+      body: DoubleBackToCloseApp(
+        child: Container(
+          color: Color.fromARGB(1, 250, 250, 248),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                studentProfileDetail(),
+                newNotificationsDetail(),
+                studentAttendanceChart(),
+              ],
+            ),
           ),
+        ),
+        snackBar: const SnackBar(
+          content: Text('Tap back again to close app.'),
         ),
       ),
     );

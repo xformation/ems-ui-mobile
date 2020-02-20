@@ -7,7 +7,7 @@ class Menu extends StatelessWidget {
     MenuItem(LocalIcons.home, 'Home', "/"),
     MenuItem(LocalIcons.attendance, 'Attendance', "/"),
     MenuItem(LocalIcons.timetable, 'Time Table', "/timetable"),
-    MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/"),
+    MenuItem(LocalIcons.fee_payment, 'Fee Payment', "/feepayment"),
     MenuItem(LocalIcons.examination, 'Examinations', "/"),
     //MenuItem(LocalIcons.grades, 'Grades', "/graph"),
     MenuItem(LocalIcons.notification, 'Notifications', "/"),
