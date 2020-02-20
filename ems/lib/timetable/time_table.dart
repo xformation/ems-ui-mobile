@@ -798,67 +798,125 @@ class _TimeTableState extends State<TimeTable> {
   }
 
   Widget calenderView() {
-    return CarouselSlider(
-      height: 50.0,
-      initialPage: 0,
-      enableInfiniteScroll: false,
-      scrollDirection: Axis.horizontal,
-      items: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-      ].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              alignment: Alignment.center,
-              width: MediaQuery.of(context).size.width * 10,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: BoxDecoration(color: Color(0xFFFAFBFD)),
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.keyboard_arrow_left),
-                      color: Colors.black,
-                      iconSize: 25,
-                      onPressed: () {
-                        _slider.previousPage(
-                            duration: Duration(seconds: 1),
-                            curve: Curves.easeOut);
-                      },
-                      // size: 20.0,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          alignment: Alignment.centerLeft,
+          width: 20,
+          child: SizedBox(
+            width: 20.0,
+            height: 20.0,
+            child: OutlineButton(
+              onPressed: goToPrevious,
+              borderSide: BorderSide(
+                color: Color(0xFFFAFBFD),
+              ),
+              color: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              padding: EdgeInsets.all(0.0),
+              child: Text(
+                "<",
+                style: TextStyle(
+                  fontSize: 22.0,
+                  color: Color(0xFFA2C0D4),
+                  fontFamily: LocalTheme.Header["title"]["font_family"],
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.topCenter,
+          width: 220,
+          child: carouselSlider = CarouselSlider(
+            height: 50.0,
+            initialPage: 0,
+            enableInfiniteScroll: false,
+            scrollDirection: Axis.horizontal,
+            items: [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday'
+            ].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    alignment: Alignment.topCenter,
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(color: Color(0xFFFAFBFD)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: Text(
+                            '$i',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                        ),
+                      ],
                     ),
-                    Center(
-                      child: Text(
-                        '$i',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.keyboard_arrow_right),
-                      color: Colors.black,
-                      onPressed: () {
-                        _slider.nextPage(
-                            duration: Duration(seconds: 1),
-                            curve: Curves.easeOut);
-                      },
-                      iconSize: 25,
-                      // size: 20.0,
-                    ),
-                  ]),
-            );
-          },
-        );
-      }).toList(),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerRight,
+          width: 20,
+          child: SizedBox(
+            width: 20.0,
+            height: 20.0,
+            child: OutlineButton(
+              onPressed: goToNext,
+              borderSide: BorderSide(
+                color: Color(0xFFFAFBFD),
+              ),
+              color: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              padding: EdgeInsets.all(0.0),
+              child: Text(
+                ">",
+                style: TextStyle(
+                  fontSize: 22.0,
+                  color: Color(0xFFA2C0D4),
+                  fontFamily: LocalTheme.Header["title"]["font_family"],
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
-   Widget openalertdialog() {
+  CarouselSlider carouselSlider;
+
+  goToPrevious() {
+    carouselSlider.previousPage(
+        duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  goToNext() {
+    carouselSlider.nextPage(
+        duration: Duration(milliseconds: 300), curve: Curves.decelerate);
+  }
+
+  Widget openalertdialog() {
     return AlertDialog(
       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       title: Container(
