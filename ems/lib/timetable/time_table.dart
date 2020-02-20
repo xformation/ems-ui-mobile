@@ -10,6 +10,7 @@ class TimeTable extends StatefulWidget {
 
 class _TimeTableState extends State<TimeTable> {
   dynamic _slider;
+  bool _isMonday = true;
   @override
   void initState() {
     super.initState();
@@ -86,7 +87,10 @@ class _TimeTableState extends State<TimeTable> {
           child: SingleChildScrollView(
             child: Column(children: <Widget>[
               studentprofileDetail(),
-              studentTimetable(_slider),
+              Visibility(
+                visible: _isMonday,
+                child: studentTimetable(_slider),
+              ),
             ]),
           ),
         ));
@@ -199,24 +203,15 @@ class _TimeTableState extends State<TimeTable> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(
-                  right: 20.0, left: 20.0, top: 20.0, bottom: 20.0),
+                  right: 20.0, left: 20.0, top: 20.0, bottom: 0.0),
               color: Color(0xFFFAFBFD),
               child: slider,
             ),
-            IconButton(
-                  icon: Icon(Icons.keyboard_arrow_left),
-                  color: Colors.black,
-                  iconSize: 25,
-                  onPressed: () {
-                    slider.nextPage(duration: Duration(seconds: 1), curve: Curves.easeOut);
-                  },
-                  // size: 20.0,
-                ),
             Container(
               color: Colors.white,
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(
-                  top: 30.0, right: 30.0, bottom: 30.0, left: 30.0),
+                  top: 20.0, right: 30.0, bottom: 30.0, left: 30.0),
               child: Row(
                 children: <Widget>[
                   Column(
@@ -819,34 +814,43 @@ class _TimeTableState extends State<TimeTable> {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              alignment: Alignment.centerRight,
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * 10,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(color: Color(0xFFFAFBFD)),
-              child: Row(children: <Widget>[
-                // IconButton(
-                //   icon: Icon(Icons.keyboard_arrow_left),
-                //   color: Colors.black,
-                //   iconSize: 25,
-                //   onPressed: () {},
-                //   // size: 20.0,
-                // ),
-                Center(
-                  child: Text(
-                    '$i',
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                ),
-                // IconButton(
-                //   icon: Icon(Icons.keyboard_arrow_right),
-                //   color: Colors.black,
-                //   onPressed: () {
-                //     //  this.nextPage(3, 'curve');
-                //   },
-                //   iconSize: 25,
-                //   // size: 20.0,
-                // ),
-              ]),
+              child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.keyboard_arrow_left),
+                      color: Colors.black,
+                      iconSize: 25,
+                      onPressed: () {
+                        _slider.previousPage(
+                            duration: Duration(seconds: 1),
+                            curve: Curves.easeOut);
+                      },
+                      // size: 20.0,
+                    ),
+                    Center(
+                      child: Text(
+                        '$i',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.keyboard_arrow_right),
+                      color: Colors.black,
+                      onPressed: () {
+                        _slider.nextPage(
+                            duration: Duration(seconds: 1),
+                            curve: Curves.easeOut);
+                      },
+                      iconSize: 25,
+                      // size: 20.0,
+                    ),
+                  ]),
             );
           },
         );
@@ -854,109 +858,188 @@ class _TimeTableState extends State<TimeTable> {
     );
   }
 
-  Widget daywiseTimeTable(String day) {
-    return Container(
-      width: 280.0,
-      color: Color(0xFFFAFBFD),
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(0.0),
-      height: 30.0,
-      margin: EdgeInsets.only(top: 20.0, right: 20.0, bottom: 0.0, left: 20.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListTile(
-            leading: Icon(
-              Icons.keyboard_arrow_left,
-              color: Colors.black,
-              size: 25.0,
-            ),
-            title: Center(
+   Widget openalertdialog() {
+    return AlertDialog(
+      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      title: Container(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.only(
+          top: 0.0,
+          bottom: 15.0,
+          left: 0.0,
+          right: 0.0,
+        ),
+        margin: EdgeInsets.all(0.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.topLeft,
+              width: 205,
+              padding: EdgeInsets.all(0.0),
+              margin: EdgeInsets.all(0.0),
               child: Text(
-                day,
+                "Select Student",
                 style: TextStyle(
-                  color: LocalTheme.attendanceCalender["title"]["color"],
-                  fontFamily: LocalTheme.attendanceCalender["title"]
-                      ["font_family"],
-                  fontWeight: LocalTheme.attendanceCalender["title"]
-                      ["font_weight"],
-                  fontSize: 16,
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 14,
                 ),
               ),
             ),
-            trailing: Icon(
-              Icons.keyboard_arrow_right,
-              color: Colors.black,
-              size: 25.0,
+            Container(
+              alignment: Alignment.topRight,
+              width: 24,
+              height: 24,
+              padding: EdgeInsets.all(0.0),
+              margin: EdgeInsets.all(0.0),
+              child: IconButton(
+                alignment: Alignment.topRight,
+                padding: EdgeInsets.all(0.0),
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            margin: EdgeInsets.only(
+              bottom: 15.0,
+            ),
+            padding: EdgeInsets.only(
+              bottom: 15.0,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFFFFE0E5D4),
+                ),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 60,
+                  height: 60,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(
+                    left: 20.0,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Color(0xffE0E5D4),
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/Image.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  width: 200,
+                  child: ListTile(
+                    title: Text(
+                      "Sara Adamas",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_name"]["color"],
+                        fontWeight: LocalTheme.home["student_name"]
+                            ["font_weight"],
+                        fontFamily: LocalTheme.home["student_name"]
+                            ["font_family"],
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "8th Grade, Telangana State Board",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              bottom: 15.0,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 60,
+                  height: 60,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(
+                    left: 20.0,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                      color: Color(0xffE0E5D4),
+                      width: 1,
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/images/Image2.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  width: 200,
+                  child: ListTile(
+                    title: Text(
+                      "Kevin Dean",
+                      style: TextStyle(
+                          color: LocalTheme.home["student_name"]["color"],
+                          fontWeight: LocalTheme.home["student_name"]
+                              ["font_weight"],
+                          fontFamily: LocalTheme.home["student_name"]
+                              ["font_family"],
+                          fontSize: 16),
+                    ),
+                    subtitle: Text(
+                      "10th Grade, Telangana State Board",
+                      style: TextStyle(
+                        color: LocalTheme.home["student_description"]["color"],
+                        fontSize: 12,
+                        fontFamily: LocalTheme.home["student_description"]
+                            ["font_family"],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget openalertdialog() {
-    return AlertDialog(
-      title: Text(
-        "Select Student",
-        style: TextStyle(
-            color: LocalTheme.home["sub_heading"]["color"],
-            fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-            fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-            fontSize: 14),
-      ),
-      content: Container(
-        height: 130.0,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: ListView(children: <Widget>[
-          ListTile(
-            leading: Image.asset(
-              'assets/images/Image.png',
-              fit: BoxFit.cover,
-            ),
-            title: Text("Sara Adamas",
-                style: TextStyle(
-                    color: LocalTheme.home["student_name"]["color"],
-                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                    fontFamily: LocalTheme.home["student_name"]["font_family"],
-                    fontSize: 16)),
-            subtitle: Text("8th Grade, Telangana State Boardd",
-                style: TextStyle(
-                    color: LocalTheme.home["student_description"]["color"],
-                    fontSize: 12,
-                    fontFamily: LocalTheme.home["student_description"]
-                        ["font_family"])),
-          ),
-          Divider(),
-          ListTile(
-            leading: Image.asset(
-              'assets/images/Image2.png',
-              fit: BoxFit.cover,
-            ),
-            title: Text("Kevin Dean",
-                style: TextStyle(
-                    color: LocalTheme.home["student_name"]["color"],
-                    fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                    fontFamily: LocalTheme.home["student_name"]["font_family"],
-                    fontSize: 16)),
-            subtitle: Text("10th Grade, Telangana State Board",
-                style: TextStyle(
-                    color: LocalTheme.home["student_description"]["color"],
-                    fontSize: 12,
-                    fontFamily: LocalTheme.home["student_description"]
-                        ["font_family"])),
-          ),
-        ]),
-      ),
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-      ],
     );
   }
 }
