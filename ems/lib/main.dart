@@ -7,6 +7,7 @@ import 'package:ems/home/home.dart';
 import 'package:ems/attendanceform/mark_attendance.dart';
 import 'package:ems/attendance/attendance.dart';
 import 'package:ems/timetable/time_table.dart';
+import 'package:ems/feepayment/feepayment.dart';
 
 import 'package:ems/containers/parent_container.dart';
 
@@ -17,6 +18,7 @@ void main() {
     '/dashboard': (context) => ParentContainer(Dashboard()),
     '/attendance': (context) => ParentContainer(MarkAttendancePage(store)),
     '/AttendanceDetail': (context) => ParentContainer(AttendanceDetail()),
+    '/feepayment': (context) => ParentContainer(FeePayment()),
     '/timetable': (context) => ParentContainer(TimeTable()),
   }));
 }
