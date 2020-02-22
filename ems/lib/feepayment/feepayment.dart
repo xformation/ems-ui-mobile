@@ -412,56 +412,59 @@ class _FeePaymentState extends State<FeePayment> with TickerProviderStateMixin {
               ],
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(
-              top: 30.0,
-              bottom: 10.0,
-              left: 24.0,
-              right: 24.0,
-            ),
-            padding: EdgeInsets.only(
-              top: 10.0,
-              bottom: 5.0,
-              left: 15.0,
-              right: 15.0,
-            ),
-            decoration: BoxDecoration(
-              color: Color(0xFFFDCA40),
-            ),
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: Color(0xFFFDCA40),
+          Visibility(
+            visible: _feepayment,
+            child: Container(
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(
+                top: 30.0,
+                bottom: 10.0,
+                left: 24.0,
+                right: 24.0,
               ),
-              child: DropdownButton<String>(
-                isDense: true,
-                elevation: 5,
-                iconEnabledColor: Color(0xFF292B23),
-                underline: Text(''),
-                value: _dropdownValue,
-                style: TextStyle(
-                  color: Color(0xFF292B23),
-                  decorationColor: Color(0xFFFDCA40),
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
+              padding: EdgeInsets.only(
+                top: 10.0,
+                bottom: 5.0,
+                left: 15.0,
+                right: 15.0,
+              ),
+              decoration: BoxDecoration(
+                color: Color(0xFFFDCA40),
+              ),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: Color(0xFFFDCA40),
                 ),
-                isExpanded: true,
-                items: <String>[
-                  'Semester - I',
-                  'Semester - II',
-                  'Semester - III',
-                  'Semester - IV'
-                ].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _dropdownValue = value;
-                  });
-                },
+                child: DropdownButton<String>(
+                  isDense: true,
+                  elevation: 5,
+                  iconEnabledColor: Color(0xFF292B23),
+                  underline: Text(''),
+                  value: _dropdownValue,
+                  style: TextStyle(
+                    color: Color(0xFF292B23),
+                    decorationColor: Color(0xFFFDCA40),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  isExpanded: true,
+                  items: <String>[
+                    'Semester - I',
+                    'Semester - II',
+                    'Semester - III',
+                    'Semester - IV'
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _dropdownValue = value;
+                    });
+                  },
+                ),
               ),
             ),
           ),
@@ -855,7 +858,9 @@ class _FeePaymentState extends State<FeePayment> with TickerProviderStateMixin {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(left: 10, right: 20),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         side: BorderSide(
@@ -876,7 +881,9 @@ class _FeePaymentState extends State<FeePayment> with TickerProviderStateMixin {
                   Container(
                     // margin: EdgeInsets.only(left: 10, right: 10),
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/paymentDetail");
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         side: BorderSide(
