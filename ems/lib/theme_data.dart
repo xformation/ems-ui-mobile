@@ -21,7 +21,7 @@ class LocalTheme {
   };
 
   static const Map<String, dynamic> timetable = {
-     "subject_heading": {
+    "subject_heading": {
       "color": Color(0xFF3E4237),
       "font_family": "Montserrat",
       "font_weight": FontWeight.bold,
@@ -33,8 +33,8 @@ class LocalTheme {
     },
   };
 
-   static const Map<String, dynamic> attendanceCalender = {
-     "title": {
+  static const Map<String, dynamic> attendanceCalender = {
+    "title": {
       "color": Color(0xFF585954),
       "font_family": "OpenSans",
       "font_weight": FontWeight.normal,
@@ -69,6 +69,13 @@ class LocalTheme {
       "active_color": Color(0xFFFDCA40),
       "font_family": "Montserrat",
       "font_weight": FontWeight.bold
+    },
+  };
+
+  static const Map<String, dynamic> complain = {
+    "subHeading": {
+      "color": Color(0xFF9C9D9B),
+      "font_family": "Montserrat",
     },
   };
 }

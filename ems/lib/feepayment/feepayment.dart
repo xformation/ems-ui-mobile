@@ -858,9 +858,7 @@ class _FeePaymentState extends State<FeePayment> with TickerProviderStateMixin {
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(left: 10, right: 20),
                     child: RaisedButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         side: BorderSide(
@@ -908,68 +906,120 @@ class _FeePaymentState extends State<FeePayment> with TickerProviderStateMixin {
           Visibility(
             visible: _paymentHistory,
             child: Container(
-              height: 240.0,
-              padding: EdgeInsets.only(
-                top: 20.0,
-                right: 0.0,
-                bottom: 0.0,
-                left: 20.0,
-              ),
               color: Colors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.calendar_today),
-                    title: Text(
-                      "Exam Fee",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
+                  Container(
+                    alignment: Alignment.topLeft,
+                    margin: EdgeInsets.only(bottom: 15.0),
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 1.0,
+                          color: Color(0xFFFFE0E5D4),
+                        ),
                       ),
                     ),
-                    subtitle: Text(
-                      "INR 4,500.00",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          width: 50,
+                          height: 50,
+                          padding: EdgeInsets.all(0.0),
+                          margin: EdgeInsets.only(left: 20.0),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: Colors.blue,
+                            size: 40.0,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.all(0.0),
+                          margin: EdgeInsets.all(0.0),
+                          width: 220,
+                          child: ListTile(
+                            title: Text(
+                              "Exam Fee",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "INR 4,500.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_description"]
+                                    ["color"],
+                                fontSize: 12,
+                                fontFamily: LocalTheme
+                                    .home["student_description"]["font_family"],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  ListTile(
-                    leading: Icon(Icons.calendar_today),
-                    title: Text(
-                      "Transport Fee",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    // margin: EdgeInsets.only(bottom: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          width: 50,
+                          height: 50,
+                          padding: EdgeInsets.all(0.0),
+                          margin: EdgeInsets.only(left: 20.0),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: Colors.blue,
+                            size: 40.0,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.all(0.0),
+                          margin: EdgeInsets.all(0.0),
+                          width: 220,
+                          child: ListTile(
+                            title: Text(
+                              "Transport Fee",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 16,
+                              ),
+                            ),
+                            subtitle: Text(
+                              "INR 8,000.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_description"]
+                                    ["color"],
+                                fontSize: 12,
+                                fontFamily: LocalTheme
+                                    .home["student_description"]["font_family"],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    subtitle: Text(
-                      "INR 8,000.00",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontWeight: LocalTheme.home["student_name"]
-                            ["font_weight"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
-                    ),
-                  )
+                  ),
                 ],
               ),
             ),

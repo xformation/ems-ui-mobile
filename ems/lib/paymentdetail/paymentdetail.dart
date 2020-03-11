@@ -40,7 +40,7 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
             padding:
                 EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
             child: Text(
-              "Fee Payment",
+              "Fee Details",
               style: TextStyle(
                 color: LocalTheme.Header["title"]["title_color"],
                 fontFamily: LocalTheme.Header["title"]["font_family"],
@@ -305,7 +305,7 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
                           BorderSide(width: 1.0, color: Color(0xFF6E6E6E1A)))),
               padding: EdgeInsets.only(
                 top: 25.0,
-                right: .0,
+                right: 0.0,
                 bottom: 7.0,
                 left: 13.0,
               ),
@@ -1202,6 +1202,29 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
                     ],
                   ),
                 ],
+              ),
+            ),
+            Container(
+              width: 250.0,
+              // alignment: Alignment.center,
+              margin: EdgeInsets.only(left: 30, right: 30,bottom: 10),
+              child: RaisedButton(
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(3.0),
+                  side: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+                child: Text(
+                  'Pay Now',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                color: Color(0xFF7ED321),
+                textColor: Colors.black,
               ),
             ),
           ]),

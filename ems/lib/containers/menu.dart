@@ -12,7 +12,7 @@ class Menu extends StatelessWidget {
     //MenuItem(LocalIcons.grades, 'Grades', "/graph"),
     MenuItem(LocalIcons.notification, 'Notifications', "/"),
     MenuItem(LocalIcons.settings, 'Settings', "/"),
-    MenuItem(LocalIcons.complaints, 'Complaints', "/"),
+    MenuItem(LocalIcons.complaints, 'Complaints', "/complain"),
     MenuItem(LocalIcons.my_profile, 'My Profile', "/"),
     MenuItem(LocalIcons.logout, 'Logout', "/"),
   ];
