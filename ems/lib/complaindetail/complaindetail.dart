@@ -15,65 +15,96 @@ class _ComplaintDetailState extends State<ComplainDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(1, 250, 250, 248),
-        elevation: 0.0,
-        leading: Container(
-          alignment: Alignment.centerLeft,
-          width: 30.0,
-          padding: EdgeInsets.only(left: 0.0),
-          child: IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_left,
-              color: LocalTheme.home["heading"]["color"],
-              size: 40,
-            ),
-            iconSize: 24.0,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
-        title: Container(
-          alignment: Alignment(-1.4, 0.0),
-          padding:
-              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
-          child: Text(
-            "Complaint Details",
-            style: TextStyle(
-              color: LocalTheme.Header["title"]["title_color"],
-              fontFamily: LocalTheme.Header["title"]["font_family"],
-              fontSize: 17,
-              fontWeight: FontWeight.normal,
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(1, 250, 250, 248),
+          elevation: 0.0,
+          leading: Container(
+            alignment: Alignment.centerLeft,
+            width: 30.0,
+            padding: EdgeInsets.only(left: 0.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.keyboard_arrow_left,
+                color: LocalTheme.home["heading"]["color"],
+                size: 40,
+              ),
+              iconSize: 24.0,
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
+          title: Container(
+            alignment: Alignment(-1.4, 0.0),
+            padding:
+                EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+            child: Text(
+              "Complaint Details",
+              style: TextStyle(
+                color: LocalTheme.Header["title"]["title_color"],
+                fontFamily: LocalTheme.Header["title"]["font_family"],
+                fontSize: 17,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            Container(
+                alignment: Alignment.centerRight,
+                // padding: EdgeInsets.only(right: 20.0),
+                child: Row(children: <Widget>[
+                  IconButton(
+                    padding: EdgeInsets.only(left: 20.0, right: 15.0),
+                    icon: Icon(Icons.home),
+                    iconSize: 30.0,
+                    color: LocalTheme.Header["title"]["title_color"],
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/");
+                    },
+                  ),
+                ])),
+          ],
         ),
-        actions: <Widget>[
-          Container(
-              alignment: Alignment.centerRight,
-              // padding: EdgeInsets.only(right: 20.0),
-              child: Row(children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.only(left: 20.0, right: 15.0),
-                  icon: Icon(Icons.home),
-                  iconSize: 30.0,
-                  color: LocalTheme.Header["title"]["title_color"],
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/");
-                  },
+        body: Container(
+          color: Color.fromARGB(1, 250, 250, 248),
+          child: SingleChildScrollView(
+            child: Column(children: <Widget>[
+              studentComplainDetail(),
+            ]),
+          ),
+        ),
+        bottomNavigationBar: Container(
+          // color: Colors.pink,
+          height: 40,
+          color: Colors.white,
+          margin:
+              EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+          child: Row(children: <Widget>[
+            Container(
+              alignment: Alignment.centerLeft,
+              width: 250,
+              child: TextField(
+                obscureText: false,
+                decoration: InputDecoration(
+                  // contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  hintText: "Write Your Feedback",
                 ),
-              ])),
-        ],
-      ),
-      body: Container(
-        color: Color.fromARGB(1, 250, 250, 248),
-        child: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            studentComplainDetail(),
+              ),
+            ),
+            Container(
+                // width: 100,
+                margin: EdgeInsets.only(left:5.0),
+                alignment: Alignment.topRight,
+                // height: 40,
+                // padding: EdgeInsets.only(bottom: 50.0),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_right),
+                  color: Colors.orange,
+                  iconSize: 45,
+                  onPressed: () {},
+                ))
           ]),
-        ),
-      ),
-    );
+        ));
   }
 
   Widget studentComplainDetail() {
@@ -202,7 +233,7 @@ class _ComplaintDetailState extends State<ComplainDetail> {
                     width: 100,
                     height: 20,
                     padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0,top: 10.0),
+                    margin: EdgeInsets.only(left: 20.0, top: 10.0),
                     child: Text(
                       "Category",
                       style: TextStyle(
@@ -242,7 +273,7 @@ class _ComplaintDetailState extends State<ComplainDetail> {
                     width: 100,
                     height: 20,
                     padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0, top:10.0),
+                    margin: EdgeInsets.only(left: 20.0, top: 10.0),
                     child: Text(
                       "Subject",
                       style: TextStyle(
@@ -322,7 +353,7 @@ class _ComplaintDetailState extends State<ComplainDetail> {
                     width: 100,
                     height: 20,
                     padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0,top: 10.0),
+                    margin: EdgeInsets.only(left: 20.0, top: 10.0),
                     child: Text(
                       "Status",
                       style: TextStyle(

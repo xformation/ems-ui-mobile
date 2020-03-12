@@ -269,14 +269,18 @@ class _RegisterComplainState extends State<Registercomplain> {
             Container(
               alignment: Alignment.topLeft,
               height: 80,
-              padding: EdgeInsets.only(
+              color: Color(0xFFF3F3F3),
+              margin: EdgeInsets.only(
                   left: 20.0, top: 0.0, bottom: 0.0, right: 20.0),
               child: TextField(
                 maxLines: 8,
                 decoration: InputDecoration.collapsed(
-                    hintText: "Enter your message here",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2.0))),
+                  hintText: "",
+                  // border: OutlineInputBorder(
+                  //     borderRadius: BorderRadius.circular(1.0),
+                  //     borderSide: BorderSide(color: Colors.white),
+                  //     )
+                ),
               ),
             ),
             Container(
