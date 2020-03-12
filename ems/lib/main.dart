@@ -1,4 +1,3 @@
-
 import 'package:ems/business/store.dart';
 import 'package:ems/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:ems/timetable/time_table.dart';
 import 'package:ems/feepayment/feepayment.dart';
 import 'package:ems/paymentdetail/paymentdetail.dart';
 import 'package:ems/complain/complain.dart';
+import 'package:ems/registercomplain/registercomplain.dart';
 
 import 'package:ems/containers/parent_container.dart';
 
@@ -23,5 +23,6 @@ void main() {
     '/timetable': (context) => ParentContainer(TimeTable()),
     '/paymentDetail' : (context) => ParentContainer(FeePaymentDetail()),
     '/complain' : (context) => ParentContainer(Complaints()),
+    '/Registercomplain' : (context) => ParentContainer(Registercomplain()),
   }));
 }

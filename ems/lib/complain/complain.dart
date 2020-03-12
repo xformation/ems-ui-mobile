@@ -15,77 +15,85 @@ class _ComplaintState extends State<Complaints> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(1, 250, 250, 248),
-          elevation: 0.0,
-          leading: Container(
-            alignment: Alignment.centerLeft,
-            width: 30.0,
-            padding: EdgeInsets.only(left: 0.0),
-            child: IconButton(
-              icon: Icon(
-                Icons.keyboard_arrow_left,
-                color: LocalTheme.home["heading"]["color"],
-                size: 40,
-              ),
-              iconSize: 24.0,
-              onPressed: () {
-                Navigator.pop(context);
-              },
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(1, 250, 250, 248),
+        elevation: 0.0,
+        leading: Container(
+          alignment: Alignment.centerLeft,
+          width: 30.0,
+          padding: EdgeInsets.only(left: 0.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: LocalTheme.home["heading"]["color"],
+              size: 40,
             ),
+            iconSize: 24.0,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          title: Container(
-            alignment: Alignment(-1.4, 0.0),
-            padding:
-                EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
-            child: Text(
-              "Complaints",
-              style: TextStyle(
-                color: LocalTheme.Header["title"]["title_color"],
-                fontFamily: LocalTheme.Header["title"]["font_family"],
-                fontSize: 17,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            Container(
-                alignment: Alignment.centerRight,
-                // padding: EdgeInsets.only(right: 20.0),
-                child: Row(children: <Widget>[
-                  GestureDetector(
-                    child: Image.asset(
-                      'assets/images/Student.png',
-                      fit: BoxFit.cover,
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        child: openalertdialog(),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.only(left: 20.0, right: 10.0),
-                    icon: Icon(Icons.home),
-                    iconSize: 32.0,
-                    color: LocalTheme.Header["title"]["title_color"],
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/");
-                    },
-                  ),
-                ])),
-          ],
         ),
-        body: Container(
-          color: Color.fromARGB(1, 250, 250, 248),
-          child: SingleChildScrollView(
-            child: Column(children: <Widget>[
-              studentprofileDetail(),
-              studentComplain(),
-            ]),
+        title: Container(
+          alignment: Alignment(-1.4, 0.0),
+          padding:
+              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          child: Text(
+            "Complaints",
+            style: TextStyle(
+              color: LocalTheme.Header["title"]["title_color"],
+              fontFamily: LocalTheme.Header["title"]["font_family"],
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ));
+        ),
+        actions: <Widget>[
+          Container(
+              alignment: Alignment.centerRight,
+              // padding: EdgeInsets.only(right: 20.0),
+              child: Row(children: <Widget>[
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Student.png',
+                    fit: BoxFit.cover,
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      child: openalertdialog(),
+                    );
+                  },
+                ),
+                IconButton(
+                  padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                  icon: Icon(Icons.home),
+                  iconSize: 32.0,
+                  color: LocalTheme.Header["title"]["title_color"],
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                ),
+              ])),
+        ],
+      ),
+      body: Container(
+        color: Color.fromARGB(1, 250, 250, 248),
+        child: SingleChildScrollView(
+          child: Column(children: <Widget>[
+            studentprofileDetail(),
+            studentComplain(),
+          ]),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () { 
+          Navigator.pushNamed(context, "/Registercomplain");
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.redAccent,
+      ),
+    );
   }
 
   Widget openalertdialog() {
