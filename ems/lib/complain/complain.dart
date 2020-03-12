@@ -349,7 +349,7 @@ class _ComplaintState extends State<Complaints> {
 
   Widget studentComplain() {
     return Container(
-      height: 270,
+      height: 235,
       margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -391,7 +391,7 @@ class _ComplaintState extends State<Complaints> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 100,
-                    height: 60,
+                    height: 30,
                     padding: EdgeInsets.all(0.0),
                     margin: EdgeInsets.only(left: 20.0),
                     child: Text(
@@ -431,7 +431,7 @@ class _ComplaintState extends State<Complaints> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 100,
-                    height: 60,
+                    height: 70,
                     padding: EdgeInsets.all(0.0),
                     margin: EdgeInsets.only(left: 20.0),
                     child: Text(
@@ -479,9 +479,9 @@ class _ComplaintState extends State<Complaints> {
                   Container(
                     alignment: Alignment.centerLeft,
                     width: 100,
-                    height: 60,
+                    height: 30,
                     padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0),
+                    margin: EdgeInsets.only(left: 20.0, bottom: 10.0),
                     child: Text(
                       "Date",
                       style: TextStyle(
@@ -495,7 +495,7 @@ class _ComplaintState extends State<Complaints> {
                   Container(
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.all(0.0),
+                    margin: EdgeInsets.only(bottom: 10.0),
                     width: 150,
                     child: Text(
                       "26 Feb 2020",
@@ -553,7 +553,9 @@ class _ComplaintState extends State<Complaints> {
                       child: FlatButton(
                         textColor: Colors.black,
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/complaindetail");
+                        },
                         child: const Text(
                           'View',
                           style: TextStyle(fontSize: 12),

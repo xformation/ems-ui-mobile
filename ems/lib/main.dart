@@ -9,7 +9,7 @@ import 'package:ems/feepayment/feepayment.dart';
 import 'package:ems/paymentdetail/paymentdetail.dart';
 import 'package:ems/complain/complain.dart';
 import 'package:ems/registercomplain/registercomplain.dart';
-
+import 'package:ems/complaindetail/complaindetail.dart';
 import 'package:ems/containers/parent_container.dart';
 
 void main() {
@@ -24,5 +24,6 @@ void main() {
     '/paymentDetail' : (context) => ParentContainer(FeePaymentDetail()),
     '/complain' : (context) => ParentContainer(Complaints()),
     '/Registercomplain' : (context) => ParentContainer(Registercomplain()),
+    '/complaindetail' : (context) => ParentContainer(ComplainDetail()),
   }));
 }
