@@ -16,76 +16,82 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(1, 250, 250, 248),
-          elevation: 0.0,
-          leading: Container(
-            alignment: Alignment.centerLeft,
-            width: 30.0,
-            padding: EdgeInsets.only(left: 0.0),
-            child: IconButton(
-              icon: Icon(
-                Icons.keyboard_arrow_left,
-                color: LocalTheme.home["heading"]["color"],
-                size: 40,
-              ),
-              iconSize: 24.0,
-              onPressed: () {
-                Navigator.pop(context);
-              },
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(1, 250, 250, 248),
+        elevation: 0.0,
+        leading: Container(
+          alignment: Alignment.centerLeft,
+          width: 30.0,
+          padding: EdgeInsets.only(left: 0.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_left,
+              color: LocalTheme.home["heading"]["color"],
+              size: 40,
             ),
+            iconSize: 24.0,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          title: Container(
-            alignment: Alignment(-1.4, 0.0),
-            padding:
-                EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
-            child: Text(
-              "Fee Details",
-              style: TextStyle(
-                color: LocalTheme.Header["title"]["title_color"],
-                fontFamily: LocalTheme.Header["title"]["font_family"],
-                fontSize: 17,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            Container(
-                alignment: Alignment.centerRight,
-                // padding: EdgeInsets.only(right: 20.0),
-                child: Row(children: <Widget>[
-                  GestureDetector(
-                    child: Image.asset(
-                      'assets/images/Student.png',
-                      fit: BoxFit.cover,
-                    ),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        child: openalertdialog(),
-                      );
-                    },
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.only(left: 20.0, right: 10.0),
-                    icon: Icon(Icons.home),
-                    iconSize: 32.0,
-                    color: LocalTheme.Header["title"]["title_color"],
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/");
-                    },
-                  ),
-                ])),
-          ],
         ),
-        body: Container(
-          color: Color.fromARGB(1, 250, 250, 248),
-          child: SingleChildScrollView(
-            child: Column(children: <Widget>[
-              paymentDetails(),
-            ]),
+        title: Container(
+          alignment: Alignment(-1.4, 0.0),
+          padding:
+              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          child: Text(
+            "Fee Details",
+            style: TextStyle(
+              color: LocalTheme.Header["title"]["title_color"],
+              fontFamily: LocalTheme.Header["title"]["font_family"],
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ));
+        ),
+        actions: <Widget>[
+          Container(
+            alignment: Alignment.centerRight,
+            // padding: EdgeInsets.only(right: 20.0),
+            child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  child: Image.asset(
+                    'assets/images/Student.png',
+                    fit: BoxFit.cover,
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      child: openalertdialog(),
+                    );
+                  },
+                ),
+                IconButton(
+                  padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                  icon: Icon(Icons.home),
+                  iconSize: 32.0,
+                  color: LocalTheme.Header["title"]["title_color"],
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      body: Container(
+        color: Color.fromARGB(1, 250, 250, 248),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              paymentDetails(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget openalertdialog() {
@@ -247,12 +253,13 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
                     title: Text(
                       "Kevin Dean",
                       style: TextStyle(
-                          color: LocalTheme.home["student_name"]["color"],
-                          fontWeight: LocalTheme.home["student_name"]
-                              ["font_weight"],
-                          fontFamily: LocalTheme.home["student_name"]
-                              ["font_family"],
-                          fontSize: 16),
+                        color: LocalTheme.home["student_name"]["color"],
+                        fontWeight: LocalTheme.home["student_name"]
+                            ["font_weight"],
+                        fontFamily: LocalTheme.home["student_name"]
+                            ["font_family"],
+                        fontSize: 16,
+                      ),
                     ),
                     subtitle: Text(
                       "10th Grade, Telangana State Board",
@@ -281,6 +288,12 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
         top: 0.0,
         bottom: 20.0,
       ),
+      padding: EdgeInsets.only(
+        left: 24.0,
+        right: 24.0,
+        top: 0.0,
+        bottom: 30.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -292,942 +305,929 @@ class _FeePaymentDetailState extends State<FeePaymentDetail>
         ],
       ),
       child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.topLeft,
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom:
-                          BorderSide(width: 1.0, color: Color(0xFF6E6E6E1A)))),
-              padding: EdgeInsets.only(
-                top: 25.0,
-                right: 0.0,
-                bottom: 7.0,
-                left: 13.0,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            width: MediaQuery.of(context).size.width,
+            //height: 50,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFF6E6E6E1A),
+                ),
+              ),
+            ),
+            padding: EdgeInsets.only(
+              top: 25.0,
+              right: 0.0,
+              bottom: 10.0,
+              left: 13.0,
+            ),
+            child: Text(
+              "DETAILS",
+              style: TextStyle(
+                color: Color(0xFF292B23),
+                fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                fontFamily: LocalTheme.home["student_name"]["font_family"],
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              top: 15.0,
+              right: 0.0,
+              bottom: 0.0,
+              left: 0.0,
+            ),
+            child: Row(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Invoice ID",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["sub_heading"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "2485",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Recipient",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "Sara Adams",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Invoice Date",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "18 Feb 2020",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Invoice Amount",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "INR 10,000.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Adjustments",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "0.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Amount Payable",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "INR 10,000.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Due Date",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "28 FEB 2020",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Status",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "UNPAID",
+                              style: TextStyle(
+                                color: Color(0xFFE20E24),
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            width: MediaQuery.of(context).size.width,
+            //height: 50,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFF6E6E6E1A),
+                ),
+              ),
+            ),
+            padding: EdgeInsets.only(
+              top: 25.0,
+              right: 0.0,
+              bottom: 10.0,
+              left: 13.0,
+            ),
+            child: Text(
+              "PARTICULAR",
+              style: TextStyle(
+                color: Color(0xFF292B23),
+                fontWeight: LocalTheme.home["student_name"]["font_weight"],
+                fontFamily: LocalTheme.home["student_name"]["font_family"],
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white,
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              top: 15.0,
+              right: 0.0,
+              bottom: 10.0,
+              left: 0.0,
+            ),
+            child: Row(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 30,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Particular",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 30,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "First Semester",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Description",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "-",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Unit-Price",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "INR 10,000.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Discount",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "-",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Tax",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "-",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.only(
+                        top: 0.0,
+                        right: 0.0,
+                        bottom: 2.0,
+                        left: 0.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            width: 170,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 15.0,
+                            ),
+                            child: Text(
+                              "Amount Payable",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 25,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(
+                              top: 0.0,
+                              right: 0.0,
+                              bottom: 0.0,
+                              left: 0.0,
+                            ),
+                            child: Text(
+                              "INR 10,000.00",
+                              style: TextStyle(
+                                color: LocalTheme.home["student_name"]["color"],
+                                fontWeight: LocalTheme.home["student_name"]
+                                    ["font_weight"],
+                                fontFamily: LocalTheme.home["student_name"]
+                                    ["font_family"],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 250.0,
+            // alignment: Alignment.center,
+            margin: EdgeInsets.only(
+              top: 20.0,
+              left: 20,
+              right: 20,
+              bottom: 10,
+            ),
+            child: RaisedButton(
+              onPressed: () {},
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(3.0),
+                side: BorderSide(
+                  color: Colors.transparent,
+                ),
               ),
               child: Text(
-                "DETAILS",
+                'Pay Now',
                 style: TextStyle(
-                  color: Color(0xFF292B23),
-                  fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                  fontFamily: LocalTheme.home["student_name"]["font_family"],
-                  fontSize: 16,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              color: Color(0xFF7ED321),
+              textColor: Color(0xFF3E4237),
             ),
-            Container(
-              color: Colors.white,
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(
-                top: 20.0,
-                right: 30.0,
-                bottom: 10.0,
-                left: 30.0,
-              ),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Invoice ID",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "2485",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Recipient",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "Sara Adams",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Invoice Date",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "18 Feb 2020",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Invoice Amount",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "INR 10,000.00",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Adjustments",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "0.00",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Amount Payable",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "INR 10,000.00",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Due Date",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "28 FEB 2020",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Status",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "UNPAID",
-                                style: TextStyle(
-                                  color: Color(0xFFE20E24),
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              width: MediaQuery.of(context).size.width,
-              height: 50,
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom:
-                          BorderSide(width: 1.0, color: Color(0xFF6E6E6E1A)))),
-              padding: EdgeInsets.only(
-                top: 25.0,
-                right: 0.0,
-                bottom: 7.0,
-                left: 13.0,
-              ),
-              child: Text(
-                "PARTICULAR",
-                style: TextStyle(
-                  color: Color(0xFF292B23),
-                  fontWeight: LocalTheme.home["student_name"]["font_weight"],
-                  fontFamily: LocalTheme.home["student_name"]["font_family"],
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(
-                top: 20.0,
-                right: 30.0,
-                bottom: 10.0,
-                left: 30.0,
-              ),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Particular",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 30,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "First Semester",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 11,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Description",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "-",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Unit-Price",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "INR 10,000.00",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Discount",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "-",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Tax",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "-",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(
-                          top: 0.0,
-                          right: 0.0,
-                          bottom: 2.0,
-                          left: 0.0,
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              width: 160,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 18.0,
-                              ),
-                              child: Text(
-                                "Amount Payable",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 100,
-                              height: 25,
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.only(
-                                top: 0.0,
-                                right: 0.0,
-                                bottom: 0.0,
-                                left: 13.0,
-                              ),
-                              child: Text(
-                                "INR 10,000.00",
-                                style: TextStyle(
-                                  color: LocalTheme.home["student_name"]
-                                      ["color"],
-                                  fontWeight: LocalTheme.home["student_name"]
-                                      ["font_weight"],
-                                  fontFamily: LocalTheme.home["student_name"]
-                                      ["font_family"],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: 250.0,
-              // alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 30, right: 30,bottom: 10),
-              child: RaisedButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(3.0),
-                  side: BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                child: Text(
-                  'Pay Now',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                color: Color(0xFF7ED321),
-                textColor: Colors.black,
-              ),
-            ),
-          ]),
+          ),
+        ],
+      ),
     );
   }
 }
