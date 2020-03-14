@@ -818,6 +818,7 @@ class _TimeTableState extends State<TimeTable> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
+              
               padding: EdgeInsets.all(0.0),
               child: Text(
                 "<",

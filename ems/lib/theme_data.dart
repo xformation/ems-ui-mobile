@@ -6,7 +6,7 @@ class LocalTheme {
     "item": {
       "color": Color(0xFF000000),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold,
+      "font_weight": FontWeight.w600,
     },
     "user_name": {"color": Color(0xFF292B23), "font_family": "Montserrat"},
     "user_description": {"color": Color(0xFF585954), "font_family": "OpenSans"}
@@ -24,12 +24,12 @@ class LocalTheme {
     "subject_heading": {
       "color": Color(0xFF3E4237),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold,
+      "font_weight": FontWeight.w600,
     },
     "sub_heading": {
       "title_color": Color(0xFF3E4237),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.normal,
+      "font_weight": FontWeight.w500,
     },
   };
 
@@ -37,7 +37,7 @@ class LocalTheme {
     "title": {
       "color": Color(0xFF585954),
       "font_family": "OpenSans",
-      "font_weight": FontWeight.normal,
+      "font_weight": FontWeight.w500,
     }
   };
 
@@ -45,12 +45,12 @@ class LocalTheme {
     "heading": {
       "color": Color.fromRGBO(41, 43, 35, 1),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold,
+      "font_weight": FontWeight.w600,
     },
     "student_name": {
       "color": Color(0xFF292B23),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold,
+      "font_weight": FontWeight.w600,
     },
     "student_description": {
       "color": Color(0xFF585954),
@@ -59,7 +59,7 @@ class LocalTheme {
     "sub_heading": {
       "color": Color(0xFF292B23),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold,
+      "font_weight": FontWeight.w600,
     }
   };
 
@@ -68,7 +68,7 @@ class LocalTheme {
       "unactive_color": Color(0xFF292B23),
       "active_color": Color(0xFFFDCA40),
       "font_family": "Montserrat",
-      "font_weight": FontWeight.bold
+      "font_weight": FontWeight.w600
     },
   };
 

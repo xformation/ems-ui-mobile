@@ -18,11 +18,14 @@ class LineChartSample1State extends State<LineChartSample1> {
 
   @override
   Widget build(BuildContext context) {
-    // return AspectRatio(
-    //   aspectRatio: 1.23,
     return Container(
       height: 220.0,
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 20.0,
+        bottom: 20.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -47,57 +50,22 @@ class LineChartSample1State extends State<LineChartSample1> {
                 fontSize: 18,
               ),
             ),
-            subtitle: Text("Quarter I vs. Quarter II", style: TextStyle(
+            subtitle: Text(
+              "Quarter I vs. Quarter II",
+              style: TextStyle(
                 color: LocalTheme.home["student_description"]["color"],
-                fontFamily: LocalTheme.home["student_description"]["font_family"],
+                fontFamily: LocalTheme.home["student_description"]
+                    ["font_family"],
                 fontSize: 12,
-              ),),
+              ),
+            ),
           ),
-          // decoration: BoxDecoration(
-          //   borderRadius: const BorderRadius.all(Radius.circular(18)),
-          //   gradient: LinearGradient(
-          //     colors: const [
-          //       Color(0xff2c274c),
-          //       Color(0xff46426c),
-          //     ],
-          //     begin: Alignment.bottomCenter,
-          //     end: Alignment.topCenter,
-          //   ),
-          // ),
-          // child: Stack(
-          //   children: <Widget>[
-          //     Column(
-          //       crossAxisAlignment: CrossAxisAlignment.stretch,
-          //       children: <Widget>[
-          // const SizedBox(
-          //   height: 37,
-          // ),
-          // Text(
-          //   'Unfold Shop 2018',
-          //   style: TextStyle(
-          //     color: const Color(0xff827daa),
-          //     fontSize: 16,
-          //   ),
-          //   textAlign: TextAlign.center,
-          // ),
-          // const SizedBox(
-          //   height: 4,
-          // ),
-          // Text(
-          //   'Monthly Sales',
-          //   style: TextStyle(
-          //       color: Colors.white,
-          //       fontSize: 32,
-          //       fontWeight: FontWeight.bold,
-          //       letterSpacing: 2),
-          //   textAlign: TextAlign.center,
-          // ),
-          // const SizedBox(
-          //   height: 37,
-          // ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(right: 0.0, left: 0.0),
+              padding: const EdgeInsets.only(
+                right: 0.0,
+                left: 0.0,
+              ),
               child: LineChart(
                 isShowingMainData ? sampleData1() : sampleData2(),
                 swapAnimationDuration: Duration(milliseconds: 250),
@@ -107,26 +75,6 @@ class LineChartSample1State extends State<LineChartSample1> {
         ],
       ),
     );
-    //     const SizedBox(
-    //       height: 10,
-    //     ),
-    //   ],
-    // ),
-    // IconButton(
-    //   icon: Icon(
-    //     Icons.refresh,
-    //     color: Colors.white.withOpacity(isShowingMainData ? 1.0 : 0.5),
-    //   ),
-    //   onPressed: () {
-    //     setState(() {
-    //       isShowingMainData = !isShowingMainData;
-    //     });
-    //   },
-    // )
-    // ],
-    // ),
-    // ),
-    // );
   }
 
   LineChartData sampleData1() {
@@ -146,10 +94,8 @@ class LineChartSample1State extends State<LineChartSample1> {
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
           showTitles: true,
-          // reservedSize: 22,
           textStyle: TextStyle(
-            color: const Color.fromRGBO(255,255,255,1),
-            // fontWeight: FontWeight.bold,
+            color: const Color.fromRGBO(255, 255, 255, 1),
             fontSize: 2,
           ),
           margin: 0,
@@ -168,8 +114,7 @@ class LineChartSample1State extends State<LineChartSample1> {
         leftTitles: SideTitles(
           showTitles: true,
           textStyle: TextStyle(
-            color: const Color.fromRGBO(255,255,255,1),
-            // fontWeight: FontWeight.bold,
+            color: const Color.fromRGBO(255, 255, 255, 1),
             fontSize: 2,
           ),
           getTitles: (value) {
@@ -186,16 +131,11 @@ class LineChartSample1State extends State<LineChartSample1> {
             return '';
           },
           margin: 0,
-          // reservedSize: 30,
         ),
       ),
       borderData: FlBorderData(
         show: true,
         border: Border(
-          // bottom: BorderSide(
-          //   color: const Color(0xff4e4965),
-          //   width: 4,
-          // ),
           left: BorderSide(
             color: Colors.transparent,
           ),
@@ -228,7 +168,7 @@ class LineChartSample1State extends State<LineChartSample1> {
       ],
       isCurved: true,
       colors: [
-        Color.fromRGBO(253,202,64,1),
+        Color.fromRGBO(253, 202, 64, 1),
       ],
       barWidth: 4,
       isStrokeCapRound: true,
@@ -250,7 +190,7 @@ class LineChartSample1State extends State<LineChartSample1> {
       ],
       isCurved: true,
       colors: [
-        Color.fromRGBO(38,98,240,1),
+        Color.fromRGBO(38, 98, 240, 1),
       ],
       barWidth: 4,
       isStrokeCapRound: true,
@@ -278,10 +218,8 @@ class LineChartSample1State extends State<LineChartSample1> {
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
           showTitles: true,
-          // reservedSize: 22,
           textStyle: TextStyle(
-            color: const Color.fromRGBO(255,255,255,1),
-            // fontWeight: FontWeight.bold,
+            color: const Color.fromRGBO(255, 255, 255, 1),
             fontSize: 2,
           ),
           margin: 0,
@@ -300,36 +238,15 @@ class LineChartSample1State extends State<LineChartSample1> {
         leftTitles: SideTitles(
           showTitles: true,
           textStyle: TextStyle(
-            color: const Color.fromRGBO(255,255,255,1),
-            // fontWeight: FontWeight.bold,
+            color: const Color.fromRGBO(255, 255, 255, 1),
             fontSize: 2,
           ),
-          // getTitles: (value) {
-          //   switch (value.toInt()) {
-          //     case 1:
-          //       return '1m';
-          //     case 2:
-          //       return '2m';
-          //     case 3:
-          //       return '3m';
-          //     case 4:
-          //       return '5m';
-          //     case 5:
-          //       return '6m';
-          //   }
-          //   return '';
-          // },
           margin: 0,
-          // reservedSize: 30,
         ),
       ),
       borderData: FlBorderData(
           show: true,
           border: Border(
-            // bottom: BorderSide(
-            //   color: const Color(0xff4e4965),
-            //   width: 4,
-            // ),
             left: BorderSide(
               color: Colors.transparent,
             ),
@@ -392,9 +309,12 @@ class LineChartSample1State extends State<LineChartSample1> {
         dotData: FlDotData(
           show: false,
         ),
-        belowBarData: BarAreaData(show: true, colors: [
-          Color(0x33aa4cfc),
-        ]),
+        belowBarData: BarAreaData(
+          show: true,
+          colors: [
+            Color(0x33aa4cfc),
+          ],
+        ),
       ),
     ];
   }

@@ -21,7 +21,9 @@ class _ComplaintState extends State<Complaints> {
         leading: Container(
           alignment: Alignment.centerLeft,
           width: 30.0,
-          padding: EdgeInsets.only(left: 0.0),
+          padding: EdgeInsets.only(
+            left: 0.0,
+          ),
           child: IconButton(
             icon: Icon(
               Icons.keyboard_arrow_left,
@@ -36,8 +38,12 @@ class _ComplaintState extends State<Complaints> {
         ),
         title: Container(
           alignment: Alignment(-1.4, 0.0),
-          padding:
-              EdgeInsets.only(top: 5.0, right: 0.0, bottom: 0.0, left: 0.0),
+          padding: EdgeInsets.only(
+            top: 5.0,
+            right: 0.0,
+            bottom: 0.0,
+            left: 0.0,
+          ),
           child: Text(
             "Complaints",
             style: TextStyle(
@@ -50,9 +56,9 @@ class _ComplaintState extends State<Complaints> {
         ),
         actions: <Widget>[
           Container(
-              alignment: Alignment.centerRight,
-              // padding: EdgeInsets.only(right: 20.0),
-              child: Row(children: <Widget>[
+            alignment: Alignment.centerRight,
+            child: Row(
+              children: <Widget>[
                 GestureDetector(
                   child: Image.asset(
                     'assets/images/Student.png',
@@ -66,7 +72,10 @@ class _ComplaintState extends State<Complaints> {
                   },
                 ),
                 IconButton(
-                  padding: EdgeInsets.only(left: 20.0, right: 10.0),
+                  padding: EdgeInsets.only(
+                    left: 20.0,
+                    right: 10.0,
+                  ),
                   icon: Icon(Icons.home),
                   iconSize: 32.0,
                   color: LocalTheme.Header["title"]["title_color"],
@@ -74,20 +83,24 @@ class _ComplaintState extends State<Complaints> {
                     Navigator.pushNamed(context, "/");
                   },
                 ),
-              ])),
+              ],
+            ),
+          ),
         ],
       ),
       body: Container(
         color: Color.fromARGB(1, 250, 250, 248),
         child: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            studentprofileDetail(),
-            studentComplain(),
-          ]),
+          child: Column(
+            children: <Widget>[
+              studentprofileDetail(),
+              studentComplain(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { 
+        onPressed: () {
           Navigator.pushNamed(context, "/Registercomplain");
         },
         child: Icon(Icons.add),
@@ -255,12 +268,13 @@ class _ComplaintState extends State<Complaints> {
                     title: Text(
                       "Kevin Dean",
                       style: TextStyle(
-                          color: LocalTheme.home["student_name"]["color"],
-                          fontWeight: LocalTheme.home["student_name"]
-                              ["font_weight"],
-                          fontFamily: LocalTheme.home["student_name"]
-                              ["font_family"],
-                          fontSize: 16),
+                        color: LocalTheme.home["student_name"]["color"],
+                        fontWeight: LocalTheme.home["student_name"]
+                            ["font_weight"],
+                        fontFamily: LocalTheme.home["student_name"]
+                            ["font_family"],
+                        fontSize: 16,
+                      ),
                     ),
                     subtitle: Text(
                       "10th Grade, Telangana State Board",
@@ -283,8 +297,18 @@ class _ComplaintState extends State<Complaints> {
 
   Widget studentprofileDetail() {
     return Container(
-      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
-      padding: EdgeInsets.only(top: 15.0, left: 0.0, right: 0.0, bottom: 5.0),
+      margin: EdgeInsets.only(
+        left: 20.0,
+        right: 20.0,
+        top: 20.0,
+        bottom: 20.0,
+      ),
+      padding: EdgeInsets.only(
+        top: 15.0,
+        left: 0.0,
+        right: 0.0,
+        bottom: 5.0,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -303,7 +327,10 @@ class _ComplaintState extends State<Complaints> {
             width: 60,
             height: 60,
             padding: EdgeInsets.all(0.0),
-            margin: EdgeInsets.only(left: 20.0, right: 5.0),
+            margin: EdgeInsets.only(
+              left: 20.0,
+              right: 5.0,
+            ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
@@ -349,8 +376,12 @@ class _ComplaintState extends State<Complaints> {
 
   Widget studentComplain() {
     return Container(
-      height: 235,
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.only(
+        left: 20,
+        right: 20,
+        bottom: 20,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -362,209 +393,259 @@ class _ComplaintState extends State<Complaints> {
         ],
       ),
       child: Column(
-          // mainAxisSize: MainAxisSize.min,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              // alignment: Alignment.topLeft,
-              height: 40,
-              padding: EdgeInsets.only(left: 25.0, top: 0.0, bottom: 7.0),
+        children: <Widget>[
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              left: 10.0,
+              top: 0.0,
+              bottom: 0.0,
+            ),
+            margin: EdgeInsets.only(
+              bottom: 15.0,
+            ),
+            decoration: BoxDecoration(
               color: Color(0xFFFDCA40),
-              child: ListTile(
-                dense: true,
-                title: Text(
-                  "Richard Grand",
-                  style: TextStyle(
-                      color: LocalTheme.home["sub_heading"]["color"],
-                      fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
-                      fontFamily: LocalTheme.home["sub_heading"]["font_family"],
-                      fontSize: 14),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(4.0),
+                topRight: Radius.circular(4.0),
+              ),
+            ),
+            child: ListTile(
+              dense: true,
+              title: Text(
+                "Richard Grand",
+                style: TextStyle(
+                  color: LocalTheme.home["sub_heading"]["color"],
+                  fontWeight: LocalTheme.home["sub_heading"]["font_weight"],
+                  fontFamily: LocalTheme.home["sub_heading"]["font_family"],
+                  fontSize: 14,
+                  height: 1.5,
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 25, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: 100,
-                    height: 30,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      "Subject",
-                      style: TextStyle(
-                        color: LocalTheme.complain["subHeading"]["color"],
-                        fontFamily: LocalTheme.complain["subHeading"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.all(0.0),
-                    // width: 220,
-                    child: Text(
-                      "School bus is always late",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              left: 27.0,
+              right: 27.0,
+              bottom: 12.0,
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 25, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: 100,
-                    height: 70,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      "Complaint",
-                      style: TextStyle(
-                        color: LocalTheme.complain["subHeading"]["color"],
-                        fontFamily: LocalTheme.complain["subHeading"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  width: 100,
+                  padding: EdgeInsets.all(0.0),
+                  child: Text(
+                    "Subject",
+                    style: TextStyle(
+                      color: LocalTheme.complain["subHeading"]["color"],
+                      fontFamily: LocalTheme.complain["subHeading"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
                     ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.all(0.0),
-                    width: 150,
-                    child: Text(
-                      "Hi Sir, School bus is always late, please look in to this matter.",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.only(left: 25, right: 20),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 1.0,
-                    color: Color(0xFFFFE0E5D4),
                   ),
                 ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  child: Text(
+                    "School bus is always late",
+                    style: TextStyle(
+                      color: LocalTheme.home["student_name"]["color"],
+                      fontFamily: LocalTheme.home["student_name"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              left: 27,
+              right: 27,
+              bottom: 12.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.topLeft,
+                  width: 100,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(
+                    left: 0.0,
+                  ),
+                  child: Text(
+                    "Complaint",
+                    style: TextStyle(
+                      color: LocalTheme.complain["subHeading"]["color"],
+                      fontFamily: LocalTheme.complain["subHeading"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  width: 150,
+                  child: Text(
+                    "Hi Sir, \nSchool bus is always late, please look in to this matter.",
+                    style: TextStyle(
+                      color: LocalTheme.home["student_name"]["color"],
+                      fontFamily: LocalTheme.home["student_name"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.only(
+              left: 27,
+              right: 27,
+              bottom: 15.0,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1.0,
+                  color: Color(0xFFFFE0E5D4),
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    width: 100,
-                    height: 30,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 100,
+                  padding: EdgeInsets.all(0.0),
+                  child: Text(
+                    "Date",
+                    style: TextStyle(
+                      color: LocalTheme.complain["subHeading"]["color"],
+                      fontFamily: LocalTheme.complain["subHeading"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.all(0.0),
+                  width: 150,
+                  child: Text(
+                    "26 Feb 2020",
+                    style: TextStyle(
+                      color: LocalTheme.home["student_name"]["color"],
+                      fontFamily: LocalTheme.home["student_name"]
+                          ["font_family"],
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.all(0.0),
+            margin: EdgeInsets.only(
+              left: 0.0,
+              right: 0.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 180,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.only(
+                    left: 2.0,
+                  ),
+                  child: FlatButton(
+                    textColor: Color(0xFF7ED321),
+                    color: Colors.white,
+                    onPressed: () {},
                     child: Text(
-                      "Date",
+                      'OPEN',
                       style: TextStyle(
-                        color: LocalTheme.complain["subHeading"]["color"],
-                        fontFamily: LocalTheme.complain["subHeading"]
-                            ["font_family"],
+                        fontSize: 14,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 65,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(
+                        width: 1.0,
+                        color: Color(0xFFE0E5D5),
+                      ),
+                    ),
+                  ),
+                  child: FlatButton(
+                    textColor: Colors.black,
+                    color: Colors.white,
+                    onPressed: () {},
+                    child: const Text(
+                      'Close',
+                      style: TextStyle(
+                        fontSize: 12,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: 60,
+                  padding: EdgeInsets.all(0.0),
+                  margin: EdgeInsets.all(0.0),
+                  child: FlatButton(
+                    textColor: Colors.black,
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/complaindetail");
+                    },
+                    child: const Text(
+                      'View',
+                      style: TextStyle(
                         fontSize: 12,
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.all(0.0),
-                    margin: EdgeInsets.only(bottom: 10.0),
-                    width: 150,
-                    child: Text(
-                      "26 Feb 2020",
-                      style: TextStyle(
-                        color: LocalTheme.home["student_name"]["color"],
-                        fontFamily: LocalTheme.home["student_name"]
-                            ["font_family"],
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Container(
-              // alignment: Alignment.topLeft,
-              // padding: EdgeInsets.only(left: 25, right: 20),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      width: 120,
-                      // height: 60,
-                      padding: EdgeInsets.all(0.0),
-                      margin: EdgeInsets.only(left: 20.0),
-                      child: FlatButton(
-                        textColor: Color(0xFF7ED321),
-                        color: Colors.white,
-                        onPressed: () {},
-                        child:
-                            const Text('OPEN', style: TextStyle(fontSize: 14)),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(0.0),
-                      margin: EdgeInsets.all(0.0),
-                      // width: 150,
-                      child: FlatButton(
-                        textColor: Colors.black,
-                        color: Colors.white,
-                        onPressed: () {},
-                        child: const Text(
-                          'Close',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      // alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(0.0),
-                      margin: EdgeInsets.all(0.0),
-                      // width: 150,
-                      child: FlatButton(
-                        textColor: Colors.black,
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/complaindetail");
-                        },
-                        child: const Text(
-                          'View',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ),
-                  ]),
-            ),
-          ]),
+          ),
+        ],
+      ),
     );
   }
 }
